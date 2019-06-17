@@ -19,6 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('mobile',32)->unique();
+            $table->tinyInteger('gender')->default(0);
+            $table->tinyInteger('valid')->default(0);
+            $table->integer('organizational_chart_id');
+            $table->integer('hotel_id')->default(0);
+            $table->text('image_path');
             $table->rememberToken();
             $table->timestamps();
         });

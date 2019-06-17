@@ -27,6 +27,7 @@
           href="{{asset('app-assets/css-rtl/core/colors/palette-switch.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/icheck/icheck.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/icheck/custom.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset("app-assets/vendors/css/forms/selects/select2.min.css")}}">
     <!-- END VENDOR CSS-->
     <!-- BEGIN CHAMELEON  CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css-rtl/app.min.css')}}">
@@ -39,8 +40,9 @@
           href="{{asset('app-assets/css-rtl/core/colors/palette-gradient.min.css')}}">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
-@yield('css')
-<!-- END Custom CSS-->
+    @yield('css')
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+    <!-- END Custom CSS-->
     <!-- END Custom CSS-->
 </head>
 <body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click"
@@ -69,7 +71,7 @@
                                     <div class="input-group search-box">
                                         <div class="position-relative has-icon-right full-width">
                                             <input class="form-control" id="search" type="text"
-                                                   placeholder="Search here...">
+                                                   placeholder="{{trans('theme.Search here...')}}">
                                             <div class="form-control-position navbar-search-close"><i class="ft-x"></i>
                                             </div>
                                         </div>
@@ -309,8 +311,8 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item">
-                <a href="{{url('/admin')}}">
-                    <i class="ft-home"></i><span class="menu-title" data-i18n="">داشبورد</span>
+                <a href="{{url('/')}}">
+                    <i class="ft-home"></i><span class="menu-title" data-i18n="">{{__('mb.dashboard')}}</span>
                 </a>
             </li>
             <li class=" nav-item">
@@ -342,16 +344,16 @@
                                                      data-i18n="">{{trans('mb.settings')}}</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item"
-                           href="{{url('admin/parts')}}">{{trans('mb.users')}}</a>
+                           href="{{url('users')}}">{{trans('mb.users')}}</a>
                     </li>
                     <li><a class="menu-item"
-                           href="{{url('admin/parts/create')}}">{{trans('mb.categories')}}</a>
+                           href="{{url('categories')}}">{{trans('mb.categories')}}</a>
                     </li>
                     <li><a class="menu-item"
-                           href="{{url('admin/parts/create')}}">{{trans('mb.hotels')}}</a>
+                           href="{{url('hotels')}}">{{trans('mb.hotels')}}</a>
                     </li>
                     <li><a class="menu-item"
-                           href="{{url('admin/parts/create')}}">{{trans('mb.organizationalChart')}}</a>
+                           href="{{url('organizationCharts')}}">{{trans('mb.organizationChart')}}</a>
                     </li>
                 </ul>
             </li>
@@ -360,8 +362,36 @@
     </div>
     <div class="navigation-background"></div>
 </div>
+
 <div class="app-content content">
-    @yield('content')
+    <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="content-header row">
+            <div class="content-header-right col-md-8 col-12">
+                <div class="breadcrumbs-top float-md-left">
+                    <div class="breadcrumb-wrapper mr-1">
+                        @isset($breadcrumbs)
+                            <ol class="breadcrumb">
+                                @foreach($breadcrumbs as $breadcrumb)
+                                    <li class="breadcrumb-item"><a
+                                                href="{{url($breadcrumb["url"])}}">{{$breadcrumb["name"]}}</a>
+                                    </li>
+                                @endforeach
+                            </ol>
+                        @endisset
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-left col-md-4 col-12 mb-2">
+                <h3 class="content-header-title">@yield('pageName')</h3>
+            </div>
+        </div>
+        <div class="content-body">
+            <!-- Basic form layout section start -->
+        @yield('content')
+        <!-- // Basic form layout section end -->
+        </div>
+    </div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 <div class="customizer border-left-blue-grey border-left-lighten-4 d-none d-xl-block"><a class="customizer-close"
@@ -523,6 +553,7 @@
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
 @yield('page_js')
+<script src="{{asset("app-assets/vendors/js/forms/select/select2.full.min.js")}}" type="text/javascript"></script>
 <script src="{{asset('app-assets/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN CHAMELEON  JS-->
@@ -534,6 +565,7 @@
 <!-- BEGIN PAGE LEVEL JS-->
 @yield('js')
 <script src="{{asset('app-assets/js/scripts/forms/checkbox-radio.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('app-assets/js/scripts/forms/select/form-select2.min.js')}}" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
 </body>
 
