@@ -34,7 +34,9 @@
                                     <select id="hotel_id" name="hotel_id" class="form-control select2">
                                         <option></option>
                                         @foreach($hotels as $hotel)
-                                            <option value="{{$hotel->id}}">{{$hotel->name}}</option>
+                                            <option value="{{$hotel->id}}"
+                                                    {{(old("hotel_id")==$hotel->id ||(!old('hotel_id') && $user->hotel_id && $user->hotel_id==$hotel->id)) ?"selected":""}}
+                                            >{{$hotel->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -56,43 +58,46 @@
                                 <label class="col-md-2 label-control"
                                        for="organizational_chart_id">{{trans('mb.organizationChart')}}</label>
                                 <div class="col-md-4">
-                                    <select id="organizational_chart_id" name="organizational_chart_id" class="form-control select2">
+                                    <select id="organizational_chart_id" name="organizational_chart_id"
+                                            class="form-control select2">
                                         <option></option>
                                         @foreach($organizationCharts as $organizationChart)
-                                            <option value="{{$organizationChart->id}}">{{$organizationChart->name}}</option>
+                                            <option value="{{$organizationChart->id}}"
+                                                    {{(old("organizational_chart_id")==$organizationChart->id ||(!old('organizational_chart_id') && $user->organizational_chart_id && $user->organizational_chart_id==$organizationChart->id)) ?"selected":""}}
+                                            >{{$organizationChart->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 @include('fragments.gender')
                             </div>
                             <div class="form-group row">
-                                <div class="col-6">
-                                    <div class="form-group row">
-                                        <label class="col-md-4 label-control"
-                                               for="password">{{trans('mb.password')}}</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="password" class="form-control"
-                                                   placeholder="{{trans('mb.password')}}"
-                                                   name="password">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-md-4 label-control"
-                                               for="password_confirmation">{{trans('mb.passwordConfirmation')}}</label>
-                                        <div class="col-md-8">
-                                            <input type="text" id="password_confirmation" class="form-control"
-                                                   placeholder="{{trans('mb.passwordConfirmation')}}"
-                                                   name="password_confirmation">
-                                        </div>
-                                    </div>
+                                <label class="col-md-2 label-control"
+                                       for="password">{{trans('mb.password')}}</label>
+                                <div class="col-md-4">
+                                    <input type="password" id="password" class="form-control" value=""
+                                           autocomplete="off"
+                                           placeholder="{{trans('mb.password')}}"
+                                           name="password">
                                 </div>
+                                <label class="col-md-2 label-control"
+                                       for="password_confirmation">{{trans('mb.passwordConfirmation')}}</label>
+                                <div class="col-md-4">
+                                    <input type="password" id="password_confirmation" class="form-control"
+                                           placeholder="{{trans('mb.passwordConfirmation')}}"
+                                           name="password_confirmation">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @include('fragments.valid',['isValid'=>$user->valid])
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-6">
                                     <div class="row">
                                         <label class="col-md-4 label-control"
                                                for="image_path">{{trans('mb.image')}}</label>
                                         <div class="col-md-8">
                                             <div class="form-group row">
-                                                <input type="file" class="d-none" name="pic" id="pic">
+                                                <input type="file" class="d-none" name="image_path" id="image_path">
                                                 <div class="div-upload-image m-auto" name="div_image" id="div_image">
                                                     <div class="div-upload-image-text">
                                                         <i class="h1 ft-camera text-light"></i>
@@ -103,10 +108,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-6">
+                                    <img src="{{$user_image}}" class="img-fluid">
+                                </div>
                             </div>
-                            <div class="form-group row">
-                                @include('fragments.valid',['isValid'=>$user->valid])
-                            </div>
+
                         </div>
                         @include('fragments.submitPart',['submitText'=>$submitText,'giveUpUrl'=>'/users'])
                     </form>

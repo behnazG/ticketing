@@ -11,7 +11,7 @@ return [
     "organizationChart" => "چارت سازمانی",
     "organizationCharts" => "چارت‌های سازمانی",
     "inbox" => "صندوق ورودی",
-    "send" => "صندوق خروجی",
+    "sent" => "صندوق خروجی",
     "compose" => "ارسال پیام",
     "newUser" => "کاربر جدید",
     "manageUser" => "مدیریت کاربران",

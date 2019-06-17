@@ -17,7 +17,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/ticket', 'TicketController@index');
+Route::get('/ticket/sent', 'TicketController@sent');
+Route::get('/ticket/inbox', 'TicketController@inbox');
+Route::get('/ticket/compose', 'TicketController@compose');
 ////////////////////////////////////////////////////////////
 Route::resource('/users', 'UserController');
 Route::resource('/categories', 'CategoryController');

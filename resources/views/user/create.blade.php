@@ -41,10 +41,10 @@ $breadcrumbs = [
                 }
             }
             $('#div_image').on('click', function () {
-                $("#pic").click();
+                $("#image_path").click();
             });
 
-            $('#pic').on('change',function () {
+            $('#image_path').on('change',function () {
                 if (this.files && this.files[0]) {
                     var reader = new FileReader();
 

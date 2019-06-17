@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','hotel_id','mobile','organizational_chart_id','gender','valid','image_path'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -41,14 +41,14 @@ class User extends Authenticatable
     {
         return request()->validate([
             "name"=>"required|string",
-            "email"=>"required|email",
-            "mobile"=>"nullable|numeric",
+            "email"=>"required|email|unique:users,email,$id",
+            "mobile"=>"nullable|numeric|unique:users,email,$id",
             "gender"=>"nullable|numeric|min:0|max:2",
             "organizational_chart_id"=>"required|numeric|min:1",
             "hotel_id"=>"required|numeric|min:1",
-            "image_path"=>"nullable|file",
-            "password"=>"required|confirmed",
-            "password_confirmation"=>"required"
+            "image_path"=>"nullable|image|mimes:jpeg,png,jpg|max:30",
+            "password"=>($id==0)?"required":"nullable"."|confirmed",
+            "password_confirmation"=>($id==0 ||(!is_null(request()->password)&&trim(request()->password)!=""))?"required":"nullable"
         ]);
 
     }

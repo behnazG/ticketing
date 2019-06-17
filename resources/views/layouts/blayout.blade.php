@@ -320,13 +320,13 @@
                     <i class="ft-mail"></i><span class="menu-title" data-i18n="">{{trans('mb.tickets')}}</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item"
-                           href="{{url('admin/inbox')}}">{{trans('mb.inbox')}}</a>
+                           href="{{url('ticket/inbox')}}">{{trans('mb.inbox')}}</a>
                     </li>
                     <li><a class="menu-item"
-                           href="{{url('admin/categories/create')}}">{{trans('mb.send')}}</a>
+                           href="{{url('ticket/sent')}}">{{trans('mb.sent')}}</a>
                     </li>
                     <li><a class="menu-item"
-                           href="{{url('admin/categories/create')}}">{{trans('mb.compose')}}</a>
+                           href="{{url('ticket/compose')}}">{{trans('mb.compose')}}</a>
                     </li>
                 </ul>
             </li>

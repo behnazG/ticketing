@@ -82,4 +82,9 @@ class TicketController extends Controller
     {
         //
     }
+
+    public function compose()
+    {
+        return view('ticket.compose');
+    }
 }

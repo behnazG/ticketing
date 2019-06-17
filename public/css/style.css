@@ -31,3 +31,7 @@ button, input, optgroup, select, textarea {
     color: #bdbdbd;
     background: #fff;
 }
+.breadcrumb
+{
+    font-family: 'BYekan';
+}
