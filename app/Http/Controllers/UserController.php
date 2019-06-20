@@ -17,10 +17,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($is_staff)
     {
         $data = [];
-        $data["users"] = User::paginate(10);
+        if($is_staff==="staff")
+        {
+            $data["users"] = User::where('is_staff',1)->paginate(10);
+
+        }else
+        {
+            $data["users"] = User::where('is_staff',0)->paginate(10);
+
+        }
         return view('user.index', $data);
 
     }
@@ -50,6 +58,8 @@ class UserController extends Controller
     {
         $data = User::validate();
         $data["valid"] = isset($request->valid) ? 1 : 0;
+        $data["hotel_id"]=isset($request->is_staff)?0:$data["hotel_id"];
+        $data["organizational_chart_id"]=isset($request->is_staff)?$data["organizational_chart_id"]:0;
         $data["password"] = Hash::make($request->password);
         try
         {
@@ -101,6 +111,8 @@ class UserController extends Controller
     {
         $data = User::validate($User->id);
         $data["valid"] = isset($request->valid) ? 1 : 0;
+        $data["hotel_id"]=isset($request->is_staff)?0:$data["hotel_id"];
+        $data["organizational_chart_id"]=isset($request->is_staff)?$data["organizational_chart_id"]:0;
         //////////////////////////////
         if (!is_null($request->password) && trim($request->password) != "") {
             $data["password"] = Hash::make($request->password);

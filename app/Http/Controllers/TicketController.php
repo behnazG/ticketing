@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\OrganizationChart;
 use App\Ticket;
 use Illuminate\Http\Request;
 
@@ -35,7 +37,7 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       Ticket::validate();
     }
 
     /**
@@ -85,6 +87,10 @@ class TicketController extends Controller
 
     public function compose()
     {
-        return view('ticket.compose');
+        $data=[];
+        $data["ticket"]=new Ticket();
+        $data["organizational_charts"]=OrganizationChart::where('valid',1)->get();
+        $data["categories"]=Category::where('valid',1)->get();
+        return view('ticket.compose',$data);
     }
 }

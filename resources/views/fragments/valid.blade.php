@@ -6,7 +6,7 @@
     @endif
 @else
     @if(!isset($showLabel) || $showLabel==true)
-        <label class="col-md-2 label-control"></label>
+        <label class="col-md-2 label-control">{{trans('mb.validStatus')}}</label>
     @endif
     <div class="col-md-4">
         <div class="row skin skin-square">

@@ -17,11 +17,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/ticket/sent', 'TicketController@sent');
-Route::get('/ticket/inbox', 'TicketController@inbox');
-Route::get('/ticket/compose', 'TicketController@compose');
+Route::get('/tickets/sent', 'TicketController@sent');
+Route::get('/tickets/inbox', 'TicketController@inbox');
+Route::get('/tickets/compose', 'TicketController@compose');
+Route::post('/tickets','TicketController@store');
 ////////////////////////////////////////////////////////////
-Route::resource('/users', 'UserController');
 Route::resource('/categories', 'CategoryController');
 Route::resource('/organizationCharts', 'OrganizationChartController');
 Route::resource('/hotels', 'HotelController');
+////////////////////////////////////////////////////////
+Route::get('users/{is_staff}','UserController@index');
+Route::post('users','UserController@store');
+Route::get('users/create','UserController@create');
+Route::put('users/{user}','UserController@update');
+Route::get('users/{user}','UserController@show');
+Route::delete('users/{user}','UserController@destroy');
+Route::get('users/{user}/edit','UserController@edit');

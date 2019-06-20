@@ -320,13 +320,13 @@
                     <i class="ft-mail"></i><span class="menu-title" data-i18n="">{{trans('mb.tickets')}}</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item"
-                           href="{{url('ticket/inbox')}}">{{trans('mb.inbox')}}</a>
+                           href="{{url('tickets/inbox')}}">{{trans('mb.inbox')}}</a>
                     </li>
                     <li><a class="menu-item"
-                           href="{{url('ticket/sent')}}">{{trans('mb.sent')}}</a>
+                           href="{{url('tickets/sent')}}">{{trans('mb.sent')}}</a>
                     </li>
                     <li><a class="menu-item"
-                           href="{{url('ticket/compose')}}">{{trans('mb.compose')}}</a>
+                           href="{{url('tickets/compose')}}">{{trans('mb.compose')}}</a>
                     </li>
                 </ul>
             </li>
@@ -340,12 +340,26 @@
             </li>
             <li class=" nav-item">
                 <a href="#">
+                    <i class="ft-user"></i><span class="menu-title"
+                                                 data-i18n="">{{trans('mb.users')}}</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="menu-item"
+                           href="{{url('users/create')}}">{{trans('mb.create',["name"=>trans('mb.user')])}}</a>
+                    </li>
+                    <li>
+                        <a class="menu-item" href="{{url('users/hotels')}}">{{trans('mb.users').' '.trans('mb.hotel')}}</a>
+                    </li>
+                    <li>
+                        <a class="menu-item" href="{{url('users/staffs')}}">{{trans('mb.staffs')}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=" nav-item">
+                <a href="#">
                     <i class="ft-settings"></i><span class="menu-title"
                                                      data-i18n="">{{trans('mb.settings')}}</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item"
-                           href="{{url('users')}}">{{trans('mb.users')}}</a>
-                    </li>
                     <li><a class="menu-item"
                            href="{{url('categories')}}">{{trans('mb.categories')}}</a>
                     </li>

@@ -39,13 +39,15 @@ class User extends Authenticatable
      */
     public static function validate($id=0)
     {
-        return request()->validate([
+        $request= request();
+        $is_staff=(isset($request->is_staff))?1:0;
+        return $request->validate([
             "name"=>"required|string",
             "email"=>"required|email|unique:users,email,$id",
             "mobile"=>"nullable|numeric|unique:users,email,$id",
             "gender"=>"nullable|numeric|min:0|max:2",
-            "organizational_chart_id"=>"required|numeric|min:1",
-            "hotel_id"=>"required|numeric|min:1",
+            "organizational_chart_id"=>($is_staff==1)?"required":"nullable"."|numeric|min:1",
+            "hotel_id"=>($is_staff==0)?"required":"nullable"."|numeric|min:0",
             "image_path"=>"nullable|image|mimes:jpeg,png,jpg|max:30",
             "password"=>($id==0)?"required":"nullable"."|confirmed",
             "password_confirmation"=>($id==0 ||(!is_null(request()->password)&&trim(request()->password)!=""))?"required":"nullable"

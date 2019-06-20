@@ -15,15 +15,14 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('sender_id')->default(0);
-            $table->bigInteger('receiver_id')->default(0);
-            $table->bigInteger('admin_id')->default(0);
+            $table->bigInteger('sender_id')->default(0)->comment("فرستنده تیکت");
+            $table->bigInteger('receiver_id')->default(0)->comment("کسی  که تیکت را پیگیری میکند‍‍");
+            $table->bigInteger('admin_id')->default(0)->comment("کاربری ک در ابتدا تیکت را بررسی میکند و برای کارشناسان ارجاع میدهد");
             $table->bigInteger('chat_id');
             $table->integer('category_id');
             $table->integer('organizational_chart_id');
             $table->integer('valid')->default(1);
             $table->tinyInteger('status')->default(0);
-            $table->tinyInteger('status_admin')->default(0);
             $table->string('subject');
             $table->text('text');
             $table->string('admin_text')->nullable();

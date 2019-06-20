@@ -51,7 +51,7 @@
 
     display: table;
 
-    width: 499px;
+    width: 299px;
     height: 100%;
 }
 .email-application .sidebar .email-app-sidebar
@@ -63,9 +63,9 @@
 
 .email-application .content-right
 {
-    width: -webkit-calc(100% - 500px);
-    width:    -moz-calc(100% - 500px);
-    width:         calc(100% - 500px);
+    width: -webkit-calc(100% - 300px);
+    width:    -moz-calc(100% - 300px);
+    width:         calc(100% - 300px);
 }
 
 .email-application .app-content,
