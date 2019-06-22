@@ -25,7 +25,7 @@
 @endsection
 @section('content')
     <div class="row justify-content-md-center">
-        <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="col-xl-12 col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title" id="horz-layout-card-center">{{trans('mb.users')}}</h4>
@@ -52,17 +52,29 @@
                         <table id="example" class="table table-striped table-bordered dt-responsive nowrap mt-2">
                             <thead>
                             <tr>
-                                <th class="col-md-7">{{trans('mb.name')}}</th>
-                                <th class="col-md-2">{{trans('mb.valid')}}</th>
+                                <th>#</th>
+                                <th>{{trans('mb.name')}}</th>
+                                <th>{{trans('mb.email')}}</th>
+                                <th>{{trans('mb.mobile')}}</th>
+                                <th>{{trans("mb.validStatus")}}</th>
+                                @if($is_staff=="staffs")
+                                    <td></td>
+                                @endif
                                 <th></th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $user)
+                            @foreach($users as $i=>$user)
                                 <tr id="row_{{$user->id}}">
+                                    <td>{{$i+1}}</td>
                                     <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->mobile}}</td>
                                     <td>@include('fragments.valid',['showValidMessage'=>$user->valid])</td>
+                                    @if($is_staff=="staffs")
+                                        <td><a href="{{url("authorises/".$user->id."/authorise")}}"><i class="ft-lock"></i> {{trans("mb.authorise")}}</a></td>
+                                    @endif
                                     <td>@include('fragments.edit',['id'=>$user->id,'url'=>'users'])</td>
                                     <td>@include('fragments.delete',['id'=>$user->id])</td>
                                 </tr>

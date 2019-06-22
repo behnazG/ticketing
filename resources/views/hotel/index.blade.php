@@ -53,6 +53,8 @@
                             <thead>
                             <tr>
                                 <th class="col-md-7">{{trans('mb.name')}}</th>
+                                <th class="col-md-7">{{trans('mb.province')}}</th>
+                                <th class="col-md-7">{{trans('mb.city')}}</th>
                                 <th class="col-md-2">{{trans('mb.valid')}}</th>
                                 <th></th>
                                 <th></th>
@@ -62,6 +64,8 @@
                             @foreach($hotels as $hotel)
                                 <tr id="row_{{$hotel->id}}">
                                     <td>{{$hotel->name}}</td>
+                                    <td>{{$hotel->province_name}}</td>
+                                    <td>{{$hotel->city_name}}</td>
                                     <td>@include('fragments.valid',['showValidMessage'=>$hotel->valid])</td>
                                     <td>@include('fragments.edit',['id'=>$hotel->id,'url'=>'hotels'])</td>
                                     <td>@include('fragments.delete',['id'=>$hotel->id])</td>

@@ -44,11 +44,11 @@ class User extends Authenticatable
         return $request->validate([
             "name"=>"required|string",
             "email"=>"required|email|unique:users,email,$id",
-            "mobile"=>"nullable|numeric|unique:users,email,$id",
+            "mobile"=>"nullable|numeric|unique:users,mobile,$id",
             "gender"=>"nullable|numeric|min:0|max:2",
             "organizational_chart_id"=>($is_staff==1)?"required":"nullable"."|numeric|min:1",
             "hotel_id"=>($is_staff==0)?"required":"nullable"."|numeric|min:0",
-            "image_path"=>"nullable|image|mimes:jpeg,png,jpg|max:30",
+            "image_path"=>"nullable|image|mimes:jpeg,png,jpg|max:50",
             "password"=>($id==0)?"required":"nullable"."|confirmed",
             "password_confirmation"=>($id==0 ||(!is_null(request()->password)&&trim(request()->password)!=""))?"required":"nullable"
         ]);

@@ -17,7 +17,6 @@ class CreateTicketsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('sender_id')->default(0)->comment("فرستنده تیکت");
             $table->bigInteger('receiver_id')->default(0)->comment("کسی  که تیکت را پیگیری میکند‍‍");
-            $table->bigInteger('admin_id')->default(0)->comment("کاربری ک در ابتدا تیکت را بررسی میکند و برای کارشناسان ارجاع میدهد");
             $table->bigInteger('chat_id');
             $table->integer('category_id');
             $table->integer('organizational_chart_id');

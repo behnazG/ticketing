@@ -123,9 +123,9 @@ else {
                                                placeholder="{{trans('mb.email')}}"
                                                name="email" value="{{$user->email??old('email')}}">
                                     </div>
-                                    <label class="col-md-2 label-control is_hotel {{!$show_is_staff?"":"display_none"}}"
+                                    <label class="col-md-2 label-control is_hotel {{$show_is_staff?"display_none":""}}"
                                            for="hotel_id">{{trans('mb.hotel')}}</label>
-                                    <div class="col-md-4 is_hotel {{!$show_is_staff?"":"display_none"}}">
+                                    <div class="col-md-4 is_hotel {{$show_is_staff?"display_none":""}}">
                                         <select id="hotel_id" name="hotel_id" class="form-control select2">
                                             <option></option>
                                             @foreach($hotels as $hotel)
@@ -164,7 +164,6 @@ else {
                                     </div>
                                 </div>
                                 <div class="form-group row">
-
                                     @include('fragments.gender')
                                 </div>
                                 <div class="form-group row">

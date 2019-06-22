@@ -26,10 +26,13 @@ Route::resource('/categories', 'CategoryController');
 Route::resource('/organizationCharts', 'OrganizationChartController');
 Route::resource('/hotels', 'HotelController');
 ////////////////////////////////////////////////////////
-Route::get('users/{is_staff}','UserController@index');
 Route::post('users','UserController@store');
 Route::get('users/create','UserController@create');
 Route::put('users/{user}','UserController@update');
-Route::get('users/{user}','UserController@show');
 Route::delete('users/{user}','UserController@destroy');
 Route::get('users/{user}/edit','UserController@edit');
+Route::get('users/{is_staff}','UserController@index');
+Route::get('users/{user}','UserController@show');
+///////////////////////////////////////////////
+Route::get('authorises/{user}/authorise','UserAuthoriseController@authorise');
+Route::put('authorises/{user}','UserAuthoriseController@store');

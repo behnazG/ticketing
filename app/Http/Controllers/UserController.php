@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Hotel;
 use App\OrganizationChart;
 use App\User;
@@ -20,13 +21,12 @@ class UserController extends Controller
     public function index($is_staff)
     {
         $data = [];
-        if($is_staff==="staff")
-        {
-            $data["users"] = User::where('is_staff',1)->paginate(10);
+        $data["is_staff"] = $is_staff;
+        if ($is_staff === "staffs") {
+            $data["users"] = User::where('is_staff', 1)->paginate(10);
 
-        }else
-        {
-            $data["users"] = User::where('is_staff',0)->paginate(10);
+        } else {
+            $data["users"] = User::where('is_staff', 0)->paginate(10);
 
         }
         return view('user.index', $data);
@@ -58,19 +58,20 @@ class UserController extends Controller
     {
         $data = User::validate();
         $data["valid"] = isset($request->valid) ? 1 : 0;
-        $data["hotel_id"]=isset($request->is_staff)?0:$data["hotel_id"];
-        $data["organizational_chart_id"]=isset($request->is_staff)?$data["organizational_chart_id"]:0;
+        $data["hotel_id"] = isset($request->is_staff) ? 0 : $data["hotel_id"];
+        $data["organizational_chart_id"] = isset($request->is_staff) ? $data["organizational_chart_id"] : 0;
         $data["password"] = Hash::make($request->password);
-        try
-        {
+        try {
             unset($data["image_path"]);
-            $User=User::create($data);
-            upload_image($User,'image_path','user_images');
-        }catch (\Exception $e)
-        {
+            $User = User::create($data);
+            upload_image($User, 'image_path', 'user_images');
+            if ($User->is_staff == 1)
+                return redirect('users/staffs');
+            else
+                return redirect('users/hotels');
+        } catch (\Exception $e) {
 
         }
-        return redirect('users');
     }
 
     /**
@@ -96,7 +97,7 @@ class UserController extends Controller
         $data["user"] = $User;
         $data["hotels"] = Hotel::where('valid', 1)->get();
         $data["organizationCharts"] = OrganizationChart::where('valid', 1)->get();
-        $data["user_image"]=asset('storage/'.$User->image_path);
+        $data["user_image"] = asset('storage/' . $User->image_path);
         return view('user.edit', $data);
     }
 
@@ -111,8 +112,8 @@ class UserController extends Controller
     {
         $data = User::validate($User->id);
         $data["valid"] = isset($request->valid) ? 1 : 0;
-        $data["hotel_id"]=isset($request->is_staff)?0:$data["hotel_id"];
-        $data["organizational_chart_id"]=isset($request->is_staff)?$data["organizational_chart_id"]:0;
+        $data["hotel_id"] = isset($request->is_staff) ? 0 : $data["hotel_id"];
+        $data["organizational_chart_id"] = isset($request->is_staff) ? $data["organizational_chart_id"] : 0;
         //////////////////////////////
         if (!is_null($request->password) && trim($request->password) != "") {
             $data["password"] = Hash::make($request->password);
@@ -123,11 +124,14 @@ class UserController extends Controller
         try {
             unset($data["image_path"]);
             $User->update($data);
-            upload_image($User,'image_path','user_images');
+            upload_image($User, 'image_path', 'user_images');
+            if ($User->is_staff == 1)
+                return redirect('users/staffs');
+            else
+                return redirect('users/hotels');
         } catch (\Exception $e) {
 
         }
-        return redirect('users');
     }
 
     /**
@@ -140,5 +144,6 @@ class UserController extends Controller
     {
         //
     }
+
 
 }

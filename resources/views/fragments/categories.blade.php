@@ -10,9 +10,9 @@ foreach ($categories as $category) {
         $list_categories[$p][$index] = $value;
     }
 }
-$questionnaire_categories_list = [];
-foreach ($questionnaire_categories as $qq) {
-array_push($questionnaire_categories_list,$qq->category_id);
+$model_categories_list = [];
+foreach ($model_categories as $qq) {
+array_push($model_categories_list,$qq->category_id);
 }
 ?>
 <label class="col-md-2 label-control"
@@ -23,7 +23,7 @@ array_push($questionnaire_categories_list,$qq->category_id);
             <optgroup label="{{$ll[0]}}">
                 @foreach($ll as $key=>$value)
                     @if($key !=0)
-                        <option value="{{$key}}" {{((old("category")!=null && in_array($key,old("category")))||(is_null(old("category")) && in_array($key,$questionnaire_categories_list)))?"selected":""}} >{{$value}}</option>
+                        <option value="{{$key}}" {{((old("category")!=null && in_array($key,old("category")))||(is_null(old("category")) && in_array($key,$model_categories_list)))?"selected":""}} >{{$value}}</option>
                     @endif
                 @endforeach
             </optgroup>

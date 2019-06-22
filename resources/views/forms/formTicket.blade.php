@@ -39,20 +39,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-2 label-control"
-                                       for="category_id">{{trans('mb.category')}}</label>
-                                <div class="col-md-4">
-                                    <select class="form-control select2" name="category_id"
-                                            id="category_id">
-                                        <option></option>
-                                        @foreach($categories as $category)
-                                            <option value="{{$category->id}}"
-                                                    {{(old("category_id")==$category->id ||(!old('category_id') && $ticket->category_id && $ticket->category_id==$category->id)) ?"selected":""}}
-                                            >{{$category->name}}</option>
-                                        @endforeach
-                                    </select>
-
-                                </div>
+                                @include('fragments.categories',['model_categories'=>$ticket])
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-2 label-control" for="subject">{{trans('mb.subject')}}</label>

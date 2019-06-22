@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Hotel;
+use App\Province;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -28,6 +30,8 @@ class HotelController extends Controller
     {
         $data = [];
         $data["hotel"] = new Hotel();
+        $data["provinces"]=Province::all();
+        $data["cities"]=City::all();
         return view('hotel.create', $data);
     }
 
@@ -67,6 +71,8 @@ class HotelController extends Controller
     {
         $data = [];
         $data["hotel"] = $hotel;
+        $data["provinces"]=Province::all();
+        $data["cities"]=City::all();
         return view('hotel.edit', $data);
     }
 
