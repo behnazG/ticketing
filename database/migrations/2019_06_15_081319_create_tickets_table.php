@@ -17,20 +17,20 @@ class CreateTicketsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('sender_id')->default(0)->comment("فرستنده تیکت");
             $table->bigInteger('receiver_id')->default(0)->comment("کسی  که تیکت را پیگیری میکند‍‍");
-            $table->bigInteger('chat_id');
+            $table->bigInteger('ticket_id')->unique()->nullable();
             $table->integer('category_id');
             $table->integer('organizational_chart_id');
             $table->integer('valid')->default(1);
             $table->tinyInteger('status')->default(0);
             $table->string('subject');
             $table->text('text');
-            $table->string('admin_text')->nullable();
-            $table->timestamps();
             $table->dateTime('time_table')->nullable();
-            $table->string('attach_file_1')->nullable();
-            $table->string('attach_file_2')->nullable();
-            $table->string('attach_file_3')->nullable();
-            $table->string('attach_file_4')->nullable();
+            $table->string('file_1')->nullable();
+            $table->string('file_2')->nullable();
+            $table->string('file_3')->nullable();
+            $table->string('file_4')->nullable();
+            $table->tinyInteger('trash')->default(0);
+            $table->timestamps();
         });
     }
 

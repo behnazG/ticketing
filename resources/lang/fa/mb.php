@@ -113,5 +113,8 @@ return [
     "allowReferrals" => "امکان ارجاع دادن تیکت‌ها",
     "expireDate"=>"اعتبار تا",
     "smsReceiverNum"=>"شماره دریافت sms",
+    "status"=>"وضعیت",
+    "date"=>"تاریخ",
+    "unknownFile"=>"فایل پیدا نشد",
 ];
 ?>

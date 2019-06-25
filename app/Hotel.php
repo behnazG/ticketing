@@ -52,6 +52,6 @@ class Hotel extends Model
     }
     public function province()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(Province::class);
     }
 }

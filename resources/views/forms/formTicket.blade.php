@@ -21,6 +21,9 @@
                         @isset($ticket->id)
                             {{method_field('PUT')}}
                         @endisset
+                        <input type="hidden" name="sender_id" id="sender_id" value="{{auth::user()->id}}">
+                        <input type="hidden" name="valid" id="valid" value="1">
+                        <input type="hidden" name="status" id="status" value="0">
                         <div class="form-body">
                             <div class="form-group row">
                                 <label class="col-md-2 label-control"
@@ -35,7 +38,6 @@
                                             >{{$organization_chart->name}}</option>
                                         @endforeach
                                     </select>
-
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -43,7 +45,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-2 label-control" for="subject">{{trans('mb.subject')}}</label>
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <input type="text" id="subject" class="form-control"
                                            placeholder="{{trans('mb.subject')}}"
                                            name="subject" value="{{$ticket->subject??old('subject')}}">
@@ -63,8 +65,8 @@
                                     <div class="col-12 form-group">
                                         <blockquote class="blockquote pl-1 border-left-red border-left-3 mt-1">
                                           <ul>
-                                              <li> سایز فایل ها حداکثر ۱ مگابایت باید باشد.</li>
-                                              <li> نوع فایل ها باید jpeg,png,jpg باشد.</li>
+                                              <li> سایز فایل ها حداکثر 200 کیلوبایت باید باشد.</li>
+                                              <li> نوع فایل ها باید xls, xlm, xla, xlc, xlt, xlw, xlam, xlsb, xlsm, xltm, xlsx, doc, csv, docx, ppt, txt, text, bmp, gif, jpeg, jpg, jpe, png, rtf باشد</li>
                                           </ul>
                                         </blockquote>
                                     </div>

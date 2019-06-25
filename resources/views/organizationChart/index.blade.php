@@ -65,8 +65,17 @@
                                     <td>{{$organizationChart->name}}</td>
                                     <td>{{$organizationChart->parent_name}}</td>
                                     <td>@include('fragments.valid',['showValidMessage'=>$organizationChart->valid])</td>
-                                    <td>@include('fragments.edit',['id'=>$organizationChart->id,'url'=>'organizationCharts'])</td>
-                                    <td>@include('fragments.delete',['id'=>$organizationChart->id])</td>
+                                    <td>
+                                        @if($organizationChart->id != 1 && $organizationChart->id != 2)
+                                            @include('fragments.edit',['id'=>$organizationChart->id,'url'=>'organizationCharts'])
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($organizationChart->id != 1 && $organizationChart->id != 2)
+                                        @include('fragments.delete',['id'=>$organizationChart->id])
+                                        @endif
+
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

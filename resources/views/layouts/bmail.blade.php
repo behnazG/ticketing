@@ -41,7 +41,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <!-- END Custom CSS-->
 </head>
-<body id="mybody" class="vertical-layout vertical-menu content-left-sidebar email-application  menu-collapsed fixed-navbar"
+<body id="mybodyss" class="vertical-layout vertical-menu content-left-sidebar email-application  menu-collapsed fixed-navbar"
       data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue"
       data-col="content-left-sidebar">
 
@@ -366,17 +366,16 @@
             <div class="sidebar-content email-app-sidebar d-flex">
                 <div class="email-app-menu col-12 card d-none d-lg-block rounded-0">
                     <div class="form-group form-group-compose text-center">
-                        <button type="button" class="btn btn-danger btn-min-width btn-glow my-1 btn-block">
+                        <a href="{{url("tickets/compose")}}" class="btn btn-danger btn-min-width btn-glow my-1 btn-block">
                             <i class="ft-mail"></i> {{trans("mb.compose")}}
-                        </button>
+                        </a>
                     </div>
                     <div class="list-group list-group-messages">
-                        <a href="#"
+                        <a href="{{url('/tickets/inbox')}}"
                            class="list-group-item list-group-item-action border-0 active"> {{trans("mb.inbox")}}
                             <span class="primary float-right">8</span>
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0">{{trans("mb.sent")}}</a>
-                        <a href="#" class="list-group-item list-group-item-action border-0">{{trans("mb.trash")}}</a>
+                        <a href="{{url('/tickets/sent')}}" class="list-group-item list-group-item-action border-0">{{trans("mb.sent")}}</a>
                     </div>
                     <div class="list-group list-group-messages">
                         <a href="#" class="list-group-item list-group-item-action border-0">
@@ -495,8 +494,10 @@
 <!-- END PAGE LEVEL JS-->
 <script>
     $(document).ready(function () {
-        // $('#mybody').removeClass("menu-expanded");
-        // $('#mybody').addClass("menu-collapsed");
+        setTimeout(function () {
+            $('#mybodyss').removeClass("menu-expanded").delay(100);
+            $('#mybodyss').addClass("menu-collapsed");
+        },1000)
     });
 </script>
 </body>
