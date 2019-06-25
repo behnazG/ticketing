@@ -63,8 +63,8 @@ class TicketController extends Controller
         $data = [];
         $chains = Ticket::find_all_chains($ticket_id);
         $data["chains"] = $chains;
-        $data["user"] = $user;
-        $data["ticket"]=$ticket[0];
+        $data["current_user"] = $user;
+        $data["current_ticket"]=$ticket[0];
         $data["status_list"]=Ticket::STATUS_LIST();
         ///////////////////////////////////////////////
         return view('ticket.show', $data);

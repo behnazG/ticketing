@@ -67,7 +67,7 @@ class Ticket extends Model
         if ($current_user->isEmpty()) {
             return false;
         }
-        return $current_user;
+        return $current_user[0];
     }
 
     public function getStatusNameAttribute()
@@ -193,33 +193,13 @@ class Ticket extends Model
         return $tickets;
     }
 
-
-    public function getDownloadFile1Attribute()
+    public function download_attach_file($field_value)
     {
         try {
-            return Storage::url($this->file_1,'file_1');
+            return Storage::url($this->$field_value);
         } catch (\Exception $e) {
             return false;
         }
-
-    }
-    public function getDownloadFile2Attribute()
-    {
-        try {
-            return Storage::url($this->file_2,'file_3');
-        } catch (\Exception $e) {
-            return false;
-        }
-
-    }
-    public function getDownloadFile3Attribute()
-    {
-        try {
-            return Storage::url($this->file_3,'file_3');
-        } catch (\Exception $e) {
-            return false;
-        }
-
     }
 
 

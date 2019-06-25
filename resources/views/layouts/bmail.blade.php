@@ -37,6 +37,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/fonts/simple-line-icons/style.min.css")}}">
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/css-rtl/pages/email-application.css")}}">
     <!-- END Page Level CSS-->
+    @yield('css')
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <!-- END Custom CSS-->

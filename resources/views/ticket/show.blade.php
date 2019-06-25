@@ -1,147 +1,128 @@
 @extends("layouts.bmail")
-@section('content')
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{asset("app-assets/css-rtl/pages/chat-application.css")}}">
+@endsection
+@section('js')
+    <script src="{{asset("/app-assets/js/scripts/pages/chat-application.js")}}" type="text/javascript"></script>
+    <script src="{{asset("vendor/unisharp/laravel-ckeditor/ckeditor.js")}}"></script>
+    <script src="{{asset("vendor/unisharp/laravel-ckeditor/adapters/jquery.js")}}"></script>
+    <script>
+        $('textarea').ckeditor(
+            {
+                language: 'fa',
+                // uiColor: '#9AB8F3'
+                toolbarGroups: [
+                    {name: 'document', groups: ['Source', '-', 'NewPage', 'Preview', '-', 'Templates']},
+                    {
+                        name: 'clipboard',
+                        groups: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
+                    },
+                    {name: 'basicstyles', groups: ['Bold', 'Italic']},
+                    {name: 'links', groups: ['Link', 'Unlink', 'Anchor']},
+                    {name: 'styles', groups: ['Styles', 'format']},
+                    '/',
+                    {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+                    {name: 'paragraph', groups: ['list', 'indent', 'align', 'bidi']},
+                    {name: 'styles'},
+                ],
+                removeButtons: 'Anchor,blocks',
 
+            }
+        );
+    </script>
+    <script>
+       $(document).ready(function () {
+            $('#btn_replay').on('click',function () {
+                $('.dv_extra').css('display','none');
+                $('#dv_replay').css('display','block');
+            })
+        });
+    </script>
+@endsection
+@section('content')
     <div class="email-app-title card-body">
         <div class="row">
-            <div class="col-md-8 col-12 text-left ">
-                <h3 class="list-group-item-heading">{{$ticket->subject}}</h3>
+            <div class="col-lg-9 col-12 text-left ">
+                <h3 class="list-group-item-heading">{{$current_ticket->subject}}</h3>
             </div>
-            <div class="col-md-4 col-12 text-right">
-                <i class="font-medium-1  {{$status_list[$ticket->status][2].' '.$status_list[$ticket->status][1]}} font-medium-5"></i>
-                @if($a=$ticket->download_file1)
-                    <a href="{{$a}}"><i class="ft-paperclip font-medium-5 pl-1"></i></a>
-                @endif
-                @if($a=$ticket->download_file2)
-                    <a href="{{$a}}"><i class="ft-paperclip font-medium-5 pl-1"></i></a>
-                @endif
-                @if($a=$ticket->download_file3)
-                    <a href="{{$a}}"><i class="ft-paperclip font-medium-5 pl-1"></i></a>
-                @endif
+            <div class="col-lg-3 col-12 text-right">
+                <p class="{{$status_list[$current_ticket->status][1]}}"><i
+                            class="font-medium-1 {{$status_list[$current_ticket->status][2]}} font-medium-5"></i> {{$status_list[$current_ticket->status][0]}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="media-list">
+        <div class="card-body chat-application">
+            <div class="chats ps-container ps-theme-dark ps-active-y">
+                <div class="chats ps-container ps-theme-dark">
+                    @foreach($chains as $ticket)
+                        <?php
+                        $self_sender = ($ticket->sender_id == $current_user->id) ? true : false;
+                        ?>
+                        <div class="chat {{($self_sender)?"chat-left":""}}">
+                            <div class="chat-avatar">
+                                <a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title=""
+                                   data-original-title="">
+                                    <img src="../../../app-assets/images/portrait/small/avatar-s-15.jpg" alt="avatar">
+                                </a>
+                            </div>
+                            <div class="chat-body">
+                                <div class="chat-content text-left">
+                                    <p><?=$ticket->text?></p>
+                                    <p class="mt-1">
+                                        @if($a=$ticket->download_attach_file('file_1'))
+                                            <a class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
+                                                        class="ft-paperclip font-medium-5 pl-1"></i> {{trans("mb.file1")}}
+                                            </a>
+                                        @endif
+                                        @if($a=$ticket->download_attach_file('file_2'))
+                                            <a class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
+                                                        class="ft-paperclip font-medium-5 pl-1"></i> {{trans("mb.file2")}}
+                                            </a>
+                                        @endif
+                                        @if($a=$ticket->download_attach_file('file_3'))
+                                            <a class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
+                                                        class="ft-paperclip font-medium-5 pl-1"></i> {{trans("mb.file3")}}
+                                            </a>
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;">
+                        <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps-scrollbar-y-rail" style="top: 0px; right: 258px;">
+                        <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                    </div>
+                </div>
+                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;">
+                    <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                </div>
+                <div class="ps-scrollbar-y-rail" style="top: 0px; height: 300px; right: 272px;">
+                    <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 95px;"></div>
+                </div>
+            </div>
+            <div class="row mt-1 text-left">
+                <div class="col-8">
+                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" onclick="alert(1)"><i
+                                class="fas fa-arrow-right"></i> {{trans("mb.forward")}}
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
+                        <i class="fas fa-reply"></i> {{trans("mb.replay")}}
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" onclick="alert(1)"><i
+                                class="fas fa-reply"></i> {{trans("mb.changeStatus")}}
+                    </button>
+                </div>
 
             </div>
         </div>
     </div>
-
-    <div class="media-list">
-        <div id="headingCollapse1" class="card-header p-0">
-            <a data-toggle="collapse" href="#collapse1" aria-expanded="true"
-               aria-controls="collapse1"
-               class="collapsed email-app-sender media border-0 bg-blue-grey bg-lighten-5">
-
-                <div class="media-left pr-1">
-						<span class="avatar avatar-md">
-							<img class="media-object rounded-circle"
-                                 src="../../../app-assets/images/portrait/small/avatar-s-1.png"
-                                 alt="Generic placeholder image">
-						</span>
-                </div>
-                <div class="media-body w-100">
-                    <h6 class="list-group-item-heading text-bold-700">Steve Bush</h6>
-                    <p class="list-group-item-text"> May 27, 2018
-                        <span class="float-right">
-								<i class="font-medium-1 ft-star danger lighten-3 font-medium-5 mr-1"></i>
-								<i class="la la-ellipsis-v"></i>
-							</span>
-                    </p>
-
-                </div>
-
-            </a>
-        </div>
-
-        <div id="collapse1" role="tabpanel" aria-labelledby="headingCollapse1"
-             class="card-collapse collapse" aria-expanded="true">
-            <div class="card-content">
-                <div class="card-body">
-                    <p>Hi Sarah,</p>
-                    <p>Thank you for getting in touch with us.</p>
-                    <p>Can you please provide us some details on your project so that we can analyse
-                        it and give you quotation.</p>
-                    <p>Thanks for your consideration !</p>
-                    <p>Regards,
-                        <br/>John</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="headingCollapse2" class="card-header p-0">
-            <a data-toggle="collapse" href="#collapse2" aria-expanded="false"
-               aria-controls="collapse2" class="email-app-sender media border-0">
-
-                <div class="media-left pr-1">
-						<span class="avatar avatar-md">
-							<img class="media-object rounded-circle"
-                                 src="../../../app-assets/images/portrait/small/avatar-s-6.png"
-                                 alt="Generic placeholder image">
-						</span>
-                </div>
-                <div class="media-body w-100">
-                    <h6 class="list-group-item-heading text-bold-700">Sarah Montery</h6>
-                    <p class="list-group-item-text">To: me
-                        <span>Today</span>
-                        <span class="float-right">
-								<i class="la la-reply mr-1"></i>
-								<i class="la la la-mail-forward mr-1"></i>
-								<i class="la la-ellipsis-v"></i>
-							</span>
-                    </p>
-                </div>
-
-            </a>
-        </div>
-        <div id="collapse2" role="tabpanel" aria-labelledby="headingCollapse2" class="card-collapse"
-             aria-expanded="false">
-            <div class="card-content">
-                <div class="email-app-text card-body pt-0">
-                    <div class="email-app-message">
-                        <p>Hi John,</p>
-                        <p>Thanks for your response ! My project requirement is as follows.</p>
-                        <p>We need few dashboards with some inforation about company and we require
-                            few pages for user interaction.</p>
-                        <p>Hope this requirement is clear to you, or feel free to ask if you have
-                            any queries !</p>
-                        <p>Cheers~</p>
-                    </div>
-                    <hr>
-                    <div class="email-attachment mr-1">
-                        <div class="row">
-                            <div class="col-8 text-left">
-                                <p class="text-bold-700">Attachments
-                                    <span class="text-muted text-bold-500 d-block d-lg-none d-xl-inline">
-											(3 files, 42.5 MB)
-										</span>
-                                </p>
-                            </div>
-                            <div class="col-4 text-right">
-                                <i class="ft-download font-medium-3"></i>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-12 mb-1">
-                                <img class="img-thumbnail img-fluid"
-                                     src="../../../app-assets/images/gallery/16.jpg"
-                                     alt="Image description">
-                            </div>
-                            <div class="col-xl-3  col-lg-12  mb-1">
-                                <img class="img-thumbnail img-fluid"
-                                     src="../../../app-assets/images/gallery/5.jpg"
-                                     alt="Image description">
-                            </div>
-                            <div class="col-xl-3  col-lg-12  mb-1">
-                                <img class="img-thumbnail img-fluid"
-                                     src="../../../app-assets/images/gallery/4.jpg"
-                                     alt="Image description">
-                            </div>
-                            <div class="col-xl-3  col-lg-12">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="email-app-text-action card-body">
-
-        </div>
+    <!-- The Modal -->
+    <div  class="dv_extra display_none" id="dv_replay">
+        @include('forms.formReplay',["ticket"=>$current_ticket,"submitText"=>trans("mb.send")])
     </div>
 @endsection
