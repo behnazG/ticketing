@@ -23,8 +23,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/vendors/css/forms/toggle/switchery.min.css")}}">
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/css-rtl/plugins/forms/switch.min.css")}}">
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/css-rtl/core/colors/palette-switch.min.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/icheck/icheck.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/icheck/custom.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/vendors/css/forms/selects/select2.min.css")}}">
-
     <!-- END VENDOR CSS-->
     <!-- BEGIN CHAMELEON  CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/css-rtl/app.min.css")}}">
@@ -37,12 +38,13 @@
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/fonts/simple-line-icons/style.min.css")}}">
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/css-rtl/pages/email-application.css")}}">
     <!-- END Page Level CSS-->
-    @yield('css')
-    <!-- BEGIN Custom CSS-->
+@yield('css')
+<!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <!-- END Custom CSS-->
 </head>
-<body id="mybodyss" class="vertical-layout vertical-menu content-left-sidebar email-application  menu-collapsed fixed-navbar"
+<body id="mybodyss"
+      class="vertical-layout vertical-menu content-left-sidebar email-application  menu-collapsed fixed-navbar"
       data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue"
       data-col="content-left-sidebar">
 
@@ -367,7 +369,8 @@
             <div class="sidebar-content email-app-sidebar d-flex">
                 <div class="email-app-menu col-12 card d-none d-lg-block rounded-0">
                     <div class="form-group form-group-compose text-center">
-                        <a href="{{url("tickets/compose")}}" class="btn btn-danger btn-min-width btn-glow my-1 btn-block">
+                        <a href="{{url("tickets/compose")}}"
+                           class="btn btn-danger btn-min-width btn-glow my-1 btn-block">
                             <i class="ft-mail"></i> {{trans("mb.compose")}}
                         </a>
                     </div>
@@ -376,34 +379,17 @@
                            class="list-group-item list-group-item-action border-0 active"> {{trans("mb.inbox")}}
                             <span class="primary float-right">8</span>
                         </a>
-                        <a href="{{url('/tickets/sent')}}" class="list-group-item list-group-item-action border-0">{{trans("mb.sent")}}</a>
+                        <a href="{{url('/tickets/sent')}}"
+                           class="list-group-item list-group-item-action border-0">{{trans("mb.sent")}}</a>
                     </div>
                     <div class="list-group list-group-messages">
-                        <a href="#" class="list-group-item list-group-item-action border-0">
-                            <i class="ft-circle mr-1 danger"></i> {{trans("mb.undone")}}
-                            <span class="primary float-right">8</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0">
-                            <i class="ft-circle mr-1 warning"></i> {{trans("mb.inProgress")}}
-                            <span class="primary float-right">8</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0">
-                            <i class="ft-circle mr-1 success"></i> {{trans("mb.done")}}
-                            <span class="primary float-right">8</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0">
-                            <i class="ft-circle mr-1 primary"></i> {{trans("mb.closed")}}
-                            <span class="primary float-right">8</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0">
-                            <i class="ft-circle mr-1 info"></i> {{trans("mb.resend")}}
-                            <span class="primary float-right">8</span>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action border-0">
-                            <i class="ft-circle mr-1 teal"></i> {{trans("mb.training")}}
-                            <span class="primary float-right">8</span>
-                        </a>
-
+                        <?php $status_list = \App\Ticket::STATUS_LIST();?>
+                        @foreach($status_list as $index=>$status)
+                            <a href="#" class="list-group-item list-group-item-action border-0">
+                                <i class="{{$status[2]}} mr-1 {{$status[1]}}"></i> {{$status[0]}}
+                                <span class="primary float-right">8</span>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -423,7 +409,8 @@
                                     <fieldset class="form-group position-relative has-icon-left m-0 pb-1">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <button class="btn btn-outline-light dropdown-toggle round" type="button"
+                                                <button class="btn btn-outline-light dropdown-toggle round"
+                                                        type="button"
                                                         data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">{{trans("mb.searchIn")}}
                                                 </button>
@@ -436,7 +423,8 @@
                                             <input type="text" class="form-control round"
                                                    aria-label="Amount (to the nearest dollar)">
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-light round" type="button"> <i class="ft-search"></i> {{trans('mb.search')}}</button>
+                                                <button class="btn btn-outline-light round" type="button"><i
+                                                            class="ft-search"></i> {{trans('mb.search')}}</button>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -480,6 +468,7 @@
 <script src="{{asset("app-assets/js/scripts/forms/switch.min.js")}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
+<script src="{{asset('app-assets/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
 <script src="{{asset("app-assets/vendors/js/forms/select/select2.full.min.js")}}" type="text/javascript"></script>
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN CHAMELEON  JS-->
@@ -491,6 +480,7 @@
 @yield('js')
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{asset("app-assets/js/scripts/pages/email-application.js")}}" type="text/javascript"></script>
+<script src="{{asset('app-assets/js/scripts/forms/checkbox-radio.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('app-assets/js/scripts/forms/select/form-select2.min.js')}}" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
 <script>
@@ -498,7 +488,7 @@
         setTimeout(function () {
             $('#mybodyss').removeClass("menu-expanded").delay(100);
             $('#mybodyss').addClass("menu-collapsed");
-        },1000)
+        }, 1000)
     });
 </script>
 </body>

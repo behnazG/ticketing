@@ -33,15 +33,31 @@ class Ticket extends Model
                 . ",doc,csv,docx,ppt,txt,text,bmp,gif,jpeg,jpg,jpe,png,rtf|max:200",
         ])->validate();
     }
+    public static function validate_replay()
+    {
+        return request()->validate([
+            "ticket_id" =>  "required|" . "numeric",
+            "sender_id" => "required|numeric",
+            "text" => "required|string",
+            "file_1" => "nullable|mimes:xls,xlm,xla,xlc,xlt,xlw,xlam,xlsb,xlsm,xltm,xlsx"
+                . ",doc,csv,docx,ppt,txt,text,bmp,gif,jpeg,jpg,jpe,png,rtf|max:200",
+            "file_2" => "nullable|mimes:xls,xlm,xla,xlc,xlt,xlw,xlam,xlsb,xlsm,xltm,xlsx"
+                . ",doc,csv,docx,ppt,txt,text,bmp,gif,jpeg,jpg,jpe,png,rtf|max:200",
+            "file_3" => "nullable|mimes:xls,xlm,xla,xlc,xlt,xlw,xlam,xlsb,xlsm,xltm,xlsx"
+                . ",doc,csv,docx,ppt,txt,text,bmp,gif,jpeg,jpg,jpe,png,rtf|max:200",
+        ]);
+
+    }
+
 
     public static function STATUS_LIST($index = -1)
     {
         $a = [
-            0 => [trans("mb.undone"), "danger", "far fa-envelope"],
-            1 => [trans("mb.inProgress"), "warning", "far fa-envelope-open-text"],
-            2 => [trans("mb.done"), "success", "far fa-envelope"],
-            3 => [trans("mb.closed"), "primary", "far fa-envelope"],
-            4 => [trans("mb.resend"), "info", "far fa-repeat"],
+            0 => [trans("mb.pending"), "danger", "far fa-envelope"],
+            1 => [trans("mb.inProgress"), "warning", "far fa-envelope-open"],
+            2 => [trans("mb.done"), "info", "far fa-envelope"],
+            3 => [trans("mb.closed"), "success", "far fa-envelope"],
+            4 => [trans("mb.resend"), "primary", "ft-refresh-ccw"],
             5 => [trans("mb.training"), "teal", "fas fa-book-open"],
         ];
         if ($index >= 0 && $index < 6) {
@@ -200,6 +216,10 @@ class Ticket extends Model
         } catch (\Exception $e) {
             return false;
         }
+    }
+    public function generate_ticket_id()
+    {
+        return base64_encode(base64_encode(base64_encode(base64_encode(base64_encode($this->id)))));
     }
 
 

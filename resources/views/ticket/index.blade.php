@@ -21,7 +21,7 @@
                             <tr>
                                 <td class="border-top-0 {{$ticket_status[$ticket->status][1]}}"><i class="{{$ticket_status[$ticket->status][2]}}"></i> {{$ticket_status[$ticket->status][0]}}</td>
                                 <td class="border-top-0">{{($ticket->front_user==false)?trans("mb.unknown"):$ticket->front_user->name}}</td>
-                                <td class="border-top-0"><a href="{{url("/tickets/".base64_encode(base64_encode(base64_encode(base64_encode(base64_encode($ticket->id))))))}}">{{$ticket->subject}}</a></td>
+                                <td class="border-top-0"><a href="{{url("/tickets/".$ticket->generate_ticket_id())}}">{{$ticket->subject}}</a></td>
                                 @if($user->is_staff!=1)
                                     <td class="border-top-0">{{trans("mb.hotel")}}</td>
                                 @endif

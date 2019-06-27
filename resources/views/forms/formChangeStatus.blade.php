@@ -1,7 +1,52 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: god_sun_aurora_god
- * Date: 6/25/2019
- * Time: 3:36 PM
- */
+<div class="card-content collpase show">
+    <div class="card-body">
+        <div class="card-text">
+            @include('fragments.error')
+        </div>
+        <form class="form form-horizontal" action="{{url("/tickets/changeStatus/$ticket->id")}}" method="post"
+              enctype="multipart/form-data">
+            @csrf
+            @isset($ticket->id)
+                {{method_field('PUT')}}
+            @endisset
+            <div class="col-8 m-auto">
+                <div class="row form-group skin skin-line">
+                    @foreach($status_list as $index=>$value)
+                        @if(($current_user->is_staff == 1 && in_array($index,[1,2]))
+                        ||($current_user->is_staff == 0 && in_array($index,[3,4,5])))
+                            <div class="{{$current_user->is_staff == 1?"col-6":"col-4"}} p-1">
+                                <fieldset>
+                                    <input type="radio" id="status" name="status"
+                                           value="{{$index}}" {{(old('status')==$index) || (!old("status") && $ticket->status==$index) ?'checked':''}}>
+                                    <label for="status">{{$value[0]}}</label>
+                                </fieldset>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-8 m-auto">
+                <div id="show_time">
+                    <div class="row form-group">
+                        <label class="col-4 label-control">{{trans("mb.workTime").' '.trans("mb.user")}}</label>
+                        <input name="minut" id="minut" type="number" class="form-control col-md-2"
+                               placeholder="{{trans("mb.minut")}}" value="{{isset($ticket_time_log->time_user)?explode(':',$ticket_time_log->time_user)[1]:""}}">
+                        <h1>:</h1>
+                        <input name="hour" id="hour" type="number" class="form-control col-md-2"
+                               placeholder="{{trans("mb.hour")}}" value="{{isset($ticket_time_log->time_user)?explode(':',$ticket_time_log->time_user)[0]:""}}">
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-4 label-control">{{trans("mb.workTime").' '.trans("mb.system")}}</label>
+                        <div class="col-4">
+                            <label class="text-left  label-control">{{trans("mb.start")}}: {{isset($ticket_time_log->start_time_system)?date_shamsi($ticket_time_log->start_time_system):''}}</label>
+                        </div>
+                        <div class="col-4">
+                            <label class="text-left label-control">{{trans("mb.end")}}: {{isset($ticket_time_log->end_time_system)?date_shamsi(date_shamsi($ticket_time_log->end_time_system)):''}} </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @include('fragments.submitPart',['submitText'=>trans("mb.changeStatus"),'giveUpUrl'=>'/tickets'])
+        </form>
+    </div>
+</div>

@@ -3,15 +3,14 @@
         <div class="card-text">
             @include('fragments.error')
         </div>
-        <form class="form form-horizontal" action="{{url("/tickets/$ticket->id")}}" method="post"
+        <form class="form form-horizontal" action="{{url("/tickets/replay/$ticket->id")}}" method="post"
               enctype="multipart/form-data">
             @csrf
             @isset($ticket->id)
                 {{method_field('PUT')}}
             @endisset
             <input type="hidden" name="sender_id" id="sender_id" value="{{auth::user()->id}}">
-            <input type="hidden" name="valid" id="valid" value="1">
-            <input type="hidden" name="status" id="status" value="0">
+            <input type="hidden" name="ticket_id" id="ticket_id" value="{{$ticket->ticket_id}}">
             <div class="form-body">
                 <div class="form-group row">
                     <div class="col-md-12">

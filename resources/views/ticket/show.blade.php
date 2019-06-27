@@ -31,11 +31,25 @@
         );
     </script>
     <script>
-       $(document).ready(function () {
-            $('#btn_replay').on('click',function () {
-                $('.dv_extra').css('display','none');
-                $('#dv_replay').css('display','block');
-            })
+        $(document).ready(function () {
+            $('#btn_replay').on('click', function () {
+                $('.dv_extra').css('display', 'none');
+                $('#dv_replay').css('display', 'block');
+            });
+            $('#btn_change_status').on('click', function () {
+                $('.dv_extra').css('display', 'none');
+                $('#dv_change_status').css('display', 'block');
+            });
+            $('#btn_start_work').on('click', function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '/tickets/startWorkTime/{{$current_ticket->generate_ticket_id()}}',
+                    success: function (data) {
+                        alert(data);
+                    }
+
+                });
+            });
         });
     </script>
 @endsection
@@ -106,23 +120,37 @@
                 </div>
             </div>
             <div class="row mt-1 text-left">
-                <div class="col-8">
+                <div class="col-12">
                     <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" onclick="alert(1)"><i
                                 class="fas fa-arrow-right"></i> {{trans("mb.forward")}}
                     </button>
                     <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
                         <i class="fas fa-reply"></i> {{trans("mb.replay")}}
                     </button>
-                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" onclick="alert(1)"><i
+                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_change_status"><i
                                 class="fas fa-reply"></i> {{trans("mb.changeStatus")}}
                     </button>
+                    @if($ticket_time_log==false)
+                        @if($current_user->is_staff==1)
+                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_start_work"><i
+                                        class="ft-clock"></i> {{trans("mb.startWork")}}
+                            </button>
+                        @endif
+                    @else
+                        <label class="red float-right"><i
+                                    class="ficon ft-bell bell-shake"></i> {{trans('mb.ticketInProccessing',['user_name'=>$ticket_time_log->user_full_name,'date'=>date_sh($ticket_time_log->start_time_system)])}}
+                        </label>
+                    @endif
                 </div>
 
             </div>
         </div>
     </div>
     <!-- The Modal -->
-    <div  class="dv_extra display_none" id="dv_replay">
+    <div class="dv_extra display_none" id="dv_replay">
         @include('forms.formReplay',["ticket"=>$current_ticket,"submitText"=>trans("mb.send")])
+    </div>
+    <div class="dv_extra {{(isset($return_back) && $return_back=="change_status")?"":"display_none"}}" id="dv_change_status">
+        @include('forms.formChangeStatus',["ticket"=>$current_ticket,"submitText"=>trans("mb.changeStatus")])
     </div>
 @endsection

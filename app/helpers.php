@@ -29,19 +29,25 @@ function upload_ticket_files($model, $field_name)
     if ($request->$field_name) {
 //        $extention=pathinfo($request->$field_name->getClientOriginalName())["extension"];
 //        $p=$request->file($field_name)->storeAs('tickets',$model->id.".".$extention);
-        $p = $request->file($field_name)->store('public/' .'tickets');
+        $p = $request->file($field_name)->store('public/' . 'tickets');
         $data[$field_name] = $p;
         $model->update($data);
     }
 }
 
+function download_attach_files()
+{
+
+}
+
+///////////////////////////////////////////////////////////
 function date_sh($date)
 {
     $v = new Verta($date);
     return $v->formatDifference();
 }
-
-function download_attach_files()
+function date_shamsi($date)
 {
-
+    $v = new Verta($date);
+    return $v->format("d-m-Y H:i:s");
 }

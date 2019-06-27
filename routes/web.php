@@ -23,6 +23,10 @@ Route::get('/tickets/compose', 'TicketController@compose')->middleware('auth');
 Route::post('/tickets','TicketController@store')->middleware('auth');
 Route::get('/tickets','TicketController@inbox')->middleware('auth');
 Route::get('/tickets/{ticket_id}','TicketController@show')->middleware('auth');
+Route::put('/tickets/{ticket}','TicketController@update')->middleware('auth');
+Route::put('/tickets/changeStatus/{ticket}','TicketController@change_status')->middleware('auth');
+Route::put('/tickets/replay/{ticket}','TicketController@replay')->middleware('auth');
+Route::get('/tickets/startWorkTime/{ticket_id}','TicketController@start_work_time');
 ////////////////////////////////////////////////////////////
 Route::resource('/categories', 'CategoryController')->middleware('auth');
 Route::resource('/organizationCharts', 'OrganizationChartController')->middleware('auth');
