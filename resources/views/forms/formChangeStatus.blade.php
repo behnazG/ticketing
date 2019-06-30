@@ -35,15 +35,6 @@
                         <input name="hour" id="hour" type="number" class="form-control col-md-2"
                                placeholder="{{trans("mb.hour")}}" value="{{isset($ticket_time_log->time_user)?explode(':',$ticket_time_log->time_user)[0]:""}}">
                     </div>
-                    <div class="row form-group">
-                        <label class="col-4 label-control">{{trans("mb.workTime").' '.trans("mb.system")}}</label>
-                        <div class="col-4">
-                            <label class="text-left  label-control">{{trans("mb.start")}}: {{isset($ticket_time_log->start_time_system)?date_shamsi($ticket_time_log->start_time_system):''}}</label>
-                        </div>
-                        <div class="col-4">
-                            <label class="text-left label-control">{{trans("mb.end")}}: {{isset($ticket_time_log->end_time_system)?date_shamsi(date_shamsi($ticket_time_log->end_time_system)):''}} </label>
-                        </div>
-                    </div>
                 </div>
             </div>
             @include('fragments.submitPart',['submitText'=>trans("mb.changeStatus"),'giveUpUrl'=>'/tickets'])

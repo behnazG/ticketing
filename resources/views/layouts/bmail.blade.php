@@ -320,10 +320,7 @@
                     <i class="ft-mail"></i><span class="menu-title" data-i18n="">{{trans('mb.tickets')}}</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item"
-                           href="{{url('tickets/inbox')}}">{{trans('mb.inbox')}}</a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="{{url('tickets/sent')}}">{{trans('mb.sent')}}</a>
+                           href="{{url('tickets/inbox')}}">{{trans('mb.myTicket')}}</a>
                     </li>
                     <li><a class="menu-item"
                            href="{{url('tickets/compose')}}">{{trans('mb.compose')}}</a>
@@ -340,12 +337,26 @@
             </li>
             <li class=" nav-item">
                 <a href="#">
+                    <i class="ft-user"></i><span class="menu-title"
+                                                 data-i18n="">{{trans('mb.users')}}</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="menu-item"
+                           href="{{url('users/create')}}">{{trans('mb.create',["name"=>trans('mb.user')])}}</a>
+                    </li>
+                    <li>
+                        <a class="menu-item" href="{{url('users/hotels')}}">{{trans('mb.users').' '.trans('mb.hotel')}}</a>
+                    </li>
+                    <li>
+                        <a class="menu-item" href="{{url('users/staffs')}}">{{trans('mb.staffs')}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class=" nav-item">
+                <a href="#">
                     <i class="ft-settings"></i><span class="menu-title"
                                                      data-i18n="">{{trans('mb.settings')}}</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item"
-                           href="{{url('users')}}">{{trans('mb.users')}}</a>
-                    </li>
                     <li><a class="menu-item"
                            href="{{url('categories')}}">{{trans('mb.categories')}}</a>
                     </li>
@@ -376,20 +387,19 @@
                     </div>
                     <div class="list-group list-group-messages">
                         <a href="{{url('/tickets/inbox')}}"
-                           class="list-group-item list-group-item-action border-0 active"> {{trans("mb.inbox")}}
+                           class="list-group-item list-group-item-action border-0 active"> {{trans("mb.myTicket")}}
                             <span class="primary float-right">8</span>
                         </a>
-                        <a href="{{url('/tickets/sent')}}"
-                           class="list-group-item list-group-item-action border-0">{{trans("mb.sent")}}</a>
-                    </div>
-                    <div class="list-group list-group-messages">
                         <?php $status_list = \App\Ticket::STATUS_LIST();?>
                         @foreach($status_list as $index=>$status)
                             <a href="#" class="list-group-item list-group-item-action border-0">
-                                <i class="{{$status[2]}} mr-1 {{$status[1]}}"></i> {{$status[0]}}
+                                <i class="{{$status[2]}} mr-1 ml-1 {{$status[1]}}"></i> {{$status[0]}}
                                 <span class="primary float-right">8</span>
                             </a>
                         @endforeach
+                    </div>
+                    <div class="list-group list-group-messages">
+
                     </div>
                 </div>
             </div>

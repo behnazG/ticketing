@@ -132,6 +132,16 @@ return [
     "system"=>"نرم‌افزار",
     "ticketInProccessing"=>"تیکت توسط :user_name، از :date در حال پیگیری است.",
     "start"=>"شروع",
-    "end"=>"پایان"
+    "end"=>"پایان",
+    "reffral"=>"ارجاع",
+    "endWork"=>"پایان‌کار",
+    "moreDetails"=>"جزییات بیشتر",
+    "setTimes"=>"تنظیم زمان",
+    "referral"=>"ارجاع",
+    "more"=>"بیشتر",
+    "sentTo"=>"ارسال به ",
+    "LogFile"=>"Log File",
+    "userTime"=>"ساعت کاری کارمند",
+    "myTicket"=>"تیکت های من",
 ];
 ?>

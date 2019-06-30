@@ -26,4 +26,40 @@ class TicketLog extends Model
             return $u->name;
         }
     }
+
+    public function getTypeNameAttribute()
+    {
+        $type_list = self::TYPE_LIST();
+        try {
+            if (in_array($this->type, array_keys($type_list)))
+                return $type_list[$this->type];
+        } catch (\Exception $e) {
+            return trans("mb.unknown");
+        }
+    }
+
+    public function getReceiverFullNameAttribute()
+    {
+        $u = User::find($this->receiver_id);
+        if (is_null($u)) {
+            return trans("mb.uknown");
+        } else {
+            return $u->name;
+        }
+    }
+
+    public static function closeAllTimeWork($ticket_id)
+    {
+        $ticket_log = TicketLog::where('ticket_id',$ticket_id)->where('end_time_system', null)->where('type', 2)->get();
+        $ticket = Ticket::find($ticket_id);
+        $ticket_status = is_null($ticket) ? 0 : $ticket->status;
+        $data["ticket_status"] = $ticket_status;
+        if (!$ticket_log->isEmpty()) {
+            foreach ($ticket_log as $t) {
+                $end_date = date('Y-m-d H:i:s');
+                $t->update(['end_time_system' => $end_date, 'ticket_status' => $ticket_status]);
+            }
+        }
+
+    }
 }

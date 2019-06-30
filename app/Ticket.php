@@ -100,28 +100,28 @@ class Ticket extends Model
             return [];
         ///////////////////////////
         if ($type == "s") {
-            $t = Ticket::where('sender_id', $current_user->id)->where('trash', 0)->get();
+            $t = Ticket::where('sender_id', $current_user->id)->where('trash', 0)->groupBy('ticket_id')->get();
             return $t;
         } /////////////////////////////
         else if ($type == "i") {
             if ($current_user->is_staff == 1) {
                 if ($current_user->organizational_chart_id == 1) {
-                    $t = Ticket::where('trash', 0)->whereRaw('ticket_id=id')->get();
+                    $t = Ticket::where('trash', 0)->whereRaw('ticket_id=id')->groupBy('ticket_id')->get();
                     return $t;
                 } else {
                     $referrals_admin = Setting::is_referrals_admin();
                     if ($current_user->organizational_chart_id == 2 || $referrals_admin == 0) {
                         $allowed_user = UserAuthorise::allowed_user_by_user($current_user->id);
                         $allowed_categories = UserAuthorise::allowed_categories_by_user($current_user->id);
-                        $t = self::whereIn('category_id', $allowed_categories)->whereIn('sender_id', $allowed_user)->get();
+                        $t = self::whereIn('category_id', $allowed_categories)->whereIn('sender_id', $allowed_user)->groupBy('ticket_id')->get();
                         return $t;
                     } elseif ($referrals_admin == 1) {
-                        $t = Ticket::where('receiver_id', $current_user->id)->where('trash', 0)->get();
+                        $t = Ticket::where('receiver_id', $current_user->id)->where('trash', 0)->groupBy('ticket_id')->get();
                         return $t;
                     }
                 }
             } else if ($current_user->is_staff == 0) {
-                $t = Ticket::where('receiver_id', $current_user->id)->where('trash', 0)->get();
+                $t = Ticket::where('sender_id', $current_user->id)->where('trash', 0)->groupBy('ticket_id')->get();
                 return $t;
             }
         }
@@ -199,8 +199,6 @@ class Ticket extends Model
             return true;
         else
             return false;
-
-
     }
 
     public static function find_all_chains($ticket_id)
