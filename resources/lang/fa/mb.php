@@ -143,5 +143,11 @@ return [
     "LogFile"=>"Log File",
     "userTime"=>"ساعت کاری کارمند",
     "myTicket"=>"تیکت های من",
+    "themeSetting"=>"تنظیمات مربوط به تم",
+    "readAll"=>"مشاهده‌همه",
+    "notifications"=>"اطلاعیه‌ها",
+    "editProfile"=>"ویرایش‌پروفایل",
+    "Logout"=>"خروج",
+    "dontAccess"=>"شما به این :name دسترسی ندارید",
 ];
 ?>

@@ -44,7 +44,6 @@ class UserController extends Controller
         $data["user"] = new User();
         $data["hotels"] = Hotel::where('valid', 1)->get();
         $data["organizationCharts"] = OrganizationChart::where('valid', 1)->get();
-
         return view('user.create', $data);
     }
 
@@ -114,6 +113,7 @@ class UserController extends Controller
         $data["valid"] = isset($request->valid) ? 1 : 0;
         $data["hotel_id"] = isset($request->is_staff) ? 0 : $data["hotel_id"];
         $data["organizational_chart_id"] = isset($request->is_staff) ? $data["organizational_chart_id"] : 0;
+        $data["is_staff"] = isset($request->is_staff) ? 1 : 0;
         //////////////////////////////
         if (!is_null($request->password) && trim($request->password) != "") {
             $data["password"] = Hash::make($request->password);

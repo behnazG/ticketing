@@ -13,10 +13,7 @@
     <meta name="author" content="ThemeSelect">
     <title>{{__("mb.brand")}}</title>
     <link rel="apple-touch-icon" href="{{asset('app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon"
-          href="https://themeselection.com/demo/chameleon-admin-template/app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700"
-          rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/fonts/fontawesome/css/all.css')}}">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css-rtl/vendors.min.css')}}">
@@ -58,20 +55,20 @@
                                     class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs"
                                                               href="#"><i class="ft-menu"></i></a></li>
-                    <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i
-                                    class="ficon ft-maximize"></i></a></li>
-
 
                     <li class="nav-item dropdown navbar-search"><a class="nav-link dropdown-toggle hide"
                                                                    data-toggle="dropdown" href="#"><i
                                     class="ficon ft-search"></i></a>
                         <ul class="dropdown-menu">
                             <li class="arrow_box">
-                                <form>
+                                <form method="post"
+                                      action="{{url('/tickets/search')}}">
+                                    @csrf
                                     <div class="input-group search-box">
                                         <div class="position-relative has-icon-right full-width">
-                                            <input class="form-control" id="search" type="text"
-                                                   placeholder="{{trans('theme.Search here...')}}">
+                                            <input class="form-control" id="ticket_id"
+                                                   name="ticket_id" type="text"
+                                                   placeholder="{{trans('theme.enter the ticket number')}}">
                                             <div class="form-control-position navbar-search-close"><i class="ft-x"></i>
                                             </div>
                                         </div>
@@ -103,7 +100,8 @@
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <div class="arrow_box_right">
                                 <li class="dropdown-menu-header">
-                                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span>
+                                    <h6 class="dropdown-header m-0"><span
+                                                class="grey darken-2">{{trans("mb.notifications")}}</span>
                                     </h6>
                                 </li>
                                 <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
@@ -121,65 +119,11 @@
                                                 </small>
                                             </div>
                                         </div>
-                                    </a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left align-self-center"><i
-                                                        class="ft-save font-medium-4 mt-2 warning"></i></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading warning">New User Registered</h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">
-                                                    Aliquam tincidunt mauris eu risus.</p>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">10:05 AM
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left align-self-center"><i
-                                                        class="ft-repeat font-medium-4 mt-2 danger"></i></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading danger">New Purchase</h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">Lorem
-                                                    ipsum dolor sit ametest?</p>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">Yesterday
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left align-self-center"><i
-                                                        class="ft-shopping-cart font-medium-4 mt-2 primary"></i></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading primary">New Item In Your Cart</h6>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">Last week
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left align-self-center"><i
-                                                        class="ft-heart font-medium-4 mt-2 info"></i></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading info">New Sale</h6>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">Last month
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a></li>
+                                    </a>
+                                </li>
                                 <li class="dropdown-menu-footer"><a class="dropdown-item info text-right pr-1"
-                                                                    href="javascript:void(0)">Read all</a></li>
+                                                                    href="javascript:void(0)">{{trans("mb.readAll")}}</a>
+                                </li>
                             </div>
                         </ul>
                     </li>
@@ -189,9 +133,11 @@
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <div class="arrow_box_right">
                                 <li class="dropdown-menu-header">
-                                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Messages</span></h6>
+                                    <h6 class="dropdown-header m-0"><span
+                                                class="grey darken-2">{{trans("mb.tickets")}}</span></h6>
                                 </li>
-                                <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
+                                <li class="scrollable-container media-list w-100">
+                                    <a href="javascript:void(0)">
                                         <div class="media">
                                             <div class="media-left"><span class="avatar avatar-sm rounded-circle"><img
                                                             src="../../../app-assets/images/portrait/small/avatar-s-6.png"
@@ -208,83 +154,53 @@
                                                 </small>
                                             </div>
                                         </div>
-                                    </a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm rounded-circle"><span
-                                                            class="media-object rounded-circle text-circle bg-warning">E</span></span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading text-bold-700">Eliza Elliot<i
-                                                            class="ft-circle font-small-2 danger float-right"></i></h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">Okay.
-                                                    here is some more details...</p>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">2:10 AM
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm rounded-circle"><img
-                                                            src="../../../app-assets/images/portrait/small/avatar-s-3.png"
-                                                            alt="avatar"></span></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading text-bold-700">Kelly Reyes<i
-                                                            class="ft-circle font-small-2 warning float-right"></i></h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">Check
-                                                    once and let me know if you...</p>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">Yesterday
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm rounded-circle"><img
-                                                            src="../../../app-assets/images/portrait/small/avatar-s-19.png"
-                                                            alt="avatar"></span></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading text-bold-700">Tonny Deep<i
-                                                            class="ft-circle font-small-2 danger float-right"></i></h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">We
-                                                    will start new project development...</p>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">Friday
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a></li>
+                                    </a>
+                                </li>
                                 <li class="dropdown-menu-footer"><a class="dropdown-item text-right info pr-1"
-                                                                    href="javascript:void(0)">Read all</a></li>
+                                                                    href="{{url("tickets")}}">{{trans("mb.readAll")}}</a>
+                                </li>
                             </div>
                         </ul>
                     </li>
-                    <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link"
-                                                                   href="#" data-toggle="dropdown"> <span
-                                    class="avatar avatar-online"><img
-                                        src="../../../app-assets/images/portrait/small/avatar-s-19.png"
-                                        alt="avatar"></span></a>
+                    <?php
+                    $user_image = (isset(auth::user()->image_path)) ? asset('storage/' . auth::user()->image_path) : asset("app-assets/images/icons/user.jpg");
+
+                    ?>
+                    <li class="dropdown dropdown-user nav-item">
+                        <a class="dropdown-toggle nav-link dropdown-user-link"
+                           href="#" data-toggle="dropdown">
+                            <span
+                                    class="avatar avatar-online">
+
+                                <img src="{{$user_image}}"
+                                     alt="avatar">
+                            </span>
+                        </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="arrow_box_right"><a class="dropdown-item" href="#"><span
-                                            class="avatar avatar-online"><img
-                                                src="../../../app-assets/images/portrait/small/avatar-s-19.png"
-                                                alt="avatar"><span class="user-name text-bold-700 ml-1">John Doe</span></span></a>
+                            <div class="arrow_box_right">
+                                <a class="dropdown-item" href="#">
+                                    <span
+                                            class="avatar avatar-online">
+                                        <img
+                                                src="{{$user_image}}"
+                                                alt="{{auth::user()->name}}">
+                                        <span class="user-name text-bold-700 ml-1">{{auth::user()->name}}</span>
+                                    </span>
+                                </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit
-                                    Profile</a><a class="dropdown-item" href="email-application.html"><i
-                                            class="ft-mail"></i> My Inbox</a><a class="dropdown-item"
-                                                                                href="project-summary.html"><i
-                                            class="ft-check-square"></i> Task</a><a class="dropdown-item"
-                                                                                    href="chat-application.html"><i
-                                            class="ft-message-square"></i> Chats</a>
+                                <a class="dropdown-item" href="{{url("users/".auth::user()->id."/edit")}}"><i
+                                            class="ft-user"></i>{{trans("mb.editProfile")}}</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login.html"><i class="ft-power"></i> Logout</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i class="ft-power"></i>
+                                    {{ __('mb.Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
                     </li>
@@ -345,7 +261,8 @@
                            href="{{url('users/create')}}">{{trans('mb.create',["name"=>trans('mb.user')])}}</a>
                     </li>
                     <li>
-                        <a class="menu-item" href="{{url('users/hotels')}}">{{trans('mb.users').' '.trans('mb.hotel')}}</a>
+                        <a class="menu-item"
+                           href="{{url('users/hotels')}}">{{trans('mb.users').' '.trans('mb.hotel')}}</a>
                     </li>
                     <li>
                         <a class="menu-item" href="{{url('users/staffs')}}">{{trans('mb.staffs')}}</a>
@@ -365,6 +282,9 @@
                     </li>
                     <li><a class="menu-item"
                            href="{{url('organizationCharts')}}">{{trans('mb.organizationChart')}}</a>
+                    </li>
+                    <li><a class="menu-item"
+                           href="{{url('theme')}}">{{trans('mb.themeSetting')}}</a>
                     </li>
                 </ul>
             </li>
@@ -399,150 +319,13 @@
         </div>
         <div class="content-body">
             <!-- Basic form layout section start -->
+        @include('fragments.message')
         @yield('content')
         <!-- // Basic form layout section end -->
         </div>
     </div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
-<div class="customizer border-left-blue-grey border-left-lighten-4 d-none d-xl-block"><a class="customizer-close"
-                                                                                         href="#"><i
-                class="ft-x font-medium-3"></i></a><a class="customizer-toggle bg-primary box-shadow-3" href="#"
-                                                      id="customizer-toggle-setting"><i
-                class="ft-settings font-medium-3 spinner white"></i></a>
-    <div class="customizer-content p-2">
-        <h5 class="mt-1 mb-1 text-bold-500">Navbar Color Options</h5>
-        <div class="navbar-color-options clearfix">
-            <div class="gradient-colors mb-1 clearfix">
-                <div class="bg-gradient-x-purple-blue navbar-color-option" data-bg="bg-gradient-x-purple-blue"
-                     title="bg-gradient-x-purple-blue"></div>
-                <div class="bg-gradient-x-purple-red navbar-color-option" data-bg="bg-gradient-x-purple-red"
-                     title="bg-gradient-x-purple-red"></div>
-                <div class="bg-gradient-x-blue-green navbar-color-option" data-bg="bg-gradient-x-blue-green"
-                     title="bg-gradient-x-blue-green"></div>
-                <div class="bg-gradient-x-orange-yellow navbar-color-option" data-bg="bg-gradient-x-orange-yellow"
-                     title="bg-gradient-x-orange-yellow"></div>
-                <div class="bg-gradient-x-blue-cyan navbar-color-option" data-bg="bg-gradient-x-blue-cyan"
-                     title="bg-gradient-x-blue-cyan"></div>
-                <div class="bg-gradient-x-red-pink navbar-color-option" data-bg="bg-gradient-x-red-pink"
-                     title="bg-gradient-x-red-pink"></div>
-            </div>
-            <div class="solid-colors clearfix">
-                <div class="bg-primary navbar-color-option" data-bg="bg-primary" title="primary"></div>
-                <div class="bg-success navbar-color-option" data-bg="bg-success" title="success"></div>
-                <div class="bg-info navbar-color-option" data-bg="bg-info" title="info"></div>
-                <div class="bg-warning navbar-color-option" data-bg="bg-warning" title="warning"></div>
-                <div class="bg-danger navbar-color-option" data-bg="bg-danger" title="danger"></div>
-                <div class="bg-blue navbar-color-option" data-bg="bg-blue" title="blue"></div>
-            </div>
-        </div>
-
-        <hr>
-
-        <h5 class="my-1 text-bold-500">Layout Options</h5>
-        <div class="row">
-            <div class="col-12">
-                <div class="d-inline-block custom-control custom-radio mb-1 col-4">
-                    <input type="radio" class="custom-control-input bg-primary" name="layouts" id="fixed-layout">
-                    <label class="custom-control-label" for="fixed-layout">Fixed</label>
-                </div>
-                <div class="d-inline-block custom-control custom-radio mb-1 col-4">
-                    <input type="radio" class="custom-control-input bg-primary" name="layouts" id="static-layout">
-                    <label class="custom-control-label" for="static-layout">Static</label>
-                </div>
-                <div class="d-inline-block custom-control custom-radio mb-1">
-                    <input type="radio" class="custom-control-input bg-primary" name="layouts" id="boxed-layout">
-                    <label class="custom-control-label" for="boxed-layout">Boxed</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="d-inline-block custom-control custom-checkbox mb-1">
-                    <input type="checkbox" class="custom-control-input bg-primary" name="right-side-icons"
-                           id="right-side-icons">
-                    <label class="custom-control-label" for="right-side-icons">Right Side Icons</label>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <h5 class="mt-1 mb-1 text-bold-500">Sidebar menu Background</h5>
-        <!-- <div class="sidebar-color-options clearfix">
-            <div class="bg-black sidebar-color-option" data-sidebar="menu-dark" title="black"></div>
-            <div class="bg-white sidebar-color-option" data-sidebar="menu-light" title="white"></div>
-        </div> -->
-        <div class="row sidebar-color-options ml-1">
-            <label for="sidebar-color-option" class="card-title font-medium-2 mr-2">White Mode</label>
-            <div class="text-center mb-1">
-                <input type="checkbox" id="sidebar-color-option" class="switchery" data-size="xs"/>
-            </div>
-            <label for="sidebar-color-option" class="card-title font-medium-2 ml-2">Dark Mode</label>
-        </div>
-
-        <hr>
-
-        <label for="collapsed-sidebar" class="font-medium-2">Menu Collapse</label>
-        <div class="float-right">
-            <input type="checkbox" id="collapsed-sidebar" class="switchery" data-size="xs"/>
-        </div>
-
-        <hr>
-
-        <!--Sidebar Background Image Starts-->
-        <h5 class="mt-1 mb-1 text-bold-500">Sidebar Background Image</h5>
-        <div class="cz-bg-image row">
-            <div class="col mb-3">
-                <img src="../../../app-assets/images/backgrounds/04.jpg" class="rounded sidiebar-bg-img" width="50"
-                     height="100" alt="background image">
-            </div>
-            <div class="col mb-3">
-                <img src="../../../app-assets/images/backgrounds/01.jpg" class="rounded sidiebar-bg-img" width="50"
-                     height="100" alt="background image">
-            </div>
-            <div class="col mb-3">
-                <img src="../../../app-assets/images/backgrounds/02.jpg" class="rounded sidiebar-bg-img" width="50"
-                     height="100" alt="background image">
-            </div>
-            <div class="col mb-3">
-                <img src="../../../app-assets/images/backgrounds/05.jpg" class="rounded sidiebar-bg-img" width="50"
-                     height="100" alt="background image">
-            </div>
-        </div>
-        <!--Sidebar Background Image Ends-->
-
-        <!--Sidebar BG Image Toggle Starts-->
-        <div class="sidebar-image-visibility">
-            <div class="row ml-1">
-                <label for="toggle-sidebar-bg-img" class="card-title font-medium-2 mr-2">Hide Image</label>
-                <div class="text-center mb-1">
-                    <input type="checkbox" id="toggle-sidebar-bg-img" class="switchery" data-size="xs" checked/>
-                </div>
-                <label for="toggle-sidebar-bg-img" class="card-title font-medium-2 ml-2">Show Image</label>
-            </div>
-        </div>
-        <!--Sidebar BG Image Toggle Ends-->
-
-        <hr>
-
-        <div class="row mb-2">
-
-            <div class="col">
-                <a href="https://themeselection.com/" class="btn btn-primary btn-block box-shadow-1" target="_blank">More
-                    Themes</a>
-            </div>
-        </div>
-        <div class="text-center">
-            <button id="twitter" class="btn btn-social-icon btn-twitter sharrre mr-1"><i class="la la-twitter"></i>
-            </button>
-            <button id="facebook" class="btn btn-social-icon btn-facebook sharrre mr-1"><i class="la la-facebook"></i>
-            </button>
-            <button id="google" class="btn btn-social-icon btn-google sharrre"><i class="la la-google"></i></button>
-        </div>
-    </div>
-</div>
-
 <footer class="footer footer-static footer-light navbar-border navbar-shadow">
     <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span
                 class="float-md-left d-block d-md-inline-block">2018  &copy; Copyright <a

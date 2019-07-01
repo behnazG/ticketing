@@ -110,14 +110,23 @@ class Ticket extends Model
                     return $t;
                 } else {
                     $referrals_admin = Setting::is_referrals_admin();
-                    if ($current_user->organizational_chart_id == 2 || $referrals_admin == 0) {
-                        $allowed_user = UserAuthorise::allowed_user_by_user($current_user->id);
-                        $allowed_categories = UserAuthorise::allowed_categories_by_user($current_user->id);
-                        $t = self::whereIn('category_id', $allowed_categories)->whereIn('sender_id', $allowed_user)->groupBy('ticket_id')->get();
-                        return $t;
-                    } elseif ($referrals_admin == 1) {
+                    if ($referrals_admin == 1) {
                         $t = Ticket::where('receiver_id', $current_user->id)->where('trash', 0)->groupBy('ticket_id')->get();
                         return $t;
+                    }
+                    elseif ($referrals_admin == 0) {
+                        $allowed_user = UserAuthorise::allowed_user_by_user($current_user->id);
+                        $allowed_categories = UserAuthorise::allowed_categories_by_user($current_user->id);
+                        if($current_user->organizational_chart_id == 2)
+                        {
+                            $t = self::whereIn('category_id', $allowed_categories)->whereIn('sender_id', $allowed_user)->groupBy('ticket_id')->get();
+                            return $t;
+                        }else if($current_user->organizational_chart_id > 2)
+                        {
+
+                            $t = self::whereIn('category_id', $allowed_categories)->whereIn('sender_id', $allowed_user)->whereRaw("(receiver_id = 0 or  receiver_id =$current_user->id )")->groupBy('ticket_id')->get();
+                            return $t;
+                        }
                     }
                 }
             } else if ($current_user->is_staff == 0) {

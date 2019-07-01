@@ -11,14 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index')->middleware('auth');
+Route::get('/home', 'HomeController@index')->middleware('auth');
 Route::get('/tickets/sent', 'TicketController@sent')->middleware('auth');
 Route::get('/tickets/inbox', 'TicketController@inbox')->middleware('auth');
+Route::post('/tickets/search','TicketController@search');
 Route::get('/tickets/compose', 'TicketController@compose')->middleware('auth');
 Route::post('/tickets','TicketController@store')->middleware('auth');
 Route::get('/tickets','TicketController@inbox')->middleware('auth');

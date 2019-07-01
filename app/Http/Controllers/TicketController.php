@@ -61,11 +61,26 @@ class TicketController extends Controller
         $authorise_user_reffral = UserAuthorise::allowed_user_by_ticket($ticket_id);
         //////////////////////////////////
         if (!Ticket::check_authorise_ticket($ticket_id)) {
+            Session::flash('message', trans("mb.dontAccess", ["name" => trans("mb.tickets")]));
+            Session::flash('alert-class', 'danger');
             return redirect('tickets');
         }
         //////////////////////////////////////////////
         if ($user->is_staff == 1 && $ticket[0]->status == 0) {
-            $ticket[0]->update(["status" => 1]);
+            $data = [];
+            $data["status"] = 1;
+            if ($ticket[0]->receiver_id == 0) {
+                $data["receiver_id"] = $user->id;
+            }
+            elseif ($ticket[0]->receiver_id != 0 && $ticket[0]->receiver_id != $user->id) {
+
+                if ($user->organizational_chart_id > 2) {
+                    Session::flash('message', trans("mb.dontAccess", ["name" => trans("mb.tickets")]));
+                    Session::flash('alert-class', 'danger');
+                    return redirect('tickets');
+                }
+            }
+            $ticket[0]->update($data);
         }
         ///////////////////////////////////////////////
         $data = [];
@@ -171,29 +186,23 @@ class TicketController extends Controller
         $current_user_id = auth::user()->id;
         ///////////
         $ticket_id = $this->decode_ticket_id($ticket_id);
-        $ticket_log = TicketLog::where('ticket_id', $ticket_id)->where('user_id', $current_user_id)->where('end_time_system',null)->where('type', 2)->get();
+        $ticket_log = TicketLog::where('ticket_id', $ticket_id)->where('user_id', $current_user_id)->where('end_time_system', null)->where('type', 2)->get();
         $data = [
             "end_time_system" => date('Y-m-d H:i:s')
         ];
-        try
-        {
+        try {
 
-            if($ticket_log->isEmpty())
-            {
-            }else
-            {
-                foreach ($ticket_log as $tl)
-                {
+            if ($ticket_log->isEmpty()) {
+            } else {
+                foreach ($ticket_log as $tl) {
                     $tl->update($data);
 
                 }
             }
-        }catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
 
         }
     }
-
 
     public function replay(Request $request, Ticket $ticket)
     {
@@ -232,6 +241,26 @@ class TicketController extends Controller
         }
         //////////////////////////////////////////////////////////////////////
 
+    }
+
+    public function search(Request $request)
+    {
+        $data = $request->validate([
+            "ticket_id" => "nullable|numeric"
+        ]);
+        $ticket = Ticket::where('trash', 0);
+        if (isset($request->ticket_id)) {
+            $ticket = $ticket->where('ticket_id', $request->ticket_id);
+        }
+
+        $ticket = $ticket->get();
+        if ($ticket->isEmpty()) {
+            return redirect('/tickets/inbox');
+
+        } else {
+            return redirect('/tickets/' . $ticket[0]->generate_ticket_id());
+
+        }
     }
 
 

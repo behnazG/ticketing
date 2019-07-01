@@ -178,6 +178,7 @@ return [
 
         Unisharp\Ckeditor\ServiceProvider::class,
         Hekmatinasser\Verta\VertaServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -230,6 +231,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Verta' => Hekmatinasser\Verta\Verta::class,
+        'Debugbar' => 'Barryvdh\Debugbar\Facade',
+
 
     ],
 
