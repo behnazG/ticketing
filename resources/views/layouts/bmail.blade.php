@@ -13,8 +13,7 @@
     <meta name="author" content="ThemeSelect">
     <title>{{trans("mb.brand")}}</title>
     <link rel="apple-touch-icon" href="{{asset("app-assets/images/ico/apple-icon-120.png")}}">
-    <link rel="shortcut icon" type="image/x-icon"
-          href="https://themeselection.com/demo/chameleon-admin-template/app-assets/images/ico/favicon.ico">
+
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/fonts/fontawesome/css/all.css')}}">
@@ -419,7 +418,7 @@
 <script>
     $(document).ready(function () {
         setTimeout(function () {
-            $('#mybodyss').removeClass("menu-expanded").delay(100);
+            $('#mybodyss').removeClass("menu-expanded");
             $('#mybodyss').addClass("menu-collapsed");
         }, 1000)
     });

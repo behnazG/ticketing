@@ -27,6 +27,7 @@ Route::put('/tickets/replay/{ticket}','TicketController@replay')->middleware('au
 Route::put('/tickets/reffral/{ticket}','TicketController@reffral')->middleware('auth');
 Route::get('/tickets/startWorkTime/{ticket_id}','TicketController@start_work_time');
 Route::get('/tickets/endWorkTime/{ticket_id}','TicketController@end_work_time');
+Route::put('/tickets/setTimes/{ticket}','TicketController@set_times')->middleware('auth');
 ////////////////////////////////////////////////////////////
 Route::resource('/categories', 'CategoryController')->middleware('auth');
 Route::resource('/organizationCharts', 'OrganizationChartController')->middleware('auth');

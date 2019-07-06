@@ -153,12 +153,56 @@ $breadcrumbs = [
                                             <div class="row skin skin-square">
                                                 <div class="col-12">
                                                     <fieldset>
-                                                        <input type="checkbox" name="setting_1"
-                                                               {{old("setting_1") || (!old("setting_1") && $old_allow_referral==1)?'checked':'' }}
-                                                               class="checkbox_hotel" id="setting_1">
-                                                        <label for="setting_1"
-                                                               id="setting_1"><span
+                                                        <input type="checkbox" name="allow_referral"
+                                                               {{old("allow_referral") || (!old("allow_referral") && $old_allow_referral==1)?'checked':'' }}
+                                                               class="checkbox_hotel" id="allow_referral">
+                                                        <label for="allow_referral"
+                                                               id="allow_referral"><span
                                                                     class="">{{trans('mb.allowReferrals')}}</span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-12">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="view_pending_ticket"
+                                                               {{old("view_pending_ticket") || (!old("view_pending_ticket") && $old_view_pending_ticket==1)?'checked':'' }}
+                                                               class="checkbox_hotel" id="view_pending_ticket">
+                                                        <label for="view_pending_ticket"
+                                                               id=""><span
+                                                                    class="">{{trans('mb.viewPendingTicket')}}</span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-12">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="view_in_progress_ticket"
+                                                               {{old("view_in_progress_ticket") || (!old("view_in_progress_ticket") && $old_view_in_progress_ticket==1)?'checked':'' }}
+                                                               class="checkbox_hotel" id="view_in_progress_ticket">
+                                                        <label for="view_in_progress_ticket"
+                                                               id=""><span
+                                                                    class="">{{trans('mb.viewInProgressTicket')}}</span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-12">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="view_closed"
+                                                               {{old("view_closed") || (!old("view_closed") && $old_view_closed==1)?'checked':'' }}
+                                                               class="checkbox_hotel" id="view_closed">
+                                                        <label for="view_closed"
+                                                               id=""><span
+                                                                    class="">{{trans('mb.viewClosedTicket')}}</span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-12">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="set_times"
+                                                               {{old("set_times") || (!old("set_times") && $old_set_times==1)?'checked':'' }}
+                                                               class="checkbox_hotel" id="set_times">
+                                                        <label for="set_times"
+                                                               id=""><span
+                                                                    class="">{{trans('mb.setExpireDateAndTimeTable')}}</span>
                                                         </label>
                                                     </fieldset>
                                                 </div>

@@ -62,11 +62,15 @@
                         location.reload();
                     }
                 });
-            })
+            });
             $('#btn_show_work_time').on('click', function () {
                 $('.dv_extra').css('display', 'none');
                 $('#dv_show_work_time').css('display', 'block');
-            })
+            });
+            $('#btn_set_times').on('click',function () {
+                $('.dv_extra').css('display', 'none');
+                $('#dv_set_times').css('display', 'block');
+            });
         });
     </script>
 @endsection
@@ -90,30 +94,36 @@
                     @foreach($chains as $ticket)
                         <?php
                         $self_sender = ($ticket->sender_id == $current_user->id) ? true : false;
+
                         ?>
                         <div class="chat {{($self_sender)?"chat-left":""}}">
                             <div class="chat-avatar">
                                 <a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title=""
                                    data-original-title="">
-                                    <img src="../../../app-assets/images/portrait/small/avatar-s-15.jpg" alt="avatar">
+                                    <img src="{{$self_sender?$current_user->get_image_url():$ticket->front_user->get_image_url()}}"
+                                         alt="avatar">
                                 </a>
                             </div>
                             <div class="chat-body">
                                 <div class="chat-content text-left">
-                                    <p><?=$ticket->text?></p>
+                                    <p class="row">
+                                        <span class="col-6 float-right">{{$self_sender?$current_user->name:$ticket->front_user->name}}</span>
+                                        <span class="col-6 float-left text-right">{{date_sh($ticket->created_at)}}</span>
+                                    </p>
+                                    <p class="mt-1"><?=$ticket->text?></p>
                                     <p class="mt-1">
                                         @if($a=$ticket->download_attach_file('file_1'))
-                                            <a class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
+                                            <a target="_blank" class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
                                                         class="ft-paperclip font-medium-5 pl-1"></i> {{trans("mb.file1")}}
                                             </a>
                                         @endif
                                         @if($a=$ticket->download_attach_file('file_2'))
-                                            <a class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
+                                            <a target="_blank" class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
                                                         class="ft-paperclip font-medium-5 pl-1"></i> {{trans("mb.file2")}}
                                             </a>
                                         @endif
                                         @if($a=$ticket->download_attach_file('file_3'))
-                                            <a class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
+                                            <a target="_blank" class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
                                                         class="ft-paperclip font-medium-5 pl-1"></i> {{trans("mb.file3")}}
                                             </a>
                                         @endif
@@ -136,11 +146,19 @@
                     <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 95px;"></div>
                 </div>
             </div>
+            {{--BUTTON--}}
             <div class="row mt-1 text-left">
                 <div class="col-12">
-                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_reffral"><i
-                                class="fas fa-arrow-right"></i> {{trans("mb.reffral")}}
-                    </button>
+                    @if($allowed_refferal)
+                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_reffral"><i
+                                    class="fas fa-arrow-right"></i> {{trans("mb.reffral")}}
+                        </button>
+                    @endif
+                    @if($set_times)
+                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_set_times"><i
+                                        class="fas fa-calendar"></i> {{trans("mb.setTimes")}}
+                            </button>
+                    @endif
                     <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
                         <i class="fas fa-reply"></i> {{trans("mb.replay")}}
                     </button>
@@ -185,11 +203,9 @@
                 </div>
 
             </div>
+            {{--END BUTTON--}}
         </div>
     </div>
-
-
-
     <!-- The Modal -->
     <div class="dv_extra display_none" id="dv_replay">
         @include('forms.formReplay',["ticket"=>$current_ticket,"submitText"=>trans("mb.send")])
@@ -198,10 +214,19 @@
          id="dv_change_status">
         @include('forms.formChangeStatus',["ticket"=>$current_ticket,"submitText"=>trans("mb.changeStatus")])
     </div>
-    <div class="dv_extra {{(isset($return_back) && $return_back=="reffral")?"":"display_none"}}" id="dv_reffral">
-        @include('forms.formReffral',["ticket"=>$current_ticket,"submitText"=>trans("mb.reffral")])
-    </div>
-    <div class="dv_extra {{(isset($return_back) && $return_back=="reffral")?"":"display_none"}}" id="dv_show_work_time">
+    @if($allowed_refferal)
+        <div class="dv_extra {{(isset($return_back) && $return_back=="reffral")?"":"display_none"}}" id="dv_reffral">
+            @include('forms.formReffral',["ticket"=>$current_ticket,"submitText"=>trans("mb.reffral")])
+        </div>
+    @endif
+    <div class="dv_extra {{(isset($return_back) && $return_back=="workTime")?"":"display_none"}}"
+         id="dv_show_work_time">
         @include('ticket.show_workTime');
     </div>
+    @if($set_times)
+        <div class="dv_extra {{(isset($return_back) && $return_back=="set_times")?"":"display_none"}}"
+             id="dv_set_times">
+            @include('forms.formSetTimes',["ticket"=>$current_ticket,"submitText"=>trans("mb.reffral")]);
+        </div>
+    @endif
 @endsection

@@ -10,7 +10,8 @@
                 {{method_field('PUT')}}
             @endisset
             <input type="hidden" name="sender_id" id="sender_id" value="{{auth::user()->id}}">
-            <input type="hidden" name="ticket_id" id="ticket_id" value="{{$ticket->ticket_id}}">
+            <input type="hidden" name="receiver_id" id="receiver_id" value="{{$current_user->is_staff?$current_ticket->sender_id:$current_ticket->receiver_id}}">
+            <input type="hidden" name="ticket_id" id="ticket_id" value="{{$ticket->generate_ticket_id()}}">
             <div class="form-body">
                 <div class="form-group row">
                     <div class="col-md-12">

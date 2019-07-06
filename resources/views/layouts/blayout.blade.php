@@ -140,7 +140,7 @@
                                     <a href="javascript:void(0)">
                                         <div class="media">
                                             <div class="media-left"><span class="avatar avatar-sm rounded-circle"><img
-                                                            src="../../../app-assets/images/portrait/small/avatar-s-6.png"
+                                                            src="{{asset("app-assets/images/portrait/small/avatar-s-6.png")}}"
                                                             alt="avatar"></span></div>
                                             <div class="media-body">
                                                 <h6 class="media-heading text-bold-700">Sarah Montery<i
@@ -214,12 +214,12 @@
 
 
 <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true"
-     data-img="../../../app-assets/images/backgrounds/02.jpg">
+     data-img="{{asset("app-assets/images/backgrounds/02.jpg")}}">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="index-2.html"><img class="brand-logo"
                                                                                           alt="Asa admin logo"
-                                                                                          src="../../../app-assets/images/logo/logo.png"/>
+                                                                                          src="{{asset("app-assets/images/logo/logo.png")}}"/>
                     <h3 class="brand-text">{{trans("mb.brand")}}</h3></a></li>
             <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
         </ul>

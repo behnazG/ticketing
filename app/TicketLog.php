@@ -14,6 +14,9 @@ class TicketLog extends Model
             1 => trans("mb.referral"),
             2 => trans('mb.setTimes'),
             4 => trans('mb.done'),
+            5 => trans('mb.closed'),
+            6 => trans('mb.resend'),
+            7 => trans('mb.training'),
         ];
     }
 
@@ -50,7 +53,7 @@ class TicketLog extends Model
 
     public static function closeAllTimeWork($ticket_id)
     {
-        $ticket_log = TicketLog::where('ticket_id',$ticket_id)->where('end_time_system', null)->where('type', 2)->get();
+        $ticket_log = TicketLog::where('ticket_id', $ticket_id)->where('end_time_system', null)->where('type', 2)->get();
         $ticket = Ticket::find($ticket_id);
         $ticket_status = is_null($ticket) ? 0 : $ticket->status;
         $data["ticket_status"] = $ticket_status;
@@ -61,5 +64,17 @@ class TicketLog extends Model
             }
         }
 
+    }
+
+    public static function getTypeByTicketStatus($ticket_status)
+    {
+        if ($ticket_status == 3)
+            return 5;
+        elseif ($ticket_status == 4)
+            return 6;
+        elseif ($ticket_status == 5)
+            return 7;
+        else
+            return 0;
     }
 }

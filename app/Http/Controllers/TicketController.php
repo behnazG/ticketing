@@ -58,33 +58,46 @@ class TicketController extends Controller
         $ticket_id = $this->decode_ticket_id($ticket_id);
         $user = auth::user();
         $ticket = Ticket::where('id', $ticket_id)->get();
-        $authorise_user_reffral = UserAuthorise::allowed_user_by_ticket($ticket_id);
-        //////////////////////////////////
-        if (!Ticket::check_authorise_ticket($ticket_id)) {
-            Session::flash('message', trans("mb.dontAccess", ["name" => trans("mb.tickets")]));
-            Session::flash('alert-class', 'danger');
-            return redirect('tickets');
+        /////////////////////////////////////////////////////////////////////////
+        //  check and this ticket not main use the parent ticket in chain
+        if (!$ticket->isEmpty()) {
+            if ($ticket[0]->id != $ticket[0]->ticket_id) {
+                $ticket = Ticket::where('id', $ticket->ticket_id)->get();
+            }
         }
-        //////////////////////////////////////////////
-        if ($user->is_staff == 1 && $ticket[0]->status == 0) {
-            $data = [];
-            $data["status"] = 1;
-            if ($ticket[0]->receiver_id == 0) {
-                $data["receiver_id"] = $user->id;
-            }
-            elseif ($ticket[0]->receiver_id != 0 && $ticket[0]->receiver_id != $user->id) {
-
-                if ($user->organizational_chart_id > 2) {
-                    Session::flash('message', trans("mb.dontAccess", ["name" => trans("mb.tickets")]));
-                    Session::flash('alert-class', 'danger');
-                    return redirect('tickets');
+        if ($ticket->isEmpty()) {
+            abort(404, "tickets");
+        }
+        //////////////////////////////////
+        if ($user->is_staff == 0 && $ticket[0]->sender_id != $user->id) {
+            abort(401, "tickets");
+        }
+        if (!Ticket::check_authorise_ticket($ticket_id)) {
+            abort(401, "tickets");
+        }
+        ///////////////////////////////////////////////////////////////////////////
+        $authorise_user_reffral = [];
+        $allowed_refferal = UserAuthorise::allowed_refferal_by_user($user->id);
+        $set_times = UserAuthorise::allowed_setTimes_by_user($user->id);
+        $ticket_time_log = TicketLog::where('ticket_id', -1)->get();
+        if ($user->is_staff == 1) {
+            if ($allowed_refferal)
+                $authorise_user_reffral = UserAuthorise::allowed_user_by_ticket($ticket_id);
+        }
+        $ticket_time_log = TicketLog::where('ticket_id', $ticket_id)->get();
+        ///////////////////////////////////////////
+        if ($user->is_staff == 1 && $ticket[0]->status == 0 && $ticket[0]->sender_id != $user->id) {
+            if ($ticket[0]->status == 0) {
+                $data = [];
+                if ($ticket[0]->receiver_id == 0) {
+                    $data["receiver_id"] = $user->id;
                 }
+                $data["status"] = 1;
+                $ticket[0]->update($data);
             }
-            $ticket[0]->update($data);
         }
         ///////////////////////////////////////////////
         $data = [];
-        $ticket_time_log = TicketLog::where('ticket_id', $ticket_id)->orderBy('id', 'DESC')->get();
         $chains = Ticket::find_all_chains($ticket_id);
         $data["chains"] = $chains;
         $data["current_user"] = $user;
@@ -92,12 +105,13 @@ class TicketController extends Controller
         $data["status_list"] = Ticket::STATUS_LIST();
         $data["authorise_user_reffral"] = $authorise_user_reffral;
         $data["ticket_time_log"] = $ticket_time_log;
+        $data["allowed_refferal"] = $allowed_refferal;
+        $data["set_times"] = $set_times;
         if (Session::has('return_back')) {
-            $data["return_back"] = "change_status";
+            $data["return_back"] = Session::get('return_back');
         }
         ///////////////////////////////////////////////
         return view('ticket.show', $data);
-
     }
 
     public function inbox()
@@ -141,20 +155,59 @@ class TicketController extends Controller
         );
         try {
             $data = [];
-            $data["status"] = $request->status;
-            $ticket->update($data);
-            ////////////////////////////////////////////
-            $time_user = $request->hour . ":" . $request->minut;
-            $ticket_log = TicketLog::where('ticket_id', $ticket->id)->where('type', 2)->orderBy('id', 'DESC')->get();
-            $data = [];
-            $data["time_user"] = $time_user;
-            $data["end_time_system"] = date("Y-m-d H:i:s");
-            $data["ticket_status"] = $ticket->status;
-            $data["start_time_system"] = $ticket_log->isEmpty() ? date("Y-m-d H:i:s") : $ticket_log[0]->start_time_system;
-            $data["ticket_id"] = $ticket->id;
-            $data["user_id"] = $current_user->id;
-            $data["type"] = 4;
-            TicketLog::create($data);
+            $old_status = $ticket->status;
+            $ticket_status = $request->status;
+            if ($old_status != $ticket_status) {
+                $data["status"] = $ticket_status;
+                $ticket->update($data);
+                ////////////////////////////////////////////
+                if ($ticket_status == 2) {
+                    $time_user = $request->hour . ":" . $request->minut;
+                    $ticket_log = TicketLog::where('ticket_id', $ticket->id)->where('type', 2)->orderBy('id', 'DESC')->get();
+                    $data = [];
+                    $data["time_user"] = $time_user;
+                    $data["end_time_system"] = date("Y-m-d H:i:s");
+                    $data["ticket_status"] = $ticket_status;
+                    $data["start_time_system"] = $ticket_log->isEmpty() ? date("Y-m-d H:i:s") : $ticket_log[0]->start_time_system;
+                    $data["ticket_id"] = $ticket->id;
+                    $data["user_id"] = $current_user->id;
+                    $data["type"] = 4;
+                    TicketLog::create($data);
+                } else if ($ticket_status >= 3) {
+                    $data = [];
+                    $data["ticket_id"] = $ticket->id;
+                    $data["ticket_status"] = $ticket_status;
+                    $data["user_id"] = $current_user->id;
+                    $data["start_time_system"] = date("Y-m-d H:i:s");
+                    $data["type"] = TicketLog::getTypeByTicketStatus($ticket_status);
+                    TicketLog::create($data);
+                }
+                //////////////////////////////////////////////////
+                if ($ticket_status == 4) {
+                    $data = [];
+                    $data ["sender_id"] = $ticket->sender_id;
+                    $data ["receiver_id"] = 0;
+                    $data ["category_id"] = $ticket->category_id;
+                    $data ["organizational_chart_id"] = $ticket->organizational_chart_id;
+                    $data ["valid"] = $ticket->valid;
+                    $data ["status"] = 0;
+                    $data ["subject"] = $ticket->subject;
+                    $data ["text"] = $ticket->text;
+                    $data ["file_1"] = $ticket->file_1;
+                    $data ["file_2"] = $ticket->file_2;
+                    $data ["file_3"] = $ticket->file_3;
+                    try {
+                        $ticket_copy = Ticket::create($data);
+                        $data = ["ticket_id" => $ticket_copy->id];
+                        $ticket_copy->update($data);
+                    } catch (\Exception $e) {
+                    }
+                    return redirect('tickets/sent');
+
+                }
+
+            }
+
 
         } catch (\Exception $e) {
 
@@ -207,11 +260,16 @@ class TicketController extends Controller
     public function replay(Request $request, Ticket $ticket)
     {
         $data = Ticket::validate_replay();
+        $data["ticket_id"] = $this->decode_ticket_id($request->ticket_id);
         ///////////////////////////////////////
         $ticket = Ticket::create($data);
         upload_ticket_files($ticket, "file_1");
         upload_ticket_files($ticket, "file_2");
         upload_ticket_files($ticket, "file_3");
+
+        return redirect('tickets/' . $request->ticket_id);
+
+
     }
 
     public function reffral(Request $request, Ticket $ticket)
@@ -263,6 +321,30 @@ class TicketController extends Controller
         }
     }
 
+    public function set_times(Request $request, Ticket $ticket)
+    {
+        Session::flash('return_back', "set_times");
+        $current_user = auth::user();
+        $data = $request->validate(
+            [
+                "expire_date_hour" => "required|numeric",
+                "expire_date_day" => "required|numeric",
+                "time_table_hour" => "required|numeric",
+                "time_table_day" => "required|numeric",
+            ]
+        );
+        try {
+            $data = [];
+            $expire_date=date("Y-m-d H:i:s",strtotime("+ $request->expire_date_day days + $request->expire_date_hour hours"));
+            $time_table=date("Y-m-d H:i:s",strtotime("+ $request->time_table_day days + $request->time_table_hour hours"));
+            $data=[];
+            $data["time_table"]=$time_table;
+            $data["expire_date"]=$expire_date;
+            $ticket->update($data);
+        } catch (\Exception $e) {
+        }
+        return redirect('tickets/' . $ticket->generate_ticket_id());
+    }
 
     private function decode_ticket_id($code)
     {

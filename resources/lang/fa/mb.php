@@ -149,5 +149,14 @@ return [
     "editProfile"=>"ویرایش‌پروفایل",
     "Logout"=>"خروج",
     "dontAccess"=>"شما به این :name دسترسی ندارید",
+    "viewPendingTicket"=>"مشاهده تیکت‌های درصف‌انتظار",
+    "viewInProgressTicket"=>"مشاهده تیکت‌های درحال‌پیگیری",
+    "viewClosedTicket"=>"مشاهده تیکت‌های بسته شده",
+    "currentStatus"=>"وضعیت‌‌فعلی",
+    "setExpireDateAndTimeTable"=>"تنظیم زمان‌انقضا و مدت زمان‌انجام‌تیکت",
+    "setTimes"=>"تنظیم‌زمان",
+    "day"=>"روز",
+    "expireDateTicket"=>"مهلت‌انجام‌کار",
+    "timeTable"=>"مدت‌انجام‌کار",
 ];
 ?>

@@ -206,9 +206,9 @@ else {
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        @isset($user_image)
+                                        @if(isset($user_image) && !is_null($user_image))
                                             <img src="{{$user_image}}" class="img-fluid">
-                                        @endisset
+                                        @endif
                                     </div>
                                 </div>
 

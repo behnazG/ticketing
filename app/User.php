@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -75,5 +76,21 @@ class User extends Authenticatable
             return trans("mb.userHotel");
 
         }
+    }
+
+
+    /**
+     *
+     */
+    public function get_image_url()
+    {
+        if(!is_null($this->image_path))
+        {
+            if(Storage::exists('public/'.$this->image_path))
+                return asset('storage/' . $this->image_path);
+
+        }
+
+        return asset('app-assets/images/icons/user.jpg');
     }
 }

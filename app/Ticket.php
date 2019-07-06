@@ -33,11 +33,13 @@ class Ticket extends Model
                 . ",doc,csv,docx,ppt,txt,text,bmp,gif,jpeg,jpg,jpe,png,rtf|max:200",
         ])->validate();
     }
+
     public static function validate_replay()
     {
         return request()->validate([
-            "ticket_id" =>  "required|" . "numeric",
+            "ticket_id" => "required",
             "sender_id" => "required|numeric",
+            "receiver_id" => "required|numeric",
             "text" => "required|string",
             "file_1" => "nullable|mimes:xls,xlm,xla,xlc,xlt,xlw,xlam,xlsb,xlsm,xltm,xlsx"
                 . ",doc,csv,docx,ppt,txt,text,bmp,gif,jpeg,jpg,jpe,png,rtf|max:200",
@@ -48,7 +50,6 @@ class Ticket extends Model
         ]);
 
     }
-
 
     public static function STATUS_LIST($index = -1)
     {
@@ -99,43 +100,27 @@ class Ticket extends Model
         if (is_null($current_user))
             return [];
         ///////////////////////////
-        if ($type == "s") {
+        if ($type == "s" || $current_user->is_staff == 0) {
             $t = Ticket::where('sender_id', $current_user->id)->where('trash', 0)->groupBy('ticket_id')->get();
             return $t;
-        } /////////////////////////////
-        else if ($type == "i") {
-            if ($current_user->is_staff == 1) {
-                if ($current_user->organizational_chart_id == 1) {
-                    $t = Ticket::where('trash', 0)->whereRaw('ticket_id=id')->groupBy('ticket_id')->get();
-                    return $t;
-                } else {
-                    $referrals_admin = Setting::is_referrals_admin();
-                    if ($referrals_admin == 1) {
-                        $t = Ticket::where('receiver_id', $current_user->id)->where('trash', 0)->groupBy('ticket_id')->get();
-                        return $t;
-                    }
-                    elseif ($referrals_admin == 0) {
-                        $allowed_user = UserAuthorise::allowed_user_by_user($current_user->id);
-                        $allowed_categories = UserAuthorise::allowed_categories_by_user($current_user->id);
-                        if($current_user->organizational_chart_id == 2)
-                        {
-                            $t = self::whereIn('category_id', $allowed_categories)->whereIn('sender_id', $allowed_user)->groupBy('ticket_id')->get();
-                            return $t;
-                        }else if($current_user->organizational_chart_id > 2)
-                        {
-
-                            $t = self::whereIn('category_id', $allowed_categories)->whereIn('sender_id', $allowed_user)->whereRaw("(receiver_id = 0 or  receiver_id =$current_user->id )")->groupBy('ticket_id')->get();
-                            return $t;
-                        }
-                    }
-                }
-            } else if ($current_user->is_staff == 0) {
-                $t = Ticket::where('sender_id', $current_user->id)->where('trash', 0)->groupBy('ticket_id')->get();
-                return $t;
-            }
+        }
+        if ($current_user->organizational_chart_id == 1) {
+            $t = Ticket::where('trash', 0)->whereRaw('ticket_id=id')->groupBy('ticket_id')->get();
+            return $t;
+        }
+        /////////////////////////////
+        if ($type == "i") {
+            $allowed_user = UserAuthorise::allowed_user_by_user($current_user->id);
+            $allowed_categories = UserAuthorise::allowed_categories_by_user($current_user->id);
+            $allow_status_ticket = UserAuthorise::allowed_status_by_user($current_user->id);
+            $t = self::whereIn('category_id', $allowed_categories)
+                ->whereIn('sender_id', $allowed_user)
+                ->whereIn('status', $allow_status_ticket)
+                ->Orwhere('receiver_id', $current_user->id)
+                ->groupBy('ticket_id')->get();
+            return $t;
         }
     }
-
     /**
      * @uses checked current user authorise to the ticket
      * @param $ticket_id
@@ -149,65 +134,37 @@ class Ticket extends Model
         if (is_null($ticket) || is_null($current_user)) {
             //log
             return false;
-
         }
         //////////////////////////////
-        if ($ticket->sender_id == $current_user->id) {
+        if ($ticket->sender_id == $current_user->id || $ticket->receiver_id == $current_user->id) {
             return true;
-
         }
-        //////////////////////////
-        $allow = 1;
-        $ticket_id = $ticket->id;
-        $user_id = $current_user->id;
-        $hotel_id = 0;
-        //////////////////////////////////
-        $ticket_user = User::find($ticket->sender_id);
-        if (is_null($ticket_user)) {
+        ////////////////////////////
+        /// check by category and hotel
+        $allow_users = UserAuthorise::allowed_user_by_ticket($ticket->id);
+        $allow_userss = [];
+        if (!$allow_users->isEmpty()) {
+            foreach ($allow_users as $value) {
+                array_push($allow_userss, $value->id);
+            }
+        }
+        if (!in_array($current_user->id, $allow_userss)) {
             return false;
-        } else {
-            $ticket_hotel = Hotel::find($ticket_user->hotel_id);
-            if (is_null($ticket_hotel))
-                return false;
-            else
-                $hotel_id = $ticket_hotel->id;
         }
-        ///////////////////////////////////
-        $s = Setting::find(1);
-        $referrals_admin = 0;
-        if (is_null($s)) {
-            $referrals_admin = 0;
-        } else {
-            $referrals_admin = ($s->referrals_admin == 1) ? 1 : 0;
-        }
-        /////////////////////////////////////////////////
-        if ($referrals_admin == 1) {
-            if ($ticket->receiver_id == $current_user->id)
-                $allow = 1;
-        }
-        //////////////////////CHECK HOTEL/////////////////////////
-        if ($allow == 1) {
-            if (in_array($hotel_id, UserAuthorise::allowed_hotels_by_user($current_user->id))) {
-                $allow = 1;
-            } else {
-                $allow = 0;
+        //////////////////////////////////////////////////////////////////////
+        /// chesck by other
+        $allow_users = UserAuthorise::allowed_user_by_ticketStatus($ticket->id);
+        $allow_userss = [];
+        if (!$allow_users->isEmpty()) {
+            foreach ($allow_users as $value) {
+                array_push($allow_userss, $value->id);
             }
-
         }
-        /////////////////////CHECK CATEGORY////////////////////////////////
-        if ($allow == 1) {
-            if (in_array($ticket->category_id, UserAuthorise::allowed_categories_by_user($current_user->id))) {
-                $allow = 1;
-            } else {
-                $allow = 0;
-            }
-
+        if (!in_array($current_user->id, $allow_userss)) {
+            return false;
         }
         ////////////////////////////////////
-        if ($allow == 1)
-            return true;
-        else
-            return false;
+        return true;
     }
 
     public static function find_all_chains($ticket_id)
@@ -219,11 +176,14 @@ class Ticket extends Model
     public function download_attach_file($field_value)
     {
         try {
-            return Storage::url($this->$field_value);
+            if (Storage::exists($this->$field_value))
+                return Storage::url($this->$field_value);
         } catch (\Exception $e) {
             return false;
         }
+        return false;
     }
+
     public function generate_ticket_id()
     {
         return base64_encode(base64_encode(base64_encode(base64_encode(base64_encode($this->id)))));

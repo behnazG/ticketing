@@ -32,6 +32,7 @@
                             </select>
                         </div>
                     </div>
+
                 </div>
                 @include('fragments.submitPart',['submitText'=>$submitText,'giveUpUrl'=>'/tickets'])
             </form>

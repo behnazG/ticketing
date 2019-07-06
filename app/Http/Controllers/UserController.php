@@ -96,7 +96,7 @@ class UserController extends Controller
         $data["user"] = $User;
         $data["hotels"] = Hotel::where('valid', 1)->get();
         $data["organizationCharts"] = OrganizationChart::where('valid', 1)->get();
-        $data["user_image"] = asset('storage/' . $User->image_path);
+        $data["user_image"] = $User->get_image_url();
         return view('user.edit', $data);
     }
 

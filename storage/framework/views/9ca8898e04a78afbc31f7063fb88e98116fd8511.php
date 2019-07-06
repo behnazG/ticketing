@@ -1,0 +1,1 @@
+<h1>Error</h1><?php /**PATH D:\xampp\htdocs\asa\resources\views/errors/404.blade.php ENDPATH**/ ?>
