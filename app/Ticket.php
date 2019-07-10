@@ -110,40 +110,42 @@ class Ticket extends Model
 
     }
 
-    public static function find_tickets($type = "s", $ticket_id = 0, $status = "all",$groupByStatus=false)
+    public static function find_tickets($type = "s", $ticket_id = 0, $status = "all", $groupByStatus = false)
     {
         $current_user = auth::user();
         if (is_null($current_user))
             return [];
         ///////////////////////////
-        if ($type == "s" || $current_user->is_staff == 0) {
-            $t = Ticket::where('sender_id', $current_user->id)->where('trash', 0)->groupBy('ticket_id')->get();
+        if ($type == "s") {
+            $t = Ticket::where('sender_id', $current_user->id)->where('trash', 0)->whereRaw('id=ticket_id')->get();
             return $t;
         }
-        if ($current_user->organizational_chart_id == 1) {
-            $t = Ticket::where('trash', 0)->whereRaw('ticket_id=id')->groupBy('ticket_id')->get();
+        if($current_user->is_staff == 0)
+        {
+            $t = Ticket::where('sender_id', $current_user->id)->where('receiver_id', $current_user->id)->where('trash', 0)->whereRaw('id=ticket_id')->get();
             return $t;
         }
         /////////////////////////////
         if ($type == "i") {
             $allowed_user = UserAuthorise::allowed_user_by_user($current_user->id);
             $allowed_categories = UserAuthorise::allowed_categories_by_user($current_user->id);
-            $allow_status_ticket = UserAuthorise::allowed_status_by_user($current_user->id);
             $t = self::whereIn('category_id', $allowed_categories)
-                ->whereIn('sender_id', $allowed_user)
-                ->whereIn('status', $allow_status_ticket)
-                ->Orwhere('receiver_id', $current_user->id);
+                ->whereIn('sender_id', $allowed_user);
+            if ($status >= 0 && $status < 6) {
+                $t = $t->where('status', $status);
+            } else {
+                $allow_status_ticket = UserAuthorise::allowed_status_by_user($current_user->id);
+                $t = $t->whereIn('status', $allow_status_ticket);
+            }
+            $t = $t->Orwhere('receiver_id', $current_user->id);
             if ($ticket_id > 0)
                 $t = $t->where('id', '>', $ticket_id);
-            if ($status != "all") {
-                $t = $t->where('status', $status);
+
+            if ($groupByStatus == true) {
+                $t = $t->select(DB::RAW("COUNT(id) as counts"), "status")->groupBy('status');
             }
-            if($groupByStatus == true)
-            {
-                $t=$t->select(DB::RAW("COUNT(id) as counts"),"status")->groupBy('status');
-            }
-          //  $t = $t->groupBy('ticket_id')->get();
-            $t=$t->whereRaw('id=ticket_id')->get();
+            $t = $t->whereRaw('id=ticket_id')->get();
+//            $t = $t->groupBy('ticket_id')->get();
             return $t;
         }
     }
@@ -216,36 +218,17 @@ class Ticket extends Model
         return base64_encode(base64_encode(base64_encode(base64_encode(base64_encode($this->id)))));
     }
 
-    public function getExpireDateAttribute()
-    {
-        if (!is_null($this->expire_date_day) && !is_null($this->expire_date_hour))
-            return strtotime($this->created_at . " + $this->expire_date_day days + $this->expire_date_hour hours");
-    }
-
-    public function getDurationAttribute()
-    {
-        if (!is_null($this->duration_day) && !is_null($this->duration_hour))
-            return strtotime($this->created_at . " + $this->duration_day days + $this->duration_hour hours");
-    }
-
-    public function getExpireDateCurrentAttribute()
-    {
-        if (!is_null($this->expire_date_day) && !is_null($this->expire_date_hour))
-            return strtotime($this->created_at . " + $this->expire_date_day days + $this->expire_date_hour hours");
-    }
-
-    public function getDurationCurrentAttribute()
-    {
-        if (!is_null($this->duration_day) && !is_null($this->duration_hour))
-            return strtotime($this->created_at . " + $this->duration_day days + $this->duration_hour hours");
-    }
-
     public function getSenderAttribute()
     {
         $user = User::find($this->sender_id);
         if (is_null($user))
             return false;
         else return $user;
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
 }

@@ -41,14 +41,14 @@ class UserAuthorise extends Model
             }
         }
         $users = [];
-        $u = User::whereIn('hotel_id', $hotels)->get();
+        $u = User::whereIn('hotel_id', $hotels)->orWhere('is_staff', 1)->get();
+
         if (!$u->isEmpty()) {
             foreach ($u as $uu) {
                 array_push($users, $uu->id);
             }
         }
         return $users;
-
     }
 
     public static function allowed_status_by_user($user_id)
@@ -57,6 +57,7 @@ class UserAuthorise extends Model
         $u_a = self::where('field_name', 'view_pending_ticket')->where('field_value', 1)->where('user_id', $user_id)->get();
         if (!$u_a->isEmpty()) {
             array_push($a_s_t, 0);
+            array_push($a_s_t, 4);
         }
         $u_a = self::where('field_name', 'view_in_progress_ticket')->where('field_value', 1)->where('user_id', $user_id)->get();
         if (!$u_a->isEmpty()) {
@@ -68,9 +69,8 @@ class UserAuthorise extends Model
         }
         //////////////////////
         ///
-        if(empty($a_s_t))
-        {
-            array_push($a_s_t,-1);
+        if (empty($a_s_t)) {
+            array_push($a_s_t, -1);
         }
         return $a_s_t;
 
@@ -155,8 +155,8 @@ class UserAuthorise extends Model
 
     public static function allowed_refferal_by_user($user_id)
     {
-        $a=self::where('field_name','allow_referral')->where('field_value',1)->where('user_id',$user_id)->get();
-        if($a->isEmpty())
+        $a = self::where('field_name', 'allow_referral')->where('field_value', 1)->where('user_id', $user_id)->get();
+        if ($a->isEmpty())
             return false;
         else
             return true;
@@ -164,8 +164,8 @@ class UserAuthorise extends Model
 
     public static function allowed_setTimes_by_user($user_id)
     {
-        $a=self::where('field_name','set_times')->where('field_value',1)->where('user_id',$user_id)->get();
-        if($a->isEmpty())
+        $a = self::where('field_name', 'set_times')->where('field_value', 1)->where('user_id', $user_id)->get();
+        if ($a->isEmpty())
             return false;
         else
             return true;

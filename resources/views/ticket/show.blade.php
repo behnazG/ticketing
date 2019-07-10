@@ -77,6 +77,12 @@
 @section('content')
     <div class="email-app-title card-body">
         <div class="row">
+            <div class="col-12">
+                <label class="label-control mr-1"> {{$current_ticket->category->name}} </label> /
+                <label class="label-control ml-1"> {{date_sh($current_ticket->created_at)}} </label>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-9 col-12 text-left ">
                 <h3 class="list-group-item-heading">{{$current_ticket->subject}}</h3>
             </div>
@@ -95,8 +101,8 @@
                         <?php
                         $self_sender = ($ticket->sender_id == $current_user->id) ? true : false;
                         $front_user_image = ($ticket->front_user == false) ? get_icon_url() : $ticket->front_user->get_image_url();
-                        $front_user_name = ($ticket->front_user == false) ?trans("mb.unknown"): $ticket->front_user->name;
-                        $is_staff=$ticket->front_user->is_staff;
+                        $front_user_name = ($ticket->front_user == false) ? trans("mb.unknown") : $ticket->front_user->name;
+                        $is_staff = $ticket->front_user->is_staff;
                         ?>
                         <div class="chat {{($self_sender)?"chat-left":""}}">
                             <div class="chat-avatar">

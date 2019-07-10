@@ -10,6 +10,7 @@
                             <th class="border-top-0"></th>
                             <th class="border-top-0"></th>
                             <th class="border-top-0"></th>
+                            <th class="border-top-0"></th>
                             @if($user->is_staff!=1)
                                 <th class="border-top-0">{{trans("mb.hotel")}}</th>
                             @endif
@@ -19,6 +20,7 @@
                         <tbody>
                         @foreach($tickets as $i=>$ticket)
                             <tr>
+                                <td>{{$ticket->category->name}}</td>
                                 <td class="border-top-0 {{$ticket_status[$ticket->status][1]}}"><i class="{{$ticket_status[$ticket->status][2]}}"></i> {{$ticket_status[$ticket->status][0]}}</td>
                                 <td class="border-top-0">{{($ticket->front_user==false)?trans("mb.unknown"):$ticket->front_user->name}}</td>
                                 <td class="border-top-0"><a href="{{url("/tickets/".$ticket->generate_ticket_id())}}">{{$ticket->subject}}</a></td>

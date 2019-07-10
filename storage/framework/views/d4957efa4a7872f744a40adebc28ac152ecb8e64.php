@@ -9,6 +9,7 @@
                             <th class="border-top-0"></th>
                             <th class="border-top-0"></th>
                             <th class="border-top-0"></th>
+                            <th class="border-top-0"></th>
                             <?php if($user->is_staff!=1): ?>
                                 <th class="border-top-0"><?php echo e(trans("mb.hotel")); ?></th>
                             <?php endif; ?>
@@ -18,6 +19,7 @@
                         <tbody>
                         <?php $__currentLoopData = $tickets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i=>$ticket): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
+                                <td><?php echo e($ticket->category->name); ?></td>
                                 <td class="border-top-0 <?php echo e($ticket_status[$ticket->status][1]); ?>"><i class="<?php echo e($ticket_status[$ticket->status][2]); ?>"></i> <?php echo e($ticket_status[$ticket->status][0]); ?></td>
                                 <td class="border-top-0"><?php echo e(($ticket->front_user==false)?trans("mb.unknown"):$ticket->front_user->name); ?></td>
                                 <td class="border-top-0"><a href="<?php echo e(url("/tickets/".$ticket->generate_ticket_id())); ?>"><?php echo e($ticket->subject); ?></a></td>

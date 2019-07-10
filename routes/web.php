@@ -20,6 +20,7 @@ Route::get('/tickets/sent', 'TicketController@sent')->middleware('auth');
 Route::get('/tickets/inbox', 'TicketController@inbox')->middleware('auth');
 Route::get('/tickets/inbox/{status}', 'TicketController@inbox')->middleware('auth');
 Route::post('/tickets/search', 'TicketController@search');
+Route::get('/tickets/search/{type}/{search}', 'TicketController@search_all');
 Route::get('/tickets/compose', 'TicketController@compose')->middleware('auth');
 Route::post('/tickets', 'TicketController@store')->middleware('auth');
 Route::get('/tickets', 'TicketController@inbox')->middleware('auth');

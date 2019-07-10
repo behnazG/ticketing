@@ -139,8 +139,9 @@ foreach ($tickt_status as $t_s) {
                     @if(auth::user()->is_staff==1)
                         <li class="dropdown dropdown-notification nav-item">
                             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
-                                <i  class="ficon ft-mail"> </i>
-                                <span class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"  id="topmenu_number_email"></span>
+                                <i class="ficon ft-mail"> </i>
+                                <span class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"
+                                      id="topmenu_number_email"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <div class="arrow_box_right">
@@ -306,7 +307,8 @@ foreach ($tickt_status as $t_s) {
                         </a>
                         <?php $status_list = \App\Ticket::STATUS_LIST();?>
                         @foreach($status_list as $index=>$status)
-                            <a href="{{url('tickets/inbox/'.$index)}}" class="list-group-item list-group-item-action border-0">
+                            <a href="{{url('tickets/inbox/'.$index)}}"
+                               class="list-group-item list-group-item-action border-0">
                                 <i class="{{$status[2]}} mr-1 ml-1 {{$status[1]}}"></i> {{$status[0]}}
                                 <span class="primary float-right">{{$status_ticket[$index]}}</span>
                             </a>
@@ -328,40 +330,43 @@ foreach ($tickt_status as $t_s) {
                 <div class="card email-app-details d-none d-lg-block rounded-0">
                     <div class="card-content">
                         <div class="email-app-options card-body">
-                            <div class="row">
-                                <div class="col-10 col-lg-8   text-center offset-lg-2">
-                                    <fieldset class="form-group position-relative has-icon-left m-0 pb-1">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-outline-light dropdown-toggle round"
-                                                        type="button"
-                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">{{trans("mb.searchIn")}}
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#">{{trans('mb.ticketNumber')}}</a>
-                                                    <a class="dropdown-item" href="#">{{trans('mb.ticketSubject')}}</a>
-                                                    <a class="dropdown-item" href="#">{{trans('mb.ticketUser')}}</a>
+                            <form method="post" action="{{url('/tickets/search')}}" id="search_all_ticket">
+                                <div class="row">
+                                    <div class="col-10 col-lg-8   text-center offset-lg-2">
+                                        <fieldset class="form-group position-relative has-icon-left m-0 pb-1">
+                                            <div class="input-group">
+                                                @csrf
+                                                <input type="text" class="form-control round" name="subject_ticket"
+                                                       id="subject_ticket">
+                                                <input type="hidden" name="topic_search" id="topic_search">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-light dropdown-toggle round"
+                                                            type="button"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">{{trans("mb.searchIn")}}
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item search_in_tickets"
+                                                           data-topic="1">{{trans('mb.ticketNumber')}}</a>
+                                                        <a class="dropdown-item search_in_tickets"
+                                                           data-topic="2">{{trans('mb.ticketSubject')}}</a>
+                                                        <a class="dropdown-item search_in_tickets"
+                                                           data-topic="3">{{trans('mb.sender')}}</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control round"
-                                                   aria-label="Amount (to the nearest dollar)">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-light round" type="button"><i
-                                                            class="ft-search"></i> {{trans('mb.search')}}</button>
-                                            </div>
-                                        </div>
-                                    </fieldset>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-3 d-lg-none d-xl-block text-right">
+                                        <button type="button" class="btn btn-sm btn-icon btn-pure">
+                                            <i class="la la-angle-left font-medium-5"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-icon btn-pure">
+                                            <i class="la la-angle-right font-medium-5"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col-xl-3 d-lg-none d-xl-block text-right">
-                                    <button type="button" class="btn btn-sm btn-icon btn-pure">
-                                        <i class="la la-angle-left font-medium-5"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-icon btn-pure">
-                                        <i class="la la-angle-right font-medium-5"></i>
-                                    </button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                         @yield('content')
                     </div>
@@ -418,6 +423,15 @@ foreach ($tickt_status as $t_s) {
 
 @include('fragments.js.ajax_blayout')
 
+<script>
+    $(document).ready(function () {
+        $(".search_in_tickets").on('click', function () {
+            var types = $(this).data('topic');
+            $("#topic_search").val(types);
+            $("#search_all_ticket").submit();
+        })
+    });
+</script>
 </body>
 
 <!-- Mirrored from themeselection.com/demo/chameleon-admin-template/html/rtl/vertical-menu-template/email-application.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 Mar 2019 16:01:17 GMT -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TicketLog;
+use App\User;
 use App\UserAuthorise;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
@@ -84,12 +85,13 @@ class TicketController extends Controller
         if ($user->is_staff == 1) {
             if ($allowed_refferal) {
                 $authorise_user_reffral = UserAuthorise::allowed_user_by_ticket($ticket_id);
+
             }
         }
         $ticket_time_log = TicketLog::where('ticket_id', $ticket_id)->get();
         ///////////////////////////////////////////
-        if ($user->is_staff == 1 && $ticket[0]->status == 0 && $ticket[0]->sender_id != $user->id) {
-            if ($ticket[0]->status == 0) {
+        if ($user->is_staff == 1 && ($ticket[0]->status == 0 || $ticket[0]->status == 4) && $ticket[0]->sender_id != $user->id) {
+            if ($ticket[0]->status == 0 || $ticket[0]->status == 4) {
                 $data = [];
                 if ($ticket[0]->receiver_id == 0) {
                     $data["receiver_id"] = $user->id;
@@ -164,6 +166,9 @@ class TicketController extends Controller
             $ticket_status = $request->status;
             if ($old_status != $ticket_status) {
                 $data["status"] = $ticket_status;
+                if ($ticket_status == 4) {
+                    $data ["receiver_id"] = 0;
+                }
                 $ticket->update($data);
                 ////////////////////////////////////////////
                 if ($ticket_status == 2) {
@@ -188,39 +193,18 @@ class TicketController extends Controller
                     TicketLog::create($data);
                 }
                 //////////////////////////////////////////////////
-                if ($ticket_status == 4) {
-                    $data = [];
-                    $data ["sender_id"] = $ticket->sender_id;
-                    $data ["receiver_id"] = 0;
-                    $data ["category_id"] = $ticket->category_id;
-                    $data ["organizational_chart_id"] = $ticket->organizational_chart_id;
-                    $data ["valid"] = $ticket->valid;
-                    $data ["status"] = 0;
-                    $data ["subject"] = $ticket->subject;
-                    $data ["text"] = $ticket->text;
-                    $data ["file_1"] = $ticket->file_1;
-                    $data ["file_2"] = $ticket->file_2;
-                    $data ["file_3"] = $ticket->file_3;
-                    try {
-                        $ticket_copy = Ticket::create($data);
-                        $data = ["ticket_id" => $ticket_copy->id];
-                        $ticket_copy->update($data);
-                    } catch (\Exception $e) {
-                    }
-                    return redirect('tickets/sent');
-
-                }
-
+                return redirect('tickets/sent');
             }
-
 
         } catch (\Exception $e) {
 
         }
+
         return redirect('tickets/' . $ticket->generate_ticket_id());
     }
 
-    public function start_work_time($ticket_id)
+    public
+    function start_work_time($ticket_id)
     {
         $ticket_id = $this->decode_ticket_id($ticket_id);
         $ticket = Ticket::find($ticket_id);
@@ -239,7 +223,8 @@ class TicketController extends Controller
         }
     }
 
-    public function end_work_time($ticket_id)
+    public
+    function end_work_time($ticket_id)
     {
         $current_user_id = auth::user()->id;
         ///////////
@@ -262,7 +247,8 @@ class TicketController extends Controller
         }
     }
 
-    public function replay(Request $request, Ticket $ticket)
+    public
+    function replay(Request $request, Ticket $ticket)
     {
         $data = Ticket::validate_replay();
         $data["ticket_id"] = $this->decode_ticket_id($request->ticket_id);
@@ -277,7 +263,8 @@ class TicketController extends Controller
 
     }
 
-    public function reffral(Request $request, Ticket $ticket)
+    public
+    function reffral(Request $request, Ticket $ticket)
     {
         Session::flash('return_back', "reffral");
         $data = $request->validate([
@@ -292,16 +279,24 @@ class TicketController extends Controller
         ]);
         $data["type"] = 1;
         ////////////////
+        $expire_date = date('Y-m-d H:i:s', strtotime(' + ' . $request->expire_date_day . ' days + ' . $request->expire_date_hour . ' hours'));
+        $duration_day = date('Y-m-d H:i:s', strtotime(' + ' . $request->duration_day . ' days + ' . $request->duration_hour . ' hours'));
+        /////////////////////////////////////////
         $data1 = [];
-        $data1["duration_hour_current"] = $request->duration_hour;
-        $data1["duration_day_current"] = $request->duration_day;
-        $data1["expire_date_hour_current"] = $request->expire_date_hour;
-        $data1["expire_date_day_current"] = $request->expire_date_day;
+        $data1["expire_date_current"] = $expire_date;
+        $data1["duration_current"] = $duration_day;
         ///////////////////////////////////////////////////////////////////////
         try {
             $ticket = Ticket::find($request->ticket_id);
             $ticket->update($data1);
             /////////////////////////////////////////////////////////////
+            $data["expire_date"] = $expire_date;
+            $data["duration"] = $duration_day;
+            unset($data["expire_date_hour"]);
+            unset($data["expire_date_day"]);
+            unset($data["duration_hour"]);
+            unset($data["duration_day"]);
+            ///  /////////////////////////////////////
             TicketLog::closeAllTimeWork($ticket->id);
             TicketLog::create($data);
             if (!is_null($ticket)) {
@@ -315,14 +310,35 @@ class TicketController extends Controller
         }
     }
 
-    public function search(Request $request)
+    public
+    function search(Request $request)
     {
         $data = $request->validate([
-            "ticket_id" => "nullable|numeric"
+            "ticket_id" => "nullable|numeric",
+            "topic_search" => "nullable|numeric",
+            "subject_ticket" => "nullable|numeric",
         ]);
+
         $ticket = Ticket::where('trash', 0);
         if (isset($request->ticket_id)) {
             $ticket = $ticket->where('ticket_id', $request->ticket_id);
+        }
+        if (isset($request->topic_search)) {
+            $ticket = Ticket::where('trash', 0);
+            $subject_ticket = isset($request->subject_ticket) ? $request->subject_ticket : "";
+            switch ($request->topic_search) {
+                case 1:
+                    $ticket = $ticket->where('id', $subject_ticket);
+                    break;
+                case 2:
+                    $ticket = $ticket->where('subject', $subject_ticket);
+                    break;
+                case 3:
+                    $user = User::where('name', $subject_ticket)->get();
+
+                    $ticket = $ticket->where('id', $subject_ticket);
+                    break;
+            }
         }
 
         $ticket = $ticket->get();
@@ -335,7 +351,8 @@ class TicketController extends Controller
         }
     }
 
-    public function set_times(Request $request, Ticket $ticket)
+    public
+    function set_times(Request $request, Ticket $ticket)
     {
         Session::flash('return_back', "set_times");
         $current_user = auth::user();
@@ -348,13 +365,27 @@ class TicketController extends Controller
             ]
         );
         try {
-
+            ////////////////////////////////////////////////////////
             $ticket_log = TicketLog::where('ticket_id', $ticket->id)->where('type', 1)->get();
             if (!$ticket_log->isEmpty()) {
                 Redirect::back()->withErrors([0 => trans('mb.ErrorSetTimes')]);
             }
             ////////////////////////////////////////////////
+            $expire_date = date('Y-m-d H:i:s', strtotime(' + ' . $request->expire_date_day . ' days + ' . $request->expire_date_hour . ' hours'));
+            $duration_day = date('Y-m-d H:i:s', strtotime(' + ' . $request->duration_day . ' days + ' . $request->duration_hour . ' hours'));
+            $data["expire_date"] = $expire_date;
+            $data["duration"] = $duration_day;
+            $data["expire_date_current"] = $expire_date;
+            $data["duration_current"] = $duration_day;
+            unset($data["expire_date_hour"]);
+            unset($data["expire_date_day"]);
+            unset($data["duration_hour"]);
+            unset($data["duration_day"]);
+            ////////////////////////////////////////////////
             $ticket->update($data);
+            unset($data["expire_date_current"]);
+            unset($data["duration_current"]);
+            //////////////////////////////////
             $data["user_id"] = auth::user()->id;
             $data["ticket_status"] = $ticket->status;
             $data["type"] = 10;
@@ -362,12 +393,13 @@ class TicketController extends Controller
             TicketLog::create($data);
             /////////////////////////
         } catch (\Exception $e) {
-            dd(23);
+            abort(404, "tickets");
         }
         return redirect('tickets/' . $ticket->generate_ticket_id());
     }
 
-    private function decode_ticket_id($code)
+    private
+    function decode_ticket_id($code)
     {
         return base64_decode(base64_decode(base64_decode(base64_decode(base64_decode($code)))));
 
