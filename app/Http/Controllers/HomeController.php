@@ -27,7 +27,10 @@ class HomeController extends Controller
     public function index()
     {
         start_setting();
-        return view('welcome');
+        $count_ticket=Ticket::find_tickets()->count();
+        $data=[];
+        $data["count_ticket"]=$count_ticket;
+        return view('welcome',$data);
     }
 
     public function refresh_top_menu_ticket()

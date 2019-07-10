@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="rtl">
-
 <!-- Mirrored from themeselection.com/demo/chameleon-admin-template/html/rtl/vertical-menu-template/email-application.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 Mar 2019 16:01:10 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -42,6 +41,13 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <!-- END Custom CSS-->
 </head>
+<?php
+$tickt_status = \App\Ticket::find_tickets('i', 0, 'all', true);
+$status_ticket = [0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
+foreach ($tickt_status as $t_s) {
+    $status_ticket[$t_s->status] = $t_s->counts;
+}
+?>
 <body id="mybodyss"
       class="vertical-layout vertical-menu content-left-sidebar email-application  menu-collapsed fixed-navbar"
       data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue"
@@ -123,50 +129,37 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="dropdown-menu-footer"><a class="dropdown-item info text-right pr-1"
-                                                                    href="javascript:void(0)">{{trans("mb.readAll")}}</a>
+                                <li class="dropdown-menu-footer">
+                                    <button onclick="notifyMe();" class="dropdown-item info text-right pr-1"
+                                    >{{trans("mb.readAll")}}</button>
                                 </li>
                             </div>
                         </ul>
                     </li>
-                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
-                                                                           data-toggle="dropdown"><i
-                                    class="ficon ft-mail"> </i></a>
-                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                            <div class="arrow_box_right">
-                                <li class="dropdown-menu-header">
-                                    <h6 class="dropdown-header m-0"><span
-                                                class="grey darken-2">{{trans("mb.tickets")}}</span></h6>
-                                </li>
-                                <li class="scrollable-container media-list w-100">
-                                    <a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm rounded-circle"><img
-                                                            src="../../../app-assets/images/portrait/small/avatar-s-6.png"
-                                                            alt="avatar"></span></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading text-bold-700">Sarah Montery<i
-                                                            class="ft-circle font-small-2 success float-right"></i></h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">
-                                                    Everything looks good. I will provide...</p>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">3:55 PM
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="dropdown-menu-footer"><a class="dropdown-item text-right info pr-1"
-                                                                    href="{{url("tickets")}}">{{trans("mb.readAll")}}</a>
-                                </li>
-                            </div>
-                        </ul>
-                    </li>
+                    @if(auth::user()->is_staff==1)
+                        <li class="dropdown dropdown-notification nav-item">
+                            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
+                                <i  class="ficon ft-mail"> </i>
+                                <span class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"  id="topmenu_number_email"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                <div class="arrow_box_right">
+                                    <li class="dropdown-menu-header">
+                                        <h6 class="dropdown-header m-0"><span
+                                                    class="grey darken-2">{{trans("mb.tickets")}}</span></h6>
+                                    </li>
+                                    <div id="top_ticket_list">
+
+                                    </div>
+                                    <li class="dropdown-menu-footer"><a class="dropdown-item text-right info pr-1"
+                                                                        href="{{url("tickets")}}">{{trans("mb.readAll")}}</a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                    @endif
                     <?php
                     $user_image = (isset(auth::user()->image_path)) ? asset('storage/' . auth::user()->image_path) : asset("app-assets/images/icons/user.jpg");
-
                     ?>
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link"
@@ -310,13 +303,12 @@
                     <div class="list-group list-group-messages">
                         <a href="{{url('/tickets/inbox')}}"
                            class="list-group-item list-group-item-action border-0 active"> {{trans("mb.myTicket")}}
-                            <span class="primary float-right">8</span>
                         </a>
                         <?php $status_list = \App\Ticket::STATUS_LIST();?>
                         @foreach($status_list as $index=>$status)
-                            <a href="#" class="list-group-item list-group-item-action border-0">
+                            <a href="{{url('tickets/inbox/'.$index)}}" class="list-group-item list-group-item-action border-0">
                                 <i class="{{$status[2]}} mr-1 ml-1 {{$status[1]}}"></i> {{$status[0]}}
-                                <span class="primary float-right">8</span>
+                                <span class="primary float-right">{{$status_ticket[$index]}}</span>
                             </a>
                         @endforeach
                     </div>
@@ -423,6 +415,9 @@
         }, 1000)
     });
 </script>
+
+@include('fragments.js.ajax_blayout')
+
 </body>
 
 <!-- Mirrored from themeselection.com/demo/chameleon-admin-template/html/rtl/vertical-menu-template/email-application.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 Mar 2019 16:01:17 GMT -->

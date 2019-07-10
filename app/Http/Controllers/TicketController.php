@@ -116,11 +116,14 @@ class TicketController extends Controller
         return view('ticket.show', $data);
     }
 
-    public function inbox()
+    public function inbox($status = -1)
     {
         $user = auth::user();
         $data = [];
-        $tickets = Ticket::find_tickets("i");
+        if ($status >= 0 && $status < 6)
+            $tickets = Ticket::find_tickets("i", 0, $status);
+        else
+            $tickets = Ticket::find_tickets("i");
         /////////////////////
         $data["tickets"] = $tickets;
         $data["user"] = $user;
@@ -345,9 +348,10 @@ class TicketController extends Controller
             ]
         );
         try {
+
             $ticket_log = TicketLog::where('ticket_id', $ticket->id)->where('type', 1)->get();
             if (!$ticket_log->isEmpty()) {
-                Redirect::back()->withErrors([0=>trans('mb.ErrorSetTimes')]);
+                Redirect::back()->withErrors([0 => trans('mb.ErrorSetTimes')]);
             }
             ////////////////////////////////////////////////
             $ticket->update($data);

@@ -18,6 +18,7 @@ Route::get('/refreshTopMenuNotify', 'HomeController@refresh_top_menu_notify');
 Route::get('/home', 'HomeController@index')->middleware('auth');
 Route::get('/tickets/sent', 'TicketController@sent')->middleware('auth');
 Route::get('/tickets/inbox', 'TicketController@inbox')->middleware('auth');
+Route::get('/tickets/inbox/{status}', 'TicketController@inbox')->middleware('auth');
 Route::post('/tickets/search', 'TicketController@search');
 Route::get('/tickets/compose', 'TicketController@compose')->middleware('auth');
 Route::post('/tickets', 'TicketController@store')->middleware('auth');

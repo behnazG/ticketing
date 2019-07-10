@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use phpDocumentor\Reflection\Types\Self_;
@@ -109,7 +110,7 @@ class Ticket extends Model
 
     }
 
-    public static function find_tickets($type = "s", $ticket_id = 0, $status = "all")
+    public static function find_tickets($type = "s", $ticket_id = 0, $status = "all",$groupByStatus=false)
     {
         $current_user = auth::user();
         if (is_null($current_user))
@@ -137,7 +138,12 @@ class Ticket extends Model
             if ($status != "all") {
                 $t = $t->where('status', $status);
             }
-            $t = $t->groupBy('ticket_id')->get();
+            if($groupByStatus == true)
+            {
+                $t=$t->select(DB::RAW("COUNT(id) as counts"),"status")->groupBy('status');
+            }
+          //  $t = $t->groupBy('ticket_id')->get();
+            $t=$t->whereRaw('id=ticket_id')->get();
             return $t;
         }
     }
