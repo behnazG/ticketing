@@ -12,11 +12,12 @@ class TicketLog extends Model
     {
         return [
             1 => trans("mb.referral"),
-            2 => trans('mb.setTimes'),
+            2 => trans('mb.timeWork'),
             4 => trans('mb.done'),
             5 => trans('mb.closed'),
             6 => trans('mb.resend'),
             7 => trans('mb.training'),
+            10 => trans('mb.setTimes')
         ];
     }
 

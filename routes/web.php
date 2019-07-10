@@ -13,33 +13,35 @@
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->middleware('auth');
+Route::get('/refreshTopMenuTicket', 'HomeController@refresh_top_menu_ticket');
+Route::get('/refreshTopMenuNotify', 'HomeController@refresh_top_menu_notify');
 Route::get('/home', 'HomeController@index')->middleware('auth');
 Route::get('/tickets/sent', 'TicketController@sent')->middleware('auth');
 Route::get('/tickets/inbox', 'TicketController@inbox')->middleware('auth');
-Route::post('/tickets/search','TicketController@search');
+Route::post('/tickets/search', 'TicketController@search');
 Route::get('/tickets/compose', 'TicketController@compose')->middleware('auth');
-Route::post('/tickets','TicketController@store')->middleware('auth');
-Route::get('/tickets','TicketController@inbox')->middleware('auth');
-Route::get('/tickets/{ticket_id}','TicketController@show')->middleware('auth');
-Route::put('/tickets/{ticket}','TicketController@update')->middleware('auth');
-Route::put('/tickets/changeStatus/{ticket}','TicketController@change_status')->middleware('auth');
-Route::put('/tickets/replay/{ticket}','TicketController@replay')->middleware('auth');
-Route::put('/tickets/reffral/{ticket}','TicketController@reffral')->middleware('auth');
-Route::get('/tickets/startWorkTime/{ticket_id}','TicketController@start_work_time');
-Route::get('/tickets/endWorkTime/{ticket_id}','TicketController@end_work_time');
-Route::put('/tickets/setTimes/{ticket}','TicketController@set_times')->middleware('auth');
+Route::post('/tickets', 'TicketController@store')->middleware('auth');
+Route::get('/tickets', 'TicketController@inbox')->middleware('auth');
+Route::get('/tickets/{ticket_id}', 'TicketController@show')->middleware('auth');
+Route::put('/tickets/{ticket}', 'TicketController@update')->middleware('auth');
+Route::put('/tickets/changeStatus/{ticket}', 'TicketController@change_status')->middleware('auth');
+Route::put('/tickets/replay/{ticket}', 'TicketController@replay')->middleware('auth');
+Route::put('/tickets/reffral/{ticket}', 'TicketController@reffral')->middleware('auth');
+Route::get('/tickets/startWorkTime/{ticket_id}', 'TicketController@start_work_time');
+Route::get('/tickets/endWorkTime/{ticket_id}', 'TicketController@end_work_time');
+Route::put('/tickets/setTimes/{ticket}', 'TicketController@set_times')->middleware('auth');
 ////////////////////////////////////////////////////////////
 Route::resource('/categories', 'CategoryController')->middleware('auth');
 Route::resource('/organizationCharts', 'OrganizationChartController')->middleware('auth');
 Route::resource('/hotels', 'HotelController')->middleware('auth');
 ////////////////////////////////////////////////////////
-Route::post('users','UserController@store')->middleware('auth');
-Route::get('users/create','UserController@create')->middleware('auth');
-Route::put('users/{user}','UserController@update')->middleware('auth');
-Route::delete('users/{user}','UserController@destroy')->middleware('auth');
-Route::get('users/{user}/edit','UserController@edit')->middleware('auth');
-Route::get('users/{is_staff}','UserController@index')->middleware('auth');
-Route::get('users/{user}','UserController@show')->middleware('auth');
+Route::post('users', 'UserController@store')->middleware('auth');
+Route::get('users/create', 'UserController@create')->middleware('auth');
+Route::put('users/{user}', 'UserController@update')->middleware('auth');
+Route::delete('users/{user}', 'UserController@destroy')->middleware('auth');
+Route::get('users/{user}/edit', 'UserController@edit')->middleware('auth');
+Route::get('users/{is_staff}', 'UserController@index')->middleware('auth');
+Route::get('users/{user}', 'UserController@show')->middleware('auth');
 ///////////////////////////////////////////////
-Route::get('authorises/{user}/authorise','UserAuthoriseController@authorise')->middleware('auth');
-Route::put('authorises/{user}','UserAuthoriseController@store')->middleware('auth');
+Route::get('authorises/{user}/authorise', 'UserAuthoriseController@authorise')->middleware('auth');
+Route::put('authorises/{user}', 'UserAuthoriseController@store')->middleware('auth');

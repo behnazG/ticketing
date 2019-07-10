@@ -24,7 +24,7 @@ class CreateTicketsTable extends Migration
             $table->tinyInteger('status')->default(0);
             $table->string('subject');
             $table->text('text');
-            $table->dateTime('time_table')->nullable();
+            $table->dateTime('duration')->nullable();
             $table->string('file_1')->nullable();
             $table->string('file_2')->nullable();
             $table->string('file_3')->nullable();

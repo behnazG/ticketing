@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use phpDocumentor\Reflection\Types\Self_;
 
 class Ticket extends Model
 {
@@ -24,7 +25,7 @@ class Ticket extends Model
             "status" => "required|numeric",
             "subject" => "required|string",
             "text" => "required|string",
-            "time_table" => "nullable",
+            "duration" => "nullable",
             "file_1" => "nullable|mimes:xls,xlm,xla,xlc,xlt,xlw,xlam,xlsb,xlsm,xltm,xlsx"
                 . ",doc,csv,docx,ppt,txt,text,bmp,gif,jpeg,jpg,jpe,png,rtf|max:200",
             "file_2" => "nullable|mimes:xls,xlm,xla,xlc,xlt,xlw,xlam,xlsb,xlsm,xltm,xlsx"
@@ -79,7 +80,21 @@ class Ticket extends Model
         } else if ($this->receiver_id == $current_user_id) {
             $current_user = User::where('id', $this->sender_id)->get();
         } else {
-            return false;
+            $ticket_id = $this->ticket_id;
+            $ticket = self::find($ticket_id);
+            if (is_null($ticket)) {
+                dd(1);
+                return false;
+            } else {
+                if ($ticket->sender_id == $this->sender_id) {
+                    $current_user = User::where('id', $this->receiver_id)->get();
+
+                } else if ($ticket->sender_id == $this->receiver_id) {
+                    $current_user = User::where('id', $this->sender_id)->get();
+                } else {
+                    return false;
+                }
+            }
         }
         if ($current_user->isEmpty()) {
             return false;
@@ -94,7 +109,7 @@ class Ticket extends Model
 
     }
 
-    public static function find_tickets($type = "s")
+    public static function find_tickets($type = "s", $ticket_id = 0, $status = "all")
     {
         $current_user = auth::user();
         if (is_null($current_user))
@@ -116,11 +131,17 @@ class Ticket extends Model
             $t = self::whereIn('category_id', $allowed_categories)
                 ->whereIn('sender_id', $allowed_user)
                 ->whereIn('status', $allow_status_ticket)
-                ->Orwhere('receiver_id', $current_user->id)
-                ->groupBy('ticket_id')->get();
+                ->Orwhere('receiver_id', $current_user->id);
+            if ($ticket_id > 0)
+                $t = $t->where('id', '>', $ticket_id);
+            if ($status != "all") {
+                $t = $t->where('status', $status);
+            }
+            $t = $t->groupBy('ticket_id')->get();
             return $t;
         }
     }
+
     /**
      * @uses checked current user authorise to the ticket
      * @param $ticket_id
@@ -189,5 +210,36 @@ class Ticket extends Model
         return base64_encode(base64_encode(base64_encode(base64_encode(base64_encode($this->id)))));
     }
 
+    public function getExpireDateAttribute()
+    {
+        if (!is_null($this->expire_date_day) && !is_null($this->expire_date_hour))
+            return strtotime($this->created_at . " + $this->expire_date_day days + $this->expire_date_hour hours");
+    }
+
+    public function getDurationAttribute()
+    {
+        if (!is_null($this->duration_day) && !is_null($this->duration_hour))
+            return strtotime($this->created_at . " + $this->duration_day days + $this->duration_hour hours");
+    }
+
+    public function getExpireDateCurrentAttribute()
+    {
+        if (!is_null($this->expire_date_day) && !is_null($this->expire_date_hour))
+            return strtotime($this->created_at . " + $this->expire_date_day days + $this->expire_date_hour hours");
+    }
+
+    public function getDurationCurrentAttribute()
+    {
+        if (!is_null($this->duration_day) && !is_null($this->duration_hour))
+            return strtotime($this->created_at . " + $this->duration_day days + $this->duration_hour hours");
+    }
+
+    public function getSenderAttribute()
+    {
+        $user = User::find($this->sender_id);
+        if (is_null($user))
+            return false;
+        else return $user;
+    }
 
 }

@@ -2,548 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55223357-0efe-46f2-9424-3475bc120f23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ad.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ae.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/af.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ag.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ai.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/al.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/am.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ao.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/aq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ar.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/as.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/at.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/au.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/aw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ax.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/az.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ba.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bb.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bd.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/be.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bi.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/br.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bs.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/by.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/bz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ca.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cd.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ch.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ci.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ck.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/co.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cx.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/cz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/de.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/dj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/dk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/dm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/do.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/dz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ec.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ee.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/eg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/eh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/er.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/es-ct.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/es.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/et.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/eu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/fi.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/fj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/fk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/fm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/fo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/fr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ga.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gb-eng.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gb-nir.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gb-sct.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gb-wls.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gb.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gd.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ge.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gi.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gs.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/gy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/hk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/hm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/hn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/hr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ht.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/hu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/id.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ie.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/il.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/im.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/in.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/io.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/iq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ir.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/is.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/it.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/je.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/jm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/jo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/jp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ke.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/kg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/kh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ki.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/km.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/kn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/kp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/kr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/kw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ky.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/kz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/la.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/lb.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/lc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/li.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/lk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/lr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ls.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/lt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/lu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/lv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ly.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ma.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/md.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/me.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ml.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ms.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mx.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/my.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/mz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/na.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/nc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ne.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/nf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ng.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ni.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/nl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/no.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/np.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/nr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/nu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/nz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/om.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pa.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pe.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ph.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ps.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/pw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/py.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/qa.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/re.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ro.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/rs.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ru.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/rw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sa.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sb.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sd.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/se.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/si.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/so.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ss.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/st.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sx.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/sz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/td.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/th.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/to.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/tz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ua.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ug.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/um.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/un.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/us.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/uy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/uz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/va.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/vc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ve.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/vg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/vi.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/vn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/vu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/wf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ws.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/xk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/ye.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/yt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/za.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/zm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/1x1/zw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ad.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ae.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/af.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ag.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ai.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/al.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/am.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ao.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/aq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ar.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/as.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/at.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/au.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/aw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ax.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/az.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ba.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bb.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bd.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/be.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bi.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/br.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bs.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/by.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/bz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ca.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cd.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ch.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ci.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ck.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/co.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cx.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/cz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/de.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/dj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/dk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/dm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/do.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/dz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ec.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ee.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/eg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/eh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/er.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/es-ct.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/es.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/et.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/eu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/fi.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/fj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/fk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/fm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/fo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/fr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ga.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gb-eng.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gb-nir.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gb-sct.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gb-wls.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gb.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gd.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ge.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gi.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gs.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/gy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/hk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/hm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/hn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/hr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ht.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/hu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/id.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ie.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/il.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/im.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/in.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/io.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/iq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ir.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/is.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/it.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/je.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/jm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/jo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/jp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ke.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/kg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/kh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ki.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/km.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/kn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/kp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/kr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/kw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ky.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/kz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/la.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/lb.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/lc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/li.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/lk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/lr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ls.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/lt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/lu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/lv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ly.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ma.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/md.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/me.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ml.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mq.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ms.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mx.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/my.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/mz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/na.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/nc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ne.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/nf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ng.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ni.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/nl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/no.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/np.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/nr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/nu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/nz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/om.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pa.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pe.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ph.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ps.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/pw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/py.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/qa.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/re.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ro.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/rs.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ru.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/rw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sa.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sb.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sd.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/se.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sh.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/si.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/so.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ss.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/st.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sx.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/sz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/td.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/th.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tj.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tl.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/to.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tr.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tv.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/tz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ua.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ug.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/um.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/un.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/us.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/uy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/uz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/va.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/vc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ve.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/vg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/vi.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/vn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/vu.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/wf.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ws.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/xk.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/ye.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/yt.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/za.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/zm.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/flags/4x3/zw.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/404.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/forms/formSetTimes.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/fragments/js/ajax_blayout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserAuthoriseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserAuthoriseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ticket.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/TicketLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TicketLog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/UserAuthorise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/UserAuthorise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/app-assets/css-rtl/pages/timeline.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/app-assets/css-rtl/pages/timeline.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/css/flag-icon.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/app-assets/fonts/flag-icon-css/css/flag-icon.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/app-assets/js/scripts/customizer.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/app-assets/js/scripts/customizer.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/app-assets/vendors/css/editors/tinymce/tinymce.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/app-assets/vendors/css/editors/tinymce/tinymce.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_15_081319_create_tickets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_15_081319_create_tickets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_04_080640_change_ticket_add_expire_date.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_04_080640_change_ticket_add_expire_date.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/fa/mb.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fa/mb.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/fa/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fa/validation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/forms/formChangeStatus.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forms/formChangeStatus.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/forms/formReffral.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forms/formReffral.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/forms/formReplay.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forms/formReplay.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/forms/formUser.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forms/formUser.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/forms/formSetTimes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forms/formSetTimes.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/blayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/blayout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/bmail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/bmail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/ticket/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/user/authorise.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/authorise.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/MCDmGQmjNWlJHZfzVfb0SAjYVEAWVjmVsjrhyAsz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/STqxOjqYYkABuIjyxjSCDnOfSWTTtI0sG8E5orS3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/rnIhyK3q1pkKyxQa9uRNRM631p4QKQrQHTFDlJQD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/008a7c66dd05020170d9c20eb0659966fc9b59b3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/008a7c66dd05020170d9c20eb0659966fc9b59b3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/745eaab00ece5f51c07b91cbb4e35efda9008320.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/745eaab00ece5f51c07b91cbb4e35efda9008320.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/8fa4112cc7d43adc7dc8580a3c20ea59c8449266.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/8fa4112cc7d43adc7dc8580a3c20ea59c8449266.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c0e65571bd657702b63a702fc027e1f812a92e71.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c0e65571bd657702b63a702fc027e1f812a92e71.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/df4073066d53bfd6849913185c3394ea119e6496.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/df4073066d53bfd6849913185c3394ea119e6496.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -572,7 +56,7 @@
     <session id="-2009335711">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="27" />
+          <entry key="project.closed" value="32" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
@@ -580,6 +64,7 @@
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.41" value="1" />
+          <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.45" value="2" />
           <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.47" value="1" />
@@ -588,41 +73,43 @@
           <entry key="project.open.time.50" value="2" />
           <entry key="project.open.time.52" value="1" />
           <entry key="project.open.time.53" value="1" />
-          <entry key="project.open.time.56" value="1" />
+          <entry key="project.open.time.54" value="1" />
+          <entry key="project.open.time.55" value="1" />
+          <entry key="project.open.time.56" value="2" />
           <entry key="project.open.time.57" value="2" />
           <entry key="project.open.time.59" value="1" />
-          <entry key="project.open.time.65" value="2" />
+          <entry key="project.open.time.65" value="3" />
           <entry key="project.open.time.71" value="1" />
           <entry key="project.open.time.72" value="1" />
           <entry key="project.open.time.75" value="1" />
           <entry key="project.open.time.80" value="1" />
           <entry key="project.open.time.81" value="1" />
-          <entry key="project.opened" value="30" />
+          <entry key="project.opened" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="24" />
           <entry key="env" value="3" />
-          <entry key="html" value="10" />
+          <entry key="html" value="11" />
           <entry key="jpeg" value="4" />
           <entry key="js" value="14" />
           <entry key="json" value="1" />
           <entry key="map" value="2" />
-          <entry key="php" value="694" />
+          <entry key="php" value="752" />
           <entry key="png" value="19" />
           <entry key="svg" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Blade" value="317" />
+          <entry key="Blade" value="328" />
           <entry key="CSS" value="24" />
-          <entry key="HTML" value="10" />
+          <entry key="HTML" value="11" />
           <entry key="Image" value="23" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="14" />
-          <entry key="PHP" value="377" />
+          <entry key="PHP" value="424" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="SVG" value="1" />
           <entry key="SourceMap" value="2" />
@@ -633,18 +120,20 @@
           <entry key="css" value="212" />
           <entry key="dummy" value="6" />
           <entry key="env" value="7" />
+          <entry key="html" value="25" />
           <entry key="js" value="30" />
           <entry key="json" value="12" />
-          <entry key="php" value="38230" />
+          <entry key="php" value="43431" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="14187" />
+          <entry key="Blade" value="15564" />
           <entry key="CSS" value="212" />
+          <entry key="HTML" value="25" />
           <entry key="JSON" value="12" />
           <entry key="JavaScript" value="30" />
-          <entry key="PHP" value="24043" />
+          <entry key="PHP" value="27867" />
           <entry key="PLAIN_TEXT" value="13" />
         </counts>
       </usages-collector>
@@ -659,57 +148,7 @@
     <favorites_list name="asa" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/ticket/show.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3876">
-              <caret line="228" column="80" selection-start-line="228" selection-start-column="70" selection-end-line="228" selection-end-column="80" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/forms/formSetTimes.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="37" column="84" selection-start-line="37" selection-start-column="84" selection-end-line="37" selection-end-column="84" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TicketController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5219">
-              <caret line="335" column="13" selection-start-line="335" selection-start-column="13" selection-end-line="335" selection-end-column="13" />
-              <folding>
-                <element signature="e#386#681#0#PHP" />
-                <element signature="e#850#1346#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/forms/formChangeStatus.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/forms/formReplay.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="157" selection-start-line="12" selection-start-column="157" selection-end-line="12" selection-end-column="157" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -720,21 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Noti</find>
-      <find>search_ticket</find>
-      <find>&lt;form&gt;</find>
-      <find>edit</find>
-      <find>'content</find>
-      <find>setting_1</find>
-      <find>flag-icon</find>
-      <find>theme</find>
-      <find>02.jpg</find>
-      <find>../../../</find>
-      <find>{{asset(&quot;</find>
-      <find>https://themeselection.com/demo/chameleon-admin-template/</find>
-      <find>https://themeselection.com/demo/chameleon-admin-template/app-assets/fonts/flag-icon-css/</find>
-      <find>themeselection</find>
-      <find>https://themeselection.com/demo/chameleon-admin-template/app-assets/fonts/flag-icon-css</find>
       <find>/flags/</find>
       <find>color</find>
       <find>colors</find>
@@ -750,6 +174,21 @@
       <find>minut</find>
       <find>view_closed</find>
       <find>$current_user</find>
+      <find>time_ta</find>
+      <find>time_table</find>
+      <find>allowed_refferal_by_user</find>
+      <find>&lt;img</find>
+      <find>$self_sender</find>
+      <find>dropdown-item info text-right pr-1</find>
+      <find>$ticket_id</find>
+      <find>arrow_box_right</find>
+      <find>$top_ticket_list_id</find>
+      <find>success</find>
+      <find>id</find>
+      <find>top_ticket_list</find>
+      <find>5</find>
+      <find>old_set_times</find>
+      <find>get_sms</find>
     </findStrings>
     <replaceStrings>
       <replace>'Font Awesome 5 Free'</replace>
@@ -773,6 +212,7 @@
       <replace>grey</replace>
       <replace>allow_referral</replace>
       <replace>../flags/</replace>
+      <replace>duration</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\xampp\htdocs\asa\public</dir>
@@ -786,12 +226,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/forms/formHotel.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/fragments/categories.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/login.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_06_23_055428_change_name_chat_id.php" />
-        <option value="$PROJECT_DIR$/resources/views/forms/formTicket.blade.php" />
-        <option value="$PROJECT_DIR$/app/Hotel.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_24_061027_create_settings_table.php" />
         <option value="$PROJECT_DIR$/resources/views/organizationChart/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Setting.php" />
@@ -800,7 +234,6 @@
         <option value="$PROJECT_DIR$/resources/views/ticket/index.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_26_102326_create_ticket_referrals_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_25_063906_create_ticket_logs_table.php" />
-        <option value="$PROJECT_DIR$/app/helpers.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_15_081319_create_tickets_table.php" />
         <option value="$PROJECT_DIR$/resources/views/ticket/show.workTime.blade.php" />
         <option value="$PROJECT_DIR$/config/database.php" />
@@ -808,10 +241,8 @@
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/resources/lang/fa/theme.php" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/resources/views/fragments/message.blade.php" />
         <option value="$PROJECT_DIR$/public/app-assets/js/scripts/customizer.min.js" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/blayout.blade.php" />
         <option value="$PROJECT_DIR$/public/app-assets/css-rtl/pages/timeline.min.css" />
         <option value="$PROJECT_DIR$/public/app-assets/vendors/css/editors/tinymce/tinymce.min.css" />
         <option value="$PROJECT_DIR$/public/app-assets/css-rtl/vendors.min.css" />
@@ -821,22 +252,31 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/resources/views/ticket/show_workTime.blade.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/Ticket.php" />
         <option value="$PROJECT_DIR$/resources/views/forms/formReplay.blade.php" />
         <option value="$PROJECT_DIR$/resources/lang/fa/validation.php" />
-        <option value="$PROJECT_DIR$/app/TicketLog.php" />
         <option value="$PROJECT_DIR$/resources/views/forms/formChangeStatus.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/errors/404.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/forms/formReffral.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_07_04_080640_change_ticket_add_expire_date.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserAuthoriseController.php" />
-        <option value="$PROJECT_DIR$/resources/views/user/authorise.blade.php" />
         <option value="$PROJECT_DIR$/app/UserAuthorise.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/lang/fa/mb.php" />
-        <option value="$PROJECT_DIR$/resources/views/ticket/show.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" />
         <option value="$PROJECT_DIR$/resources/views/forms/formSetTimes.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/forms/formReffral.blade.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_07_06_072900_add_expire_duration.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_07_06_112611_add_expire_duration_extera.php" />
+        <option value="$PROJECT_DIR$/resources/views/ticket/show.blade.php" />
+        <option value="$PROJECT_DIR$/app/TicketLog.php" />
+        <option value="$PROJECT_DIR$/resources/views/fragments/error.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" />
+        <option value="$USER_HOME$/Desktop/5345/index.html" />
+        <option value="$PROJECT_DIR$/app/helpers.php" />
+        <option value="$PROJECT_DIR$/app/Ticket.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/blayout.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserAuthoriseController.php" />
+        <option value="$PROJECT_DIR$/resources/lang/fa/mb.php" />
+        <option value="$PROJECT_DIR$/resources/views/user/authorise.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/resources/views/fragments/js/ajax_blayout.blade.php" />
       </list>
     </option>
   </component>
@@ -943,7 +383,7 @@
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="14" />
     <option name="y" value="11" />
     <option name="width" value="1165" />
@@ -951,7 +391,7 @@
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
-      <showMembers ProjectPane="false" />
+      <showMembers ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -976,6 +416,13 @@
             <path>
               <item name="asa" type="b2602c69:ProjectViewProjectNode" />
               <item name="asa" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="asa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="asa" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -989,21 +436,7 @@
               <item name="asa" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="forms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asa" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="ticket" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="asa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="asa" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="fragments" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1086,12 +519,17 @@
       <workItem from="1562045693073" duration="21950000" />
       <workItem from="1562216420788" duration="7018000" />
       <workItem from="1562223790131" duration="9607000" />
-      <workItem from="1562391743927" duration="209000" />
+      <workItem from="1562391743927" duration="13264000" />
+      <workItem from="1562475357843" duration="14562000" />
+      <workItem from="1562493372937" duration="5516000" />
+      <workItem from="1562647382407" duration="21543000" />
+      <workItem from="1562734390893" duration="446000" />
+      <workItem from="1562736709038" duration="848000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="353330000" />
+    <option name="totallyTimeSpent" value="409277000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1104,9 +542,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49756098" weight="0.26626325" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49756098" visible="true" weight="0.24205749" />
       <window_info id="Structure" order="1" sideWeight="0.502439" side_tool="true" weight="0.17700455" />
       <window_info id="npm" order="2" sideWeight="0.502439" side_tool="true" weight="0.17700455" />
       <window_info id="Favorites" order="3" sideWeight="0.502439" side_tool="true" weight="0.17700455" />
@@ -1120,35 +557,13 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5030257" side_tool="true" weight="0.38625205" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4969743" weight="0.43698853" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50378215" side_tool="true" weight="0.43698853" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49621785" weight="0.43698853" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24962178" />
       <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49756098" visible="true" weight="0.2624811" />
-      <window_info id="Structure" order="1" sideWeight="0.502439" side_tool="true" weight="0.17700455" />
-      <window_info id="npm" order="2" sideWeight="0.502439" side_tool="true" weight="0.17700455" />
-      <window_info id="Favorites" order="3" sideWeight="0.502439" side_tool="true" weight="0.17700455" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5030257" side_tool="true" weight="0.38625205" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4969743" weight="0.4762684" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24962178" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1157,78 +572,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/forms/formCategory.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="60" lean-forward="true" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app-assets/images/ico/apple-icon-120.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app-assets/images/icons/img.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="65" column="43" lean-forward="true" selection-start-line="57" selection-start-column="35" selection-end-line="65" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/fa/theme.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="59" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/fa/passwords.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/fa/pagination.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/fa/auth.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-41695" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/fragments/alert.blade.php">
@@ -1297,13 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/blayout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="23" column="55" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/bmail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="331">
@@ -1353,13 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="84" column="26" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/lang/fa/validation.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
@@ -1367,91 +699,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/TicketLog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="76" column="12" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/errors/404.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_04_080640_change_ticket_add_expire_date.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/forms/formReffral.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Ticket.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="60" column="34" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/user/authorise.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="204" column="114" selection-start-line="204" selection-start-column="114" selection-end-line="204" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/UserAuthorise.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="164" column="51" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserAuthoriseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="134" column="76" selection-start-line="134" selection-start-column="67" selection-end-line="134" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/fa/mb.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="158" column="30" selection-start-line="158" selection-start-column="30" selection-end-line="158" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" column="67" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/ticket/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3876">
-          <caret line="228" column="80" selection-start-line="228" selection-start-column="70" selection-end-line="228" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TicketController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5219">
-          <caret line="335" column="13" selection-start-line="335" selection-start-column="13" selection-end-line="335" selection-end-column="13" />
-          <folding>
-            <element signature="e#386#681#0#PHP" />
-            <element signature="e#850#1346#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1469,10 +720,197 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_15_081319_create_tickets_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_04_080640_change_ticket_add_expire_date.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="16" column="47" selection-start-line="16" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_06_072900_add_expire_duration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="35" column="50" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="35" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_06_112611_add_expire_duration_extera.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/forms/formReffral.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="69" selection-start-line="23" selection-start-column="69" selection-end-line="23" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="93" column="55" lean-forward="true" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/fragments/error.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/5345/index.html" />
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TicketController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="349" column="72" selection-start-line="349" selection-start-column="72" selection-end-line="349" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/forms/formSetTimes.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="37" column="84" selection-start-line="37" selection-start-column="84" selection-end-line="37" selection-end-column="84" />
+        <state>
+          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Category.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/City.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Province.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Setting.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/OrganizationChart.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/ticket/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Hotel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/blayout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3044">
+          <caret line="134" column="144" selection-start-line="134" selection-start-column="124" selection-end-line="134" selection-end-column="144" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+          <folding>
+            <element signature="e#7#37#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/UserAuthorise.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="164" column="51" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="51" />
+          <folding>
+            <element signature="e#23#44#0#PHP" expanded="true" />
+            <element signature="e#126#467#0#PHP" />
+            <element signature="e#473#834#0#PHP" />
+            <element signature="e#840#1389#0#PHP" />
+            <element signature="e#1395#2259#0#PHP" />
+            <element signature="e#2265#3713#0#PHP" />
+            <element signature="e#3719#5170#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/fa/mb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="162" column="17" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/user/authorise.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="215" column="101" selection-start-line="215" selection-start-column="101" selection-end-line="215" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserAuthoriseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="28" column="20" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="79" lean-forward="true" selection-start-line="21" selection-start-column="79" selection-end-line="21" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/TicketLog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/fragments/js/ajax_blayout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Ticket.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+          <folding>
+            <element signature="e#23#59#0#PHP" expanded="true" />
+            <element signature="e#292#1500#0#PHP" />
+            <element signature="e#1506#2309#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="978">
+          <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
         </state>
       </provider>
     </entry>

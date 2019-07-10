@@ -14,7 +14,7 @@ class ChangeTicketAddExpireDate extends Migration
     public function up()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->dateTime('expire_date')->after('time_table')->nullable();
+            $table->dateTime('expire_date')->after('duration')->nullable();
         });
     }
 

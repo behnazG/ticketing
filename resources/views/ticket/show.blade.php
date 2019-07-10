@@ -67,7 +67,7 @@
                 $('.dv_extra').css('display', 'none');
                 $('#dv_show_work_time').css('display', 'block');
             });
-            $('#btn_set_times').on('click',function () {
+            $('#btn_set_times').on('click', function () {
                 $('.dv_extra').css('display', 'none');
                 $('#dv_set_times').css('display', 'block');
             });
@@ -94,20 +94,22 @@
                     @foreach($chains as $ticket)
                         <?php
                         $self_sender = ($ticket->sender_id == $current_user->id) ? true : false;
-
+                        $front_user_image = ($ticket->front_user == false) ? get_icon_url() : $ticket->front_user->get_image_url();
+                        $front_user_name = ($ticket->front_user == false) ?trans("mb.unknown"): $ticket->front_user->name;
+                        $is_staff=$ticket->front_user->is_staff;
                         ?>
                         <div class="chat {{($self_sender)?"chat-left":""}}">
                             <div class="chat-avatar">
                                 <a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title=""
                                    data-original-title="">
-                                    <img src="{{$self_sender?$current_user->get_image_url():$ticket->front_user->get_image_url()}}"
+                                    <img src="{{$self_sender?$current_user->get_image_url():$front_user_image}}"
                                          alt="avatar">
                                 </a>
                             </div>
                             <div class="chat-body">
                                 <div class="chat-content text-left">
                                     <p class="row">
-                                        <span class="col-6 float-right">{{$self_sender?$current_user->name:$ticket->front_user->name}}</span>
+                                        <span class="col-6 float-right">{{$self_sender?$current_user->name:$front_user_name}}</span>
                                         <span class="col-6 float-left text-right">{{date_sh($ticket->created_at)}}</span>
                                     </p>
                                     <p class="mt-1"><?=$ticket->text?></p>
@@ -155,9 +157,9 @@
                         </button>
                     @endif
                     @if($set_times)
-                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_set_times"><i
-                                        class="fas fa-calendar"></i> {{trans("mb.setTimes")}}
-                            </button>
+                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_set_times"><i
+                                    class="fas fa-calendar"></i> {{trans("mb.setTimes")}}
+                        </button>
                     @endif
                     <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
                         <i class="fas fa-reply"></i> {{trans("mb.replay")}}
@@ -226,7 +228,7 @@
     @if($set_times)
         <div class="dv_extra {{(isset($return_back) && $return_back=="set_times")?"":"display_none"}}"
              id="dv_set_times">
-            @include('forms.formSetTimes',["ticket"=>$current_ticket,"submitText"=>trans("mb.reffral")]);
+            @include('forms.formSetTimes',["ticket"=>$current_ticket,"submitText"=>trans("mb.setTimes")]);
         </div>
     @endif
 @endsection

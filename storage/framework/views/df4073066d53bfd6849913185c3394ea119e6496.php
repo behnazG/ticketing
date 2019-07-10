@@ -220,6 +220,18 @@ $breadcrumbs = [
                                                         </label>
                                                     </fieldset>
                                                 </div>
+                                                <div class="col-12">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="get_sms"
+                                                               <?php echo e(old("get_sms") || (!old("get_sms") && $old_get_sms==1)?'checked':''); ?>
+
+                                                               class="checkbox_hotel" id="get_sms">
+                                                        <label for="get_sms"
+                                                               id=""><span
+                                                                    class=""><?php echo e(trans('mb.getSmsTicket')); ?></span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

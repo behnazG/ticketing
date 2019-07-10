@@ -9,6 +9,7 @@ use App\Category;
 use App\OrganizationChart;
 use App\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class TicketController extends Controller
@@ -81,8 +82,9 @@ class TicketController extends Controller
         $set_times = UserAuthorise::allowed_setTimes_by_user($user->id);
         $ticket_time_log = TicketLog::where('ticket_id', -1)->get();
         if ($user->is_staff == 1) {
-            if ($allowed_refferal)
+            if ($allowed_refferal) {
                 $authorise_user_reffral = UserAuthorise::allowed_user_by_ticket($ticket_id);
+            }
         }
         $ticket_time_log = TicketLog::where('ticket_id', $ticket_id)->get();
         ///////////////////////////////////////////
@@ -274,31 +276,40 @@ class TicketController extends Controller
 
     public function reffral(Request $request, Ticket $ticket)
     {
-        //  dd($request);
+        Session::flash('return_back', "reffral");
         $data = $request->validate([
             "user_id" => "required|numeric",
             "receiver_id" => "required|numeric",
             "ticket_id" => "required|numeric",
             "comment" => "required|string",
+            "expire_date_hour" => "required|numeric",
+            "expire_date_day" => "required|numeric",
+            "duration_hour" => "required|numeric",
+            "duration_day" => "required|numeric",
         ]);
         $data["type"] = 1;
         ////////////////
+        $data1 = [];
+        $data1["duration_hour_current"] = $request->duration_hour;
+        $data1["duration_day_current"] = $request->duration_day;
+        $data1["expire_date_hour_current"] = $request->expire_date_hour;
+        $data1["expire_date_day_current"] = $request->expire_date_day;
         ///////////////////////////////////////////////////////////////////////
         try {
             $ticket = Ticket::find($request->ticket_id);
+            $ticket->update($data1);
             /////////////////////////////////////////////////////////////
             TicketLog::closeAllTimeWork($ticket->id);
             TicketLog::create($data);
             if (!is_null($ticket)) {
                 $ticket->update(["receiver_id" => $request->receiver_id]);
             }
+            ///////////////////////////////////////////////////////////////
             return redirect('tickets/inbox');
             ////////////////////////////////////////////////////////////////////////
         } catch (\Exception $e) {
 
         }
-        //////////////////////////////////////////////////////////////////////
-
     }
 
     public function search(Request $request)
@@ -329,19 +340,25 @@ class TicketController extends Controller
             [
                 "expire_date_hour" => "required|numeric",
                 "expire_date_day" => "required|numeric",
-                "time_table_hour" => "required|numeric",
-                "time_table_day" => "required|numeric",
+                "duration_hour" => "required|numeric",
+                "duration_day" => "required|numeric",
             ]
         );
         try {
-            $data = [];
-            $expire_date=date("Y-m-d H:i:s",strtotime("+ $request->expire_date_day days + $request->expire_date_hour hours"));
-            $time_table=date("Y-m-d H:i:s",strtotime("+ $request->time_table_day days + $request->time_table_hour hours"));
-            $data=[];
-            $data["time_table"]=$time_table;
-            $data["expire_date"]=$expire_date;
+            $ticket_log = TicketLog::where('ticket_id', $ticket->id)->where('type', 1)->get();
+            if (!$ticket_log->isEmpty()) {
+                Redirect::back()->withErrors([0=>trans('mb.ErrorSetTimes')]);
+            }
+            ////////////////////////////////////////////////
             $ticket->update($data);
+            $data["user_id"] = auth::user()->id;
+            $data["ticket_status"] = $ticket->status;
+            $data["type"] = 10;
+            $data["ticket_id"] = $ticket->id;
+            TicketLog::create($data);
+            /////////////////////////
         } catch (\Exception $e) {
+            dd(23);
         }
         return redirect('tickets/' . $ticket->generate_ticket_id());
     }

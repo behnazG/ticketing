@@ -1,6 +1,7 @@
 <?php
 
 use Hekmatinasser\Verta\Verta;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Created by PhpStorm.
@@ -46,8 +47,20 @@ function date_sh($date)
     $v = new Verta($date);
     return $v->formatDifference();
 }
+
 function date_shamsi($date)
 {
     $v = new Verta($date);
-    return $v->format("d-m-Y H:i:s");
+    return $v->format("Y-m-d H:i:s");
+}
+
+function get_icon_url($icon_name = "user")
+{
+    if ($icon_name == "user")
+        return asset("app-assets/images/icons/user.jpg");
+}
+
+function start_setting()
+{
+
 }

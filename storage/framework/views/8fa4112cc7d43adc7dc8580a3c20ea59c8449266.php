@@ -121,50 +121,37 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="dropdown-menu-footer"><a class="dropdown-item info text-right pr-1"
-                                                                    href="javascript:void(0)"><?php echo e(trans("mb.readAll")); ?></a>
+                                <li class="dropdown-menu-footer">
+                                    <button onclick="notifyMe();" class="dropdown-item info text-right pr-1"
+                                    ><?php echo e(trans("mb.readAll")); ?></button>
                                 </li>
                             </div>
                         </ul>
                     </li>
-                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
-                                                                           data-toggle="dropdown"><i
-                                    class="ficon ft-mail"> </i></a>
-                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                            <div class="arrow_box_right">
-                                <li class="dropdown-menu-header">
-                                    <h6 class="dropdown-header m-0"><span
-                                                class="grey darken-2"><?php echo e(trans("mb.tickets")); ?></span></h6>
-                                </li>
-                                <li class="scrollable-container media-list w-100">
-                                    <a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm rounded-circle"><img
-                                                            src="<?php echo e(asset("app-assets/images/portrait/small/avatar-s-6.png")); ?>"
-                                                            alt="avatar"></span></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading text-bold-700">Sarah Montery<i
-                                                            class="ft-circle font-small-2 success float-right"></i></h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">
-                                                    Everything looks good. I will provide...</p>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">3:55 PM
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="dropdown-menu-footer"><a class="dropdown-item text-right info pr-1"
-                                                                    href="<?php echo e(url("tickets")); ?>"><?php echo e(trans("mb.readAll")); ?></a>
-                                </li>
-                            </div>
-                        </ul>
-                    </li>
+                    <?php if(auth::user()->is_staff==1): ?>
+                        <li class="dropdown dropdown-notification nav-item">
+                            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
+                                <i  class="ficon ft-mail"> </i>
+                                <span class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"  id="topmenu_number_email"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                <div class="arrow_box_right">
+                                    <li class="dropdown-menu-header">
+                                        <h6 class="dropdown-header m-0"><span
+                                                    class="grey darken-2"><?php echo e(trans("mb.tickets")); ?></span></h6>
+                                    </li>
+                                    <div id="top_ticket_list">
+
+                                    </div>
+                                    <li class="dropdown-menu-footer"><a class="dropdown-item text-right info pr-1"
+                                                                        href="<?php echo e(url("tickets")); ?>"><?php echo e(trans("mb.readAll")); ?></a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                     <?php
                     $user_image = (isset(auth::user()->image_path)) ? asset('storage/' . auth::user()->image_path) : asset("app-assets/images/icons/user.jpg");
-
                     ?>
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link"
@@ -340,7 +327,6 @@
         </ul>
     </div>
 </footer>
-
 <!-- BEGIN VENDOR JS-->
 <script src="<?php echo e(asset('app-assets/vendors/js/vendors.min.js')); ?>" type="text/javascript"></script>
 <script src="<?php echo e(asset('app-assets/vendors/js/forms/toggle/switchery.min.js')); ?>" type="text/javascript"></script>
@@ -362,8 +348,7 @@
 <script src="<?php echo e(asset('app-assets/js/scripts/forms/checkbox-radio.min.js')); ?>" type="text/javascript"></script>
 <script src="<?php echo e(asset('app-assets/js/scripts/forms/select/form-select2.min.js')); ?>" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
+<?php echo $__env->make('fragments.js.ajax_blayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
-
-
 <!-- Mirrored from themeselection.com/demo/chameleon-admin-template/html/rtl/vertical-menu-template/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 Mar 2019 16:01:05 GMT -->
 </html><?php /**PATH D:\xampp\htdocs\asa\resources\views/layouts/blayout.blade.php ENDPATH**/ ?>

@@ -21,6 +21,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-2 label-control">{{trans("mb.user")}}</label>
                         <div class="col-md-6">
                             <select class="form-control" name="receiver_id" id="receiver_id">
                                 <option></option>
@@ -31,6 +32,32 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 label-control">{{trans("mb.expireDateTicket")}}</label>
+                        <input name="expire_date_hour" id="expire_date_hour" type="number" class="form-control col-2 ml-1"
+                               placeholder="{{trans("mb.hour")}}" min="0"
+                               value="{{$ticket->expire_date_hour ?? old("expire_date_hour")}}">
+                        <span class="m-1">ساعت</span>
+                        <input name="expire_date_day" id="expire_date_day" type="number" class="form-control col-2"
+                               placeholder="{{trans("mb.day")}}" min="0"
+                               value="{{$ticket->expire_date_day ?? old("expire_date_day")}}">
+                        <span class="m-1">روز</span>
+
+                        <p class="col-3 label-control m-1">{{date_shamsi($ticket->expire_date)}}</p>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 label-control">{{trans("mb.timeTable")}}</label>
+                        <input name="duration_hour" id="duration_hour" type="number" class="form-control col-2 ml-1"
+                               placeholder="{{trans("mb.hour")}}" min="0"
+                               value="{{$ticket->duration_hour ?? old("duration_hour")}}">
+                        <span class="m-1">ساعت</span>
+                        <input name="duration_day" id="duration_day" type="number" class="form-control col-2"
+                               placeholder="{{trans("mb.day")}}" min="0"
+                               value="{{$ticket->duration_day ?? old("duration_day")}}">
+                        <span class="m-1">روز</span>
+
+                        <p class="col-3 label-control m-1">{{date_shamsi($ticket->duration)}}</p>
                     </div>
 
                 </div>

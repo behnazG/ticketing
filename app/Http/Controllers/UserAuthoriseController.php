@@ -19,27 +19,31 @@ class UserAuthoriseController extends Controller
         $user_authorises = UserAuthorise::where('user_id', $user->id)->get();
         $data["old_categories"] = [];
         $data["old_hotels"] = [];
-        $data["old_allow_referral"] = 0;
-        $data["old_view_pending_ticket"] = 0;
-        $data["old_view_in_progress_ticket"] = 0;
-        $data["old_view_closed"] = 0;
-        $data["old_set_times"] = 0;
-
+        /////////////////////////////////////////
+        $other_setting = [
+            "allow_referral",
+            "view_pending_ticket",
+            "view_in_progress_ticket",
+            "view_closed",
+            "set_times",
+            "get_sms"
+        ];
+        foreach ($other_setting as $key) {
+            $index = "old_" . $key;
+            $data[$index] = 0;
+        }
+        //////////////////////////////////////////
         foreach ($user_authorises as $ua) {
             if ($ua->field_name == "categories") {
                 $data["old_categories"][] = $ua->field_value;
             } else if ($ua->field_name == "hotels") {
                 $data["old_hotels"] [] = $ua->field_value;
-            } else if ($ua->field_name == "allow_referral" && $ua->field_value == 1) {
-                $data["old_allow_referral"] = 1;
-            } else if ($ua->field_name == "view_pending_ticket" && $ua->field_value == 1) {
-                $data["old_view_pending_ticket"] = 1;
-            } else if ($ua->field_name == "view_in_progress_ticket" && $ua->field_value == 1) {
-                $data["old_view_in_progress_ticket"] = 1;
-            } else if ($ua->field_name == "view_closed" && $ua->field_value == 1) {
-                $data["old_view_closed"] = 1;
-            } else if ($ua->field_name == "set_times" && $ua->field_value == 1) {
-                $data["old_set_times"] = 1;
+            }
+
+            foreach ($other_setting as $key) {
+                if ($ua->field_name == $key && $ua->field_value == 1) {
+                    $data["old_" . $key] = 1;
+                }
             }
         }
         return view('user.authorise', $data);
@@ -53,13 +57,16 @@ class UserAuthoriseController extends Controller
         $user_authorises = UserAuthorise::where('user_id', $user->id)->get();
         $data_old_category = [];
         $data_old_hotel = [];
+        $u_a_old_id = [];////////old u_a and save db
+        $u_a_id = [];/////current u_a and save in db
+        ///////////////////////////////////////////
         $old_allow_referral = 0;
         $old_view_pending_ticket = 0;
         $old_view_in_progress_ticket = 0;
         $old_view_closed = 0;
-        $old_set_times=0;
-        $u_a_old_id = [];////////old u_a and save db
-        $u_a_id = [];/////current u_a and save in db
+        $old_set_times = 0;
+        $old_get_sms = 0;
+        /////////////////////////////////////////////////////
         foreach ($user_authorises as $u_a) {
             if ($u_a->field_name == "categories") {
                 $data_old_category[$u_a->id] = $u_a->field_value;
@@ -67,7 +74,9 @@ class UserAuthoriseController extends Controller
             } elseif ($u_a->field_name == "hotels") {
                 $data_old_hotel[$u_a->id] = $u_a->field_value;
                 $u_a_old_id[$u_a->id] = $u_a->field_value;
-            } elseif ($u_a->field_name == "allow_referral") {
+            } /////////////////////////////////////////////////////////
+
+            elseif ($u_a->field_name == "allow_referral") {
                 $old_allow_referral = 1;
                 $u_a_old_id[$u_a->id] = "allow_referral";
             } elseif ($u_a->field_name == "view_pending_ticket") {
@@ -79,9 +88,12 @@ class UserAuthoriseController extends Controller
             } elseif ($u_a->field_name == "view_closed") {
                 $old_view_closed = 1;
                 $u_a_old_id[$u_a->id] = "view_closed";
-            }elseif ($u_a->field_name == "set_times") {
+            } elseif ($u_a->field_name == "set_times") {
                 $old_set_times = 1;
                 $u_a_old_id[$u_a->id] = "set_times";
+            } elseif ($u_a->field_name == "get_sms") {
+                $old_get_sms = 1;
+                $u_a_old_id[$u_a->id] = "get_sms";
             }
         }
         /// ////////////////////////////////////////////////////////////
@@ -133,6 +145,12 @@ class UserAuthoriseController extends Controller
                 $data[] = ["field_name" => "set_times", "field_value" => 1, "user_id" => $user->id];
             else
                 $u_a_id[array_search("set_times", $u_a_old_id)] = "set_times";
+        }
+        if (isset($request->get_sms)) {
+            if ($old_get_sms != 1)
+                $data[] = ["field_name" => "get_sms", "field_value" => 1, "user_id" => $user->id];
+            else
+                $u_a_id[array_search("get_sms", $u_a_old_id)] = "get_sms";
         }
         ////////////////////////////
         try {
