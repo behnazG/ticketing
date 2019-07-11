@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55223357-0efe-46f2-9424-3475bc120f23" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ticket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/UserAuthorise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/UserAuthorise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/fa/mb.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/fa/mb.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/bmail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/bmail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/iYj5GYofRhEzy3Cxct1ZdmBSr3DxpU8tTCnVsY1l" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/pTlhOO2bdNzXD7J7JQgKI6GR4JBcL7cx1XAqxEDf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/swzQamSRYqP8KQGShYcMQiwDz9xxdmgE2eCOFQzE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/yrTZx7aXqMFHsPX3LN5TcLUKOkVasXnmkhpBKR5Y" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/008a7c66dd05020170d9c20eb0659966fc9b59b3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/008a7c66dd05020170d9c20eb0659966fc9b59b3.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/9a4efe809eea9da3e66f65c4403bfd7a0a55f7d1.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/9a4efe809eea9da3e66f65c4403bfd7a0a55f7d1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/d4957efa4a7872f744a40adebc28ac152ecb8e64.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/d4957efa4a7872f744a40adebc28ac152ecb8e64.php" afterDir="false" />
-    </list>
+    <list default="true" id="55223357-0efe-46f2-9424-3475bc120f23" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +37,7 @@
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.41" value="1" />
+          <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.45" value="2" />
           <entry key="project.open.time.46" value="1" />
@@ -75,7 +58,7 @@
           <entry key="project.open.time.75" value="1" />
           <entry key="project.open.time.80" value="1" />
           <entry key="project.open.time.81" value="1" />
-          <entry key="project.opened" value="35" />
+          <entry key="project.opened" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -529,11 +512,12 @@
       <workItem from="1562647382407" duration="21543000" />
       <workItem from="1562734390893" duration="446000" />
       <workItem from="1562736709038" duration="20408000" />
+      <workItem from="1562821537170" duration="404000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="428837000" />
+    <option name="totallyTimeSpent" value="429241000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -562,7 +546,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50378215" side_tool="true" weight="0.43698853" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49621785" weight="0.43698853" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49621785" visible="true" weight="0.43698853" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24962178" />
@@ -793,9 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
           <caret line="64" selection-start-line="64" selection-end-line="64" />
-          <folding>
-            <element signature="e#7#37#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -813,9 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
           <caret line="351" column="45" selection-start-line="351" selection-start-column="45" selection-end-line="351" selection-end-column="45" />
-          <folding>
-            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -885,17 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
           <caret line="112" column="109" selection-start-line="112" selection-start-column="109" selection-end-line="112" selection-end-column="109" />
-          <folding>
-            <element signature="e#23#59#0#PHP" expanded="true" />
-            <element signature="e#327#1535#0#PHP" />
-            <element signature="e#1541#2344#0#PHP" />
-            <element signature="e#3055#4160#0#PHP" />
-            <element signature="e#4166#4300#0#PHP" />
-            <element signature="e#4306#6072#0#PHP" />
-            <element signature="e#6204#7625#0#PHP" />
-            <element signature="e#7631#7801#0#PHP" />
-            <element signature="e#7807#8087#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -903,11 +870,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
-          <folding>
-            <element signature="e#23#44#0#PHP" expanded="true" />
-            <element signature="e#126#467#0#PHP" />
-            <element signature="e#473#834#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,18 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="337" column="20" selection-start-line="337" selection-start-column="20" selection-end-line="337" selection-end-column="20" />
-          <folding>
-            <element signature="e#427#722#0#PHP" />
-            <element signature="e#891#1387#0#PHP" />
-            <element signature="e#4277#4803#0#PHP" />
-            <element signature="e#4809#5202#0#PHP" />
-            <element signature="e#5208#7636#0#PHP" />
-            <element signature="e#7647#8329#0#PHP" />
-            <element signature="e#8340#8992#0#PHP" />
-            <element signature="e#9003#9477#0#PHP" />
-            <element signature="e#9488#11611#0#PHP" />
-            <element signature="e#12164#14310#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>
