@@ -97,9 +97,8 @@ class UserAuthorise extends Model
 //            ]);
             $user_authorise = UserAuthorise::whereRaw("
             `field_name` = 'categories' and `field_value` = $category_id  and 
-            `user_id` IN( select user_id from user_authorises where `field_name` = 'hotels' and `field_value` = $hotel_id)");
-
-
+            (`user_id` IN( select user_id from user_authorises where `field_name` = 'hotels' and `field_value` = $hotel_id) 
+            || `user_id` IN (select id from users where is_staff=1))");
             $user_authorise = $user_authorise->get();
             $u_a = [];
             foreach ($user_authorise as $u) {

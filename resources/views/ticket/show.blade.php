@@ -80,6 +80,7 @@
             <div class="col-12">
                 <label class="label-control mr-1"> {{$current_ticket->category->name}} </label> /
                 <label class="label-control ml-1"> {{date_sh($current_ticket->created_at)}} </label>
+                <label class="col-form-label ml-3">{{trans("mb.ticketNumber").': '.$current_ticket->ticket_id}}</label>
             </div>
         </div>
         <div class="row">

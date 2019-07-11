@@ -79,6 +79,7 @@
             <div class="col-12">
                 <label class="label-control mr-1"> <?php echo e($current_ticket->category->name); ?> </label> /
                 <label class="label-control ml-1"> <?php echo e(date_sh($current_ticket->created_at)); ?> </label>
+                <label class="col-form-label ml-3"><?php echo e(trans("mb.ticketNumber").': '.$current_ticket->ticket_id); ?></label>
             </div>
         </div>
         <div class="row">
