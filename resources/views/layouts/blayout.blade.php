@@ -43,7 +43,7 @@
     <!-- END Custom CSS-->
 </head>
 <body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click"
-      data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+      data-menu="vertical-menu" data-color="bg-success" data-col="2-columns">
 
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
     <div class="navbar-wrapper">
@@ -79,16 +79,18 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav float-right">
-                    <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
-                                                                       id="dropdown-flag" href="#"
-                                                                       data-toggle="dropdown" aria-haspopup="true"
-                                                                       aria-expanded="false"><i
-                                    class="flag-icon flag-icon-ir"></i><span class="selected-language"></span></a>
+                    <li class="dropdown dropdown-language nav-item">
+                        <a class="dropdown-toggle nav-link"
+                           id="dropdown-flag" href="#"
+                           data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"><i
+                                    class="flag-icon flag-icon-ir"></i><span class="selected-language"></span>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
                             <div class="arrow_box"><a class="dropdown-item"
-                                                      href="#"><i
+                                                      href="{{url("/changeLanguage/fa")}}"><i
                                             class="flag-icon flag-icon-ir"></i> Fa</a>
-                                <a class="dropdown-item" href="#"><i
+                                <a class="dropdown-item" href="{{url("/changeLanguage/en")}}"><i
                                             class="flag-icon flag-icon-us"></i> En</a>
                             </div>
                         </div>
@@ -131,8 +133,9 @@
                     @if(auth::user()->is_staff==1)
                         <li class="dropdown dropdown-notification nav-item">
                             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
-                                <i  class="ficon ft-mail"> </i>
-                                <span class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"  id="topmenu_number_email"></span>
+                                <i class="ficon ft-mail"> </i>
+                                <span class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"
+                                      id="topmenu_number_email"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <div class="arrow_box_right">
@@ -200,8 +203,7 @@
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 
 
-<div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true"
-     data-img="{{asset("app-assets/images/backgrounds/02.jpg")}}">
+<div class="main-menu menu-fixed menu-dark menu-accordion    menu-shadow " data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="index-2.html"><img class="brand-logo"

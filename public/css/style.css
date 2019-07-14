@@ -57,4 +57,20 @@ button, input, optgroup, select, textarea {
 
 }
 
+.header_loging {
+background: #55c093;
+}
+.content_login
+{
+    background: #cccdcf;
+}
+.btn-login
+{
+    background: radial-gradient(#55c093, #51c192);
+    color: white;
+}
 
+body
+{
+    font-family: BYekan;
+}

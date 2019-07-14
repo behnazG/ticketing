@@ -7,12 +7,20 @@ use App\Hotel;
 use App\OrganizationChart;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+
+
+    }
+
     /**
      * Display a listing of the resource.
      *

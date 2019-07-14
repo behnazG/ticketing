@@ -32,6 +32,7 @@ Route::put('/tickets/reffral/{ticket}', 'TicketController@reffral')->middleware(
 Route::get('/tickets/startWorkTime/{ticket_id}', 'TicketController@start_work_time');
 Route::get('/tickets/endWorkTime/{ticket_id}', 'TicketController@end_work_time');
 Route::put('/tickets/setTimes/{ticket}', 'TicketController@set_times')->middleware('auth');
+Route::get('/changeLanguage/{lang}', 'HomeController@set_locale')->middleware('auth');
 ////////////////////////////////////////////////////////////
 Route::resource('/categories', 'CategoryController')->middleware('auth');
 Route::resource('/organizationCharts', 'OrganizationChartController')->middleware('auth');

@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Session;
 
 class TicketController extends Controller
 {
+    public function __construct()
+    {
+        $lang = (Session::exists('lang') ? Session::get('lang') : 'fa');
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

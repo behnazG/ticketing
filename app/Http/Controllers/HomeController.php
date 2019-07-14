@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\LastUpdate;
 use App\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -30,15 +32,25 @@ class HomeController extends Controller
         $ticket = Ticket::where('status', 0)->orderBy('id', 'DESC')->get();
         $tickets = Ticket::find_tickets('i', $ticket[0]->id, 0);
         $count_ticket = $tickets->count() - 1;
-
-
-
-
         start_setting();
-        $count_ticket=Ticket::find_tickets()->count();
-        $data=[];
-        $data["count_ticket"]=$count_ticket;
-        return view('welcome',$data);
+        $count_ticket = Ticket::find_tickets()->count();
+        $data = [];
+        $data["count_ticket"] = $count_ticket;
+        /////////////////////////////////////////////////////////////////
+        $tickt_status = \App\Ticket::find_tickets('i', 0, 'all', true);
+        $status_ticket = [0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
+        foreach ($tickt_status as $t_s) {
+            $status_ticket[$t_s->status] = $t_s->counts;
+        }
+        $tickt_status = Ticket::STATUS_LIST();
+
+        $data["ticket_status"] = $tickt_status;
+        $data["ticket_status_user"] = $status_ticket;
+        ///////////////////////////////////////////////////////////////
+        $last_updates = LastUpdate::limit(10)->get();
+        $data["last_updates"] = $last_updates;
+        ////////////////////////////////////////////////
+        return view('welcome', $data);
     }
 
     public function refresh_top_menu_ticket()
@@ -73,10 +85,16 @@ class HomeController extends Controller
         $is_staff = auth::user()->is_staff;
         if ($is_staff) {
 
-          $current_time=date('Y-m-d H:i:s');
+            $current_time = date('Y-m-d H:i:s');
         } else {
 
         }
         return $is_staff;
+    }
+
+
+    public function set_locale($lang)
+    {
+        Session::put('locale', $lang);
     }
 }

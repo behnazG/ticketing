@@ -163,5 +163,14 @@ return [
     "getSmsTicket" => " دریافت sms تیکت",
     "sender" => "فرستنده",
     "ticketStatus" => "وضعیت تیکت",
+    "allTickets" => "همه‌تیکت‌ها",
+    "newTicket" => "تیکت‌جدید",
+    "E-MailAddress" => "ایمیل",
+    "RememberMe" => "مرا بخاطر بسپار",
+    "ForgotYourPassword?" => "رمز عبور خود را فراموش کرده‌اید؟",
+    "Login" => "ورود",
+    "ticketLoginHeader" => "سامانه مکانیزه پشتیبانی",
+    "Send Password Reset Link" => "بازیابی رمز عبور",
+    "lastUpdate" => "آخرین‌بروزرسانی های نرم‌افزار",
 ];
 ?>
