@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\CategoryLanguage;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -29,8 +30,10 @@ class CategoryController extends Controller
         $data = [];
         $data["category"] = new Category();
         $data["category_list"] = Category::where('valid', 1)->get();
+        $data["languages"] = \App\language::all();
         return view('category.create', $data);
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -42,7 +45,26 @@ class CategoryController extends Controller
         //   dd($request);
         $data = Category::validate();
         $data["valid"] = isset($request->valid) ? 1 : 0;
-        Category::create($data);
+        $category = Category::create($data);
+        ///////////////////////////////////////////////////////////
+        $langs = \App\language::all();
+        foreach ($langs as $lang) {
+            $address_lang = "address_" . $lang->short_name;
+            $name_lang = "name_" . $lang->short_name;
+            if (isset($request->$name_lang)) {
+                $data = [];
+                $data = $request->validate(
+                    [
+                        $name_lang => "nullable|string",
+                    ]
+                );
+                if ($request->$name_lang != "") {
+                    $data_name = ["category_id" => $category->id, "language_id" => $lang->id, "column_name" => "name", "value" => $request->$name_lang];
+                    CategoryLanguage::create($data_name);
+                }
+            }
+        }
+        /////////////////////////////////////////////////////////////
         return redirect('categories');
     }
 
@@ -67,7 +89,22 @@ class CategoryController extends Controller
     {
         $data = [];
         $data["category"] = $category;
-        $data["category_list"] = Category::where([['valid', 1],['id','<>',$category->id]])->get();
+        $data["category_list"] = Category::where([['valid', 1], ['id', '<>', $category->id]])->get();
+        $langss = \App\language::all();
+        $data["languages"] = $langss;
+        //////////////////////////////////////
+        $names = [];
+        if (!$langss->isEmpty()) {
+            foreach ($langss as $langs) {
+                $nm = "name_" . $langs->short_name;
+                $h_n = CategoryLanguage::where('category_id', $category->id)->where('language_id', $langs->id)->where('column_name', 'name')->get();
+                if (!$h_n->isEmpty()) {
+                    $names[$nm] = $h_n[0]->value;
+                }
+            }
+        }
+        $data["names"] = $names;
+        //////////////////////////////////
         return view('category.edit', $data);
     }
 
@@ -83,6 +120,29 @@ class CategoryController extends Controller
         $data = Category::validate($category->id);
         $data["valid"] = isset($request->valid) ? 1 : 0;
         $category->update($data);
+        /////////////////////////////////////////////////////
+        $langs = \App\language::all();
+        foreach ($langs as $lang) {
+            $name_lang = "name_" . $lang->short_name;
+            if (isset($request->$name_lang)) {
+                $data = [];
+                $data = $request->validate(
+                    [
+                        $name_lang => "nullable|string",
+                    ]
+                );
+                if ($request->$name_lang != "") {
+                    $ll = CategoryLanguage::where("category_id", $category->id)->where("language_id", $lang->id)->where("column_name", "name")->get();
+                    $data_name = ["category_id" => $category->id, "language_id" => $lang->id, "column_name" => "name", "value" => $request->$name_lang];
+                    if ($ll->isEmpty()) {
+                        CategoryLanguage::create($data_name);
+                    } else {
+                        $ll[0]->update($data_name);
+                    }
+                }
+            }
+        }
+        //////////////////////////////////////////////////
         return redirect('categories');
     }
 

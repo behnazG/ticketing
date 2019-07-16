@@ -78,18 +78,24 @@
                         </ul>
                     </li>
                 </ul>
+                <?php ($languages=\App\Language::all()); ?>
                 <ul class="nav navbar-nav float-right">
-                    <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
-                                                                       id="dropdown-flag" href="#"
-                                                                       data-toggle="dropdown" aria-haspopup="true"
-                                                                       aria-expanded="false"><i
-                                    class="flag-icon flag-icon-ir"></i><span class="selected-language"></span></a>
+                    <li class="dropdown dropdown-language nav-item">
+                        <a class="dropdown-toggle nav-link"
+                           id="dropdown-flag" href="#"
+                           data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"><i
+                    class="flag-icon <?php echo e($languages[auth::user()->lang-1]["icon"]); ?>"></i><span class="selected-language"></span>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-                            <div class="arrow_box"><a class="dropdown-item"
-                                                      href="<?php echo e(url("/changeLanguage/fa")); ?>"><i
-                                            class="flag-icon flag-icon-ir"></i> Fa</a>
-                                <a class="dropdown-item" href="<?php echo e(url("/changeLanguage/en")); ?>"><i
-                                            class="flag-icon flag-icon-us"></i> En</a>
+                            <div class="arrow_box">
+                                <?php $__currentLoopData = $languages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                     <a class="dropdown-item"
+                                        href="<?php echo e(url("/changeLanguage/".$lang["id"])); ?>"><i
+                                        class="flag-icon <?php echo e($lang["icon"]); ?>"></i> <?php echo e($lang["name"]); ?>
+
+                                     </a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>
                     </li>

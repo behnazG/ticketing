@@ -78,20 +78,23 @@
                         </ul>
                     </li>
                 </ul>
+                @php($languages=\App\Language::all())
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-language nav-item">
                         <a class="dropdown-toggle nav-link"
                            id="dropdown-flag" href="#"
                            data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false"><i
-                                    class="flag-icon flag-icon-ir"></i><span class="selected-language"></span>
+                    class="flag-icon {{$languages[auth::user()->lang-1]["icon"]}}"></i><span class="selected-language"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-                            <div class="arrow_box"><a class="dropdown-item"
-                                                      href="{{url("/changeLanguage/fa")}}"><i
-                                            class="flag-icon flag-icon-ir"></i> Fa</a>
-                                <a class="dropdown-item" href="{{url("/changeLanguage/en")}}"><i
-                                            class="flag-icon flag-icon-us"></i> En</a>
+                            <div class="arrow_box">
+                                @foreach ($languages as $lang)
+                                     <a class="dropdown-item"
+                                        href="{{url("/changeLanguage/".$lang["id"])}}"><i
+                                        class="flag-icon {{$lang["icon"]}}"></i> {{$lang["name"]}}
+                                     </a>
+                                @endforeach
                             </div>
                         </div>
                     </li>

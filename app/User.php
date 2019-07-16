@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'hotel_id', 'mobile', 'organizational_chart_id', 'gender', 'valid', 'image_path','is_staff'
+        'name', 'email', 'password', 'hotel_id', 'mobile', 'organizational_chart_id', 'gender', 'valid', 'image_path','is_staff','lang'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -90,7 +90,6 @@ class User extends Authenticatable
                 return asset('storage/' . $this->image_path);
 
         }
-
         return asset('app-assets/images/icons/user.jpg');
     }
 }

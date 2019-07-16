@@ -171,6 +171,6 @@ return [
     "Login" => "ورود",
     "ticketLoginHeader" => "سامانه مکانیزه پشتیبانی",
     "Send Password Reset Link" => "بازیابی رمز عبور",
-    "lastUpdate" => "آخرین‌بروزرسانی های نرم‌افزار",
+    "persian"=>"فارسی"
 ];
 ?>

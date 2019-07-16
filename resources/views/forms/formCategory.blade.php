@@ -21,13 +21,19 @@
                             {{method_field('PUT')}}
                         @endisset
                         <div class="form-body">
-                            <div class="form-group row">
-                                <label class="col-md-2 label-control" for="name">{{trans('mb.name')}}</label>
-                                <div class="col-md-4">
-                                    <input type="text" id="name" class="form-control" placeholder="{{trans('mb.name')}}"
-                                           name="name" value="{{$category->name??old('name')}}">
+                            @foreach($languages as $ln)
+                                @php($nm = 'name_'. $ln->short_name)
+                                <div class="form-group row">
+                                    <label class="col-md-2 label-control"
+                                           for="name_{{$ln->short_name}}">{{trans('mb.name').' '.$ln->name}}</label>
+                                    <div class="col-md-4">
+                                        <input type="text" id="name_{{$ln->short_name}}" class="form-control"
+                                               placeholder="{{trans('mb.name').' '.$ln->name}}"
+                                               name="name_{{$ln->short_name}}"
+                                               value="{{ isset($names[$nm])? $names[$nm]:old('name_'.$ln->short_name) }}">
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                             <div class="form-group row">
                                 <label class="col-md-2 label-control" for="parent">{{trans('mb.parent')}}</label>
                                 <div class="col-md-4">
@@ -42,7 +48,7 @@
                             <div class="form-group row">
                                 @include('fragments.valid',['isValid'=>$category->valid])
                             </div>
-                            </div>
+                        </div>
                         @include('fragments.submitPart',['submitText'=>$submitText,'giveUpUrl'=>'/categories'])
                     </form>
                 </div>

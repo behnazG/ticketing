@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\LastUpdate;
 use App\Ticket;
+use App\User;
+use App\language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
@@ -43,7 +46,6 @@ class HomeController extends Controller
             $status_ticket[$t_s->status] = $t_s->counts;
         }
         $tickt_status = Ticket::STATUS_LIST();
-
         $data["ticket_status"] = $tickt_status;
         $data["ticket_status_user"] = $status_ticket;
         ///////////////////////////////////////////////////////////////
@@ -84,7 +86,6 @@ class HomeController extends Controller
     {
         $is_staff = auth::user()->is_staff;
         if ($is_staff) {
-
             $current_time = date('Y-m-d H:i:s');
         } else {
 
@@ -92,9 +93,20 @@ class HomeController extends Controller
         return $is_staff;
     }
 
-
     public function set_locale($lang)
     {
-        Session::put('locale', $lang);
+        $language = Language::find($lang);
+        if (!is_null($language)) {
+            $users = User::where('id', auth::user()->id)->get();
+            if (!$users->isEmpty()) {
+                foreach ($users as $u) {
+                    $i = auth::user()->update(["lang" => $lang]);
+                }
+                Session::put('locale', $language->short_name);
+                Session::put('locale_id', $language->id);
+            } else {
+            }
+        }
+        return Redirect::back();
     }
 }

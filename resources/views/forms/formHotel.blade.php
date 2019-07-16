@@ -19,6 +19,7 @@
                     }
                 }
             });
+
             function change_label(flag, inputName) {
                 var l_n = "label_" + inputName;
                 switch (inputName) {
@@ -36,6 +37,7 @@
                         break;
                 }
             }
+
             $('#expire_date_fa').MdPersianDateTimePicker({
                 targetTextSelector: '#expire_date_fa',
                 targetDateSelector: '#expire_date',
@@ -44,7 +46,6 @@
     </script>
 
 @endsection
-
 @section('content')
     <div class="row justify-content-md-center">
         <div class="col-xl-12 col-lg-12 col-md-12">
@@ -69,20 +70,19 @@
                                 {{method_field('PUT')}}
                             @endisset
                             <div class="form-body">
-                                <div class="form-group row">
-                                    <label class="col-md-2 label-control" for="name">{{trans('mb.name')}}</label>
-                                    <div class="col-md-4">
-                                        <input type="text" id="name" class="form-control"
-                                               placeholder="{{trans('mb.name')}}"
-                                               name="name" value="{{$hotel->name??old('name')}}">
+                                @foreach($languages as $ln)
+                                    @php($nm = 'name_'. $ln->short_name)
+                                    <div class="form-group row">
+                                        <label class="col-md-2 label-control"
+                                               for="name_{{$ln->short_name}}">{{trans('mb.name').' '.$ln->name}}</label>
+                                        <div class="col-md-4">
+                                            <input type="text" id="name_{{$ln->short_name}}" class="form-control"
+                                                   placeholder="{{trans('mb.name').' '.$ln->name}}"
+                                                   name="name_{{$ln->short_name}}"
+                                                   value="{{ isset($names[$nm])? $names[$nm]:old('name_'.$ln->short_name) }}">
+                                        </div>
                                     </div>
-                                    <label class="col-md-2 label-control" for="phone">{{trans('mb.phone')}}</label>
-                                    <div class="col-md-4">
-                                        <input type="text" id="phone" class="form-control"
-                                               placeholder="{{trans('mb.phone')}}"
-                                               name="phone" value="{{$hotel->phone??old('phone')}}">
-                                    </div>
-                                </div>
+                                @endforeach
                                 <div class="form-group row">
                                     <label class="col-md-2 label-control"
                                            for="province_id">{{trans('mb.province')}}</label>
@@ -125,13 +125,26 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-2 label-control" for="address">{{trans('mb.address')}}</label>
-                                    <div class="col-md-10">
-                                        <input type="text" id="address" class="form-control"
-                                               placeholder="{{trans('mb.address')}}"
-                                               name="address" value="{{$hotel->address??old('address')}}">
+                                    <label class="col-md-2 label-control" for="phone">{{trans('mb.phone')}}</label>
+                                    <div class="col-md-4">
+                                        <input type="text" id="phone" class="form-control"
+                                               placeholder="{{trans('mb.phone')}}"
+                                               name="phone" value="{{$hotel->phone??old('phone')}}">
                                     </div>
                                 </div>
+                                @foreach($languages as $lang)
+                                    @php($nm = 'address_'. $lang->short_name)
+                                    <div class="form-group row">
+                                        <label class="col-md-2 label-control"
+                                               for="address_{{$lang->short_name}}">{{trans('mb.address').' '.$lang->name}}</label>
+                                        <div class="col-md-10">
+                                            <input type="text" id="address_{{$lang->short_name}}" class="form-control"
+                                                   placeholder="{{trans('mb.address').' '.$lang->name}}"
+                                                   name="address_{{$lang->short_name}}"
+                                                   value="{{ isset($address[$nm])? $address[$nm]:old('address_'.$ln->short_name) }}">
+                                        </div>
+                                    </div>
+                                @endforeach
                                 <div class="form-group row">
                                     <label class="col-md-2 label-control"
                                            for="expire_date_fa">{{trans('mb.expireDate')}}</label>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 
 class OrganizationChart extends Model
 {
@@ -11,10 +12,10 @@ class OrganizationChart extends Model
     public static function validate()
     {
         return request()->validate([
-            'name' => 'required|string|max:128',
             'parent' => 'required|numeric'
         ]);
     }
+
     public function getParentNameAttribute()
     {
         if ($this->parent == 0) {
@@ -27,4 +28,19 @@ class OrganizationChart extends Model
                 return trans('mb.unknown');
         }
     }
+
+
+    public function getNameAttribute()
+    {
+        $name = trans('mb.unknown');
+        if (Session::exists('locale_id')) {
+            $language_id = Session::get('locale_id');
+            $h_l = OrganizationChartLanguage::where('organization_chart_id', $this->id)->where('language_id', $language_id)->where('column_name', 'name')->get();
+            if (!$h_l->isEmpty()) {
+                $name = $h_l[0]->value;
+            }
+        }
+        return $name;
+    }
+
 }

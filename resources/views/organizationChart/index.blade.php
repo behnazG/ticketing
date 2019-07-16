@@ -66,14 +66,14 @@
                                     <td>{{$organizationChart->parent_name}}</td>
                                     <td>@include('fragments.valid',['showValidMessage'=>$organizationChart->valid])</td>
                                     <td>
-                                        @if($organizationChart->id != 1 && $organizationChart->id != 2)
+                                        {{--@if($organizationChart->id != 1 && $organizationChart->id != 2)--}}
                                             @include('fragments.edit',['id'=>$organizationChart->id,'url'=>'organizationCharts'])
-                                        @endif
+                                        {{--@endif--}}
                                     </td>
                                     <td>
-                                        @if($organizationChart->id != 1 && $organizationChart->id != 2)
+                                        {{--@if($organizationChart->id != 1 && $organizationChart->id != 2)--}}
                                         @include('fragments.delete',['id'=>$organizationChart->id])
-                                        @endif
+                                        {{--@endif--}}
 
                                     </td>
                                 </tr>
