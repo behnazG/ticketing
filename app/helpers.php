@@ -44,7 +44,7 @@ function download_attach_files()
 ///////////////////////////////////////////////////////////
 function date_sh($date)
 {
-    if(auth::user()->lang==2)
+    if( Session::get('locale')==2)
         return $date;
     $v = new Verta($date);
     return $v->formatDifference();
@@ -52,7 +52,7 @@ function date_sh($date)
 
 function date_shamsi($date)
 {
-    if(auth::user()->lang==2)
+    if( Session::get('locale')==2)
         return $date;
     $v = new Verta($date);
     return $v->format("Y-m-d H:i:s");

@@ -86,25 +86,33 @@ foreach ($tickt_status as $t_s) {
                         </ul>
                     </li>
                 </ul>
+                <?php ($languages=\App\Language::all()); ?>
                 <ul class="nav navbar-nav float-right">
-                    <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
-                                                                       id="dropdown-flag" href="#"
-                                                                       data-toggle="dropdown" aria-haspopup="true"
-                                                                       aria-expanded="false"><i
-                                    class="flag-icon flag-icon-ir"></i><span class="selected-language"></span></a>
+                    <li class="dropdown dropdown-language nav-item">
+                        <a class="dropdown-toggle nav-link"
+                           id="dropdown-flag" href="#"
+                           data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"><i
+                                    class="flag-icon <?php echo e($languages[auth::user()->lang-1]["icon"]); ?>"></i><span
+                                    class="selected-language"></span>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-                            <div class="arrow_box"><a class="dropdown-item"
-                                                      href="#"><i
-                                            class="flag-icon flag-icon-ir"></i> Fa</a>
-                                <a class="dropdown-item" href="#"><i
-                                            class="flag-icon flag-icon-us"></i> En</a>
+                            <div class="arrow_box">
+                                <?php $__currentLoopData = $languages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <a class="dropdown-item"
+                                       href="<?php echo e(url("/changeLanguage/".$lang["id"])); ?>"><i
+                                                class="flag-icon <?php echo e($lang["icon"]); ?>"></i> <?php echo e($lang["name"]); ?>
+
+                                    </a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>
                     </li>
                     <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
                                                                            data-toggle="dropdown"><i
                                     class="ficon ft-bell bell-shake" id="notification-navbar-link"></i><span
-                                    class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow">5</span></a>
+                                    class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"
+                                    id="topmenu_number_notify"></span></a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <div class="arrow_box_right">
                                 <li class="dropdown-menu-header">
@@ -112,23 +120,9 @@ foreach ($tickt_status as $t_s) {
                                                 class="grey darken-2"><?php echo e(trans("mb.notifications")); ?></span>
                                     </h6>
                                 </li>
-                                <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left align-self-center"><i
-                                                        class="ft-share info font-medium-4 mt-2"></i></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading info">New Order Received</h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">Lorem
-                                                    ipsum dolor sit amet!</p>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">3:30 PM
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                <div id="top_notify_list">
+
+                                </div>
                                 <li class="dropdown-menu-footer">
                                     <button onclick="notifyMe();" class="dropdown-item info text-right pr-1"
                                     ><?php echo e(trans("mb.readAll")); ?></button>
@@ -210,13 +204,12 @@ foreach ($tickt_status as $t_s) {
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 
 
-<div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true"
-     data-img="../../../app-assets/images/backgrounds/02.jpg">
+<div class="main-menu menu-fixed menu-dark menu-accordion    menu-shadow " data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="index-2.html"><img class="brand-logo"
                                                                                           alt="Asa admin logo"
-                                                                                          src="../../../app-assets/images/logo/logo.png"/>
+                                                                                          src="<?php echo e(asset("app-assets/images/logo/logo.png")); ?>"/>
                     <h3 class="brand-text"><?php echo e(trans("mb.brand")); ?></h3></a></li>
             <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
         </ul>
@@ -334,7 +327,7 @@ foreach ($tickt_status as $t_s) {
                 <div class="card email-app-details d-none d-lg-block rounded-0">
                     <div class="card-content">
                         <div class="email-app-options card-body">
-                            <form method="post" action="<?php echo e(url('/tickets/search')); ?>" id="search_all_ticket">
+                            <form method="post" action="<?php echo e(url('/tickets/advancedSearch')); ?>" id="search_all_ticket">
                                 <div class="row">
                                     <div class="col-10 col-lg-8   text-center offset-lg-2">
                                         <fieldset class="form-group position-relative has-icon-left m-0 pb-1">
@@ -383,16 +376,9 @@ foreach ($tickt_status as $t_s) {
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 <footer class="footer fixed-bottom footer-light navbar-border navbar-shadow">
     <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span
-                class="float-md-left d-block d-md-inline-block">2018  &copy; Copyright <a
-                    class="text-bold-800 grey darken-2" href="https://themeselection.com/"
-                    target="_blank">ThemeSelection</a></span>
-        <ul class="list-inline float-md-right d-block d-md-inline-blockd-none d-lg-block mb-0">
-            <li class="list-inline-item"><a class="my-1" href="https://themeselection.com/" target="_blank"> More
-                    themes</a></li>
-            <li class="list-inline-item"><a class="my-1" href="https://themeselection.com/support" target="_blank">
-                    Support</a></li>
-
-        </ul>
+                class="float-md-left d-block d-md-inline-block">Copyright &copy;<a
+                    class="text-bold-800 grey darken-2" href=""
+                    target="_blank">ASA System Yeganeh. All Rights Reserved</a></span>
     </div>
 </footer>
 

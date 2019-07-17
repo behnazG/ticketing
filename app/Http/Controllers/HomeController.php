@@ -49,7 +49,8 @@ class HomeController extends Controller
         $data["ticket_status"] = $tickt_status;
         $data["ticket_status_user"] = $status_ticket;
         ///////////////////////////////////////////////////////////////
-        $last_updates = LastUpdate::limit(10)->get();
+        $lang = auth::user()->lang;
+        $last_updates = LastUpdate::limit(10)->where('language_id', $lang)->get();
         $data["last_updates"] = $last_updates;
         ////////////////////////////////////////////////
         return view('welcome', $data);
@@ -85,12 +86,15 @@ class HomeController extends Controller
     public function refresh_top_menu_notify()
     {
         $is_staff = auth::user()->is_staff;
+        $result = [];
         if ($is_staff) {
-            $current_time = date('Y-m-d H:i:s');
+            $result[0] = 0;
+            $result[1] = $this->check_staff_notify();
         } else {
-
+            $result[0] = 1;
+            $result [1] = $this->check_customer_notify();
         }
-        return $is_staff;
+        return json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 
     public function set_locale($lang)
@@ -108,5 +112,48 @@ class HomeController extends Controller
             }
         }
         return Redirect::back();
+    }
+
+    private function check_staff_notify()
+    {
+        $notifies = [];
+        $current_user = auth::user();
+        ///////////////////////////////////////
+        //check_expire_mail
+        $tickets = Ticket::where('receiver_id', $current_user->id)
+            ->whereRaw('tickets.expire_date_current < Now() or tickets.expire_date < Now()')
+            ->where('status', '<', 3)
+            ->get();
+
+        $tt = [];
+        foreach ($tickets as $t) {
+            $a = $t;
+            $a["id_coder"] = $t->generate_ticket_id();
+            array_push($tt, $a);
+        }
+        $notifies["tickets_expire_date"] = $tt;
+        //duration
+        $tickets = Ticket::where('receiver_id', $current_user->id)
+            ->whereRaw('tickets.duration_current < Now() or tickets.duration < Now()')
+            ->where('status', '<', 3)
+            ->get();
+        $tt = [];
+        foreach ($tickets as $t) {
+            $a = $t;
+            $a["id_coder"] = $t->generate_ticket_id();
+            array_push($tt, $a);
+        }
+        $notifies["tickets_duration"] = $tt;
+        //////////////////////////////////////
+        return $notifies;
+    }
+
+    private function check_customer_notify()
+    {
+        $notifies = [];
+        ///////////////////////////////////////
+
+        /// ///////////////////////////////////
+        return $notifies;
     }
 }

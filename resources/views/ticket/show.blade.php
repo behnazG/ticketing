@@ -155,87 +155,91 @@
                     <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 95px;"></div>
                 </div>
             </div>
-            {{--BUTTON--}}
-            <div class="row mt-1 text-left">
-                <div class="col-12">
-                    @if($allowed_refferal)
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_reffral"><i
-                                    class="fas fa-arrow-right"></i> {{trans("mb.reffral")}}
+            @if($authorise==true)
+                {{--BUTTON--}}
+                <div class="row mt-1 text-left">
+                    <div class="col-12">
+                        @if($allowed_refferal)
+                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_reffral"><i
+                                        class="fas fa-arrow-right"></i> {{trans("mb.reffral")}}
+                            </button>
+                        @endif
+                        @if($set_times)
+                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_set_times"><i
+                                        class="fas fa-calendar"></i> {{trans("mb.setTimes")}}
+                            </button>
+                        @endif
+                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
+                            <i class="fas fa-reply"></i> {{trans("mb.replay")}}
                         </button>
-                    @endif
-                    @if($set_times)
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_set_times"><i
-                                    class="fas fa-calendar"></i> {{trans("mb.setTimes")}}
+                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_change_status"><i
+                                    class="fas fa-reply"></i> {{trans("mb.changeStatus")}}
                         </button>
-                    @endif
-                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
-                        <i class="fas fa-reply"></i> {{trans("mb.replay")}}
-                    </button>
-                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_change_status"><i
-                                class="fas fa-reply"></i> {{trans("mb.changeStatus")}}
-                    </button>
-                    @php($show_button_start_work=true)
-                    @foreach($ticket_time_log as $t_l)
-                        @if($t_l->type==2)
-                            @if(is_null($t_l->end_time_system))
-                                @php($show_button_start_work=false)
-                                @php($show_text=true)
-                                @break
+                        @php($show_button_start_work=true)
+                        @foreach($ticket_time_log as $t_l)
+                            @if($t_l->type==2)
+                                @if(is_null($t_l->end_time_system))
+                                    @php($show_button_start_work=false)
+                                    @php($show_text=true)
+                                    @break
+                                @endif
+                            @endif
+                        @endforeach
+                        @if($current_user->is_staff==1)
+                            @if($show_button_start_work == true)
+                                <button type="button" class="btn btn-danger btn-sm btn-glow mr-1"
+                                        id="btn_start_work"><i
+                                            class="ft-clock"></i> {{trans("mb.startWork")}}
+                                </button>
+                            @else
+                                <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_end_work">
+                                    <i
+                                            class="ft-clock"></i> {{trans("mb.endWork")}}
+                                </button>
                             @endif
                         @endif
-                    @endforeach
-                    @if($current_user->is_staff==1)
-                        @if($show_button_start_work == true)
-                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1"
-                                    id="btn_start_work"><i
-                                        class="ft-clock"></i> {{trans("mb.startWork")}}
-                            </button>
-                        @else
-                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_end_work">
-                                <i
-                                        class="ft-clock"></i> {{trans("mb.endWork")}}
-                            </button>
-                        @endif
-                    @endif
-                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_show_work_time">
-                        <i class="fa fa-history"></i>
-                        {{trans("mb.LogFile")}}
-                    </button>
+                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_show_work_time">
+                            <i class="fa fa-history"></i>
+                            {{trans("mb.LogFile")}}
+                        </button>
 
-                    @if(isset($show_text) && $show_text == true)
-                        <p class="float-right red">
-                            <i class="ficon ft-bell bell-shake"></i>
-                            {{trans('mb.ticketInProccessing',['user_name'=>$ticket_time_log[0]->user_full_name,'date'=>date_sh($ticket_time_log[0]->start_time_system)])}}
-                        </p>
-                    @endif
+                        @if(isset($show_text) && $show_text == true)
+                            <p class="float-right red">
+                                <i class="ficon ft-bell bell-shake"></i>
+                                {{trans('mb.ticketInProccessing',['user_name'=>$ticket_time_log[0]->user_full_name,'date'=>date_sh($ticket_time_log[0]->start_time_system)])}}
+                            </p>
+                        @endif
+
+                    </div>
 
                 </div>
-
+                {{--END BUTTON--}}
+            @endif
+        </div>
+    </div>
+    @if($authorise==true)
+        <div class="dv_extra display_none" id="dv_replay">
+            @include('forms.formReplay',["ticket"=>$current_ticket,"submitText"=>trans("mb.send")])
+        </div>
+        <div class="dv_extra {{(isset($return_back) && $return_back=="change_status")?"":"display_none"}}"
+             id="dv_change_status">
+            @include('forms.formChangeStatus',["ticket"=>$current_ticket,"submitText"=>trans("mb.changeStatus")])
+        </div>
+        @if($allowed_refferal)
+            <div class="dv_extra {{(isset($return_back) && $return_back=="reffral")?"":"display_none"}}"
+                 id="dv_reffral">
+                @include('forms.formReffral',["ticket"=>$current_ticket,"submitText"=>trans("mb.reffral")])
             </div>
-            {{--END BUTTON--}}
+        @endif
+        <div class="dv_extra {{(isset($return_back) && $return_back=="workTime")?"":"display_none"}}"
+             id="dv_show_work_time">
+            @include('ticket.show_workTime');
         </div>
-    </div>
-    <!-- The Modal -->
-    <div class="dv_extra display_none" id="dv_replay">
-        @include('forms.formReplay',["ticket"=>$current_ticket,"submitText"=>trans("mb.send")])
-    </div>
-    <div class="dv_extra {{(isset($return_back) && $return_back=="change_status")?"":"display_none"}}"
-         id="dv_change_status">
-        @include('forms.formChangeStatus',["ticket"=>$current_ticket,"submitText"=>trans("mb.changeStatus")])
-    </div>
-    @if($allowed_refferal)
-        <div class="dv_extra {{(isset($return_back) && $return_back=="reffral")?"":"display_none"}}" id="dv_reffral">
-            @include('forms.formReffral',["ticket"=>$current_ticket,"submitText"=>trans("mb.reffral")])
-        </div>
-    @endif
-    <div class="dv_extra {{(isset($return_back) && $return_back=="workTime")?"":"display_none"}}"
-         id="dv_show_work_time">
-        @include('ticket.show_workTime');
-    </div>
-    @if($set_times)
-        <div class="dv_extra {{(isset($return_back) && $return_back=="set_times")?"":"display_none"}}"
-             id="dv_set_times">
-            @include('forms.formSetTimes',["ticket"=>$current_ticket,"submitText"=>trans("mb.setTimes")]);
-        </div>
+        @if($set_times)
+            <div class="dv_extra {{(isset($return_back) && $return_back=="set_times")?"":"display_none"}}"
+                 id="dv_set_times">
+                @include('forms.formSetTimes',["ticket"=>$current_ticket,"submitText"=>trans("mb.setTimes")]);
+            </div>
+        @endif
     @endif
 @endsection

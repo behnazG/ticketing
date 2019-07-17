@@ -158,96 +158,100 @@
                     <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 95px;"></div>
                 </div>
             </div>
-            
-            <div class="row mt-1 text-left">
-                <div class="col-12">
-                    <?php if($allowed_refferal): ?>
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_reffral"><i
-                                    class="fas fa-arrow-right"></i> <?php echo e(trans("mb.reffral")); ?>
+            <?php if($authorise==true): ?>
+                
+                <div class="row mt-1 text-left">
+                    <div class="col-12">
+                        <?php if($allowed_refferal): ?>
+                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_reffral"><i
+                                        class="fas fa-arrow-right"></i> <?php echo e(trans("mb.reffral")); ?>
+
+                            </button>
+                        <?php endif; ?>
+                        <?php if($set_times): ?>
+                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_set_times"><i
+                                        class="fas fa-calendar"></i> <?php echo e(trans("mb.setTimes")); ?>
+
+                            </button>
+                        <?php endif; ?>
+                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
+                            <i class="fas fa-reply"></i> <?php echo e(trans("mb.replay")); ?>
 
                         </button>
-                    <?php endif; ?>
-                    <?php if($set_times): ?>
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_set_times"><i
-                                    class="fas fa-calendar"></i> <?php echo e(trans("mb.setTimes")); ?>
+                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_change_status"><i
+                                    class="fas fa-reply"></i> <?php echo e(trans("mb.changeStatus")); ?>
 
                         </button>
-                    <?php endif; ?>
-                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
-                        <i class="fas fa-reply"></i> <?php echo e(trans("mb.replay")); ?>
+                        <?php ($show_button_start_work=true); ?>
+                        <?php $__currentLoopData = $ticket_time_log; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t_l): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($t_l->type==2): ?>
+                                <?php if(is_null($t_l->end_time_system)): ?>
+                                    <?php ($show_button_start_work=false); ?>
+                                    <?php ($show_text=true); ?>
+                                    <?php break; ?>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($current_user->is_staff==1): ?>
+                            <?php if($show_button_start_work == true): ?>
+                                <button type="button" class="btn btn-danger btn-sm btn-glow mr-1"
+                                        id="btn_start_work"><i
+                                            class="ft-clock"></i> <?php echo e(trans("mb.startWork")); ?>
 
-                    </button>
-                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_change_status"><i
-                                class="fas fa-reply"></i> <?php echo e(trans("mb.changeStatus")); ?>
+                                </button>
+                            <?php else: ?>
+                                <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_end_work">
+                                    <i
+                                            class="ft-clock"></i> <?php echo e(trans("mb.endWork")); ?>
 
-                    </button>
-                    <?php ($show_button_start_work=true); ?>
-                    <?php $__currentLoopData = $ticket_time_log; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t_l): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php if($t_l->type==2): ?>
-                            <?php if(is_null($t_l->end_time_system)): ?>
-                                <?php ($show_button_start_work=false); ?>
-                                <?php ($show_text=true); ?>
-                                <?php break; ?>
+                                </button>
                             <?php endif; ?>
                         <?php endif; ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php if($current_user->is_staff==1): ?>
-                        <?php if($show_button_start_work == true): ?>
-                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1"
-                                    id="btn_start_work"><i
-                                        class="ft-clock"></i> <?php echo e(trans("mb.startWork")); ?>
+                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_show_work_time">
+                            <i class="fa fa-history"></i>
+                            <?php echo e(trans("mb.LogFile")); ?>
 
-                            </button>
-                        <?php else: ?>
-                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_end_work">
-                                <i
-                                        class="ft-clock"></i> <?php echo e(trans("mb.endWork")); ?>
+                        </button>
 
-                            </button>
+                        <?php if(isset($show_text) && $show_text == true): ?>
+                            <p class="float-right red">
+                                <i class="ficon ft-bell bell-shake"></i>
+                                <?php echo e(trans('mb.ticketInProccessing',['user_name'=>$ticket_time_log[0]->user_full_name,'date'=>date_sh($ticket_time_log[0]->start_time_system)])); ?>
+
+                            </p>
                         <?php endif; ?>
-                    <?php endif; ?>
-                    <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_show_work_time">
-                        <i class="fa fa-history"></i>
-                        <?php echo e(trans("mb.LogFile")); ?>
 
-                    </button>
-
-                    <?php if(isset($show_text) && $show_text == true): ?>
-                        <p class="float-right red">
-                            <i class="ficon ft-bell bell-shake"></i>
-                            <?php echo e(trans('mb.ticketInProccessing',['user_name'=>$ticket_time_log[0]->user_full_name,'date'=>date_sh($ticket_time_log[0]->start_time_system)])); ?>
-
-                        </p>
-                    <?php endif; ?>
+                    </div>
 
                 </div>
-
+                
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php if($authorise==true): ?>
+        <div class="dv_extra display_none" id="dv_replay">
+            <?php echo $__env->make('forms.formReplay',["ticket"=>$current_ticket,"submitText"=>trans("mb.send")], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        </div>
+        <div class="dv_extra <?php echo e((isset($return_back) && $return_back=="change_status")?"":"display_none"); ?>"
+             id="dv_change_status">
+            <?php echo $__env->make('forms.formChangeStatus',["ticket"=>$current_ticket,"submitText"=>trans("mb.changeStatus")], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        </div>
+        <?php if($allowed_refferal): ?>
+            <div class="dv_extra <?php echo e((isset($return_back) && $return_back=="reffral")?"":"display_none"); ?>"
+                 id="dv_reffral">
+                <?php echo $__env->make('forms.formReffral',["ticket"=>$current_ticket,"submitText"=>trans("mb.reffral")], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
-            
+        <?php endif; ?>
+        <div class="dv_extra <?php echo e((isset($return_back) && $return_back=="workTime")?"":"display_none"); ?>"
+             id="dv_show_work_time">
+            <?php echo $__env->make('ticket.show_workTime', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
         </div>
-    </div>
-    <!-- The Modal -->
-    <div class="dv_extra display_none" id="dv_replay">
-        <?php echo $__env->make('forms.formReplay',["ticket"=>$current_ticket,"submitText"=>trans("mb.send")], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    </div>
-    <div class="dv_extra <?php echo e((isset($return_back) && $return_back=="change_status")?"":"display_none"); ?>"
-         id="dv_change_status">
-        <?php echo $__env->make('forms.formChangeStatus',["ticket"=>$current_ticket,"submitText"=>trans("mb.changeStatus")], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    </div>
-    <?php if($allowed_refferal): ?>
-        <div class="dv_extra <?php echo e((isset($return_back) && $return_back=="reffral")?"":"display_none"); ?>" id="dv_reffral">
-            <?php echo $__env->make('forms.formReffral',["ticket"=>$current_ticket,"submitText"=>trans("mb.reffral")], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        </div>
-    <?php endif; ?>
-    <div class="dv_extra <?php echo e((isset($return_back) && $return_back=="workTime")?"":"display_none"); ?>"
-         id="dv_show_work_time">
-        <?php echo $__env->make('ticket.show_workTime', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
-    </div>
-    <?php if($set_times): ?>
-        <div class="dv_extra <?php echo e((isset($return_back) && $return_back=="set_times")?"":"display_none"); ?>"
-             id="dv_set_times">
-            <?php echo $__env->make('forms.formSetTimes',["ticket"=>$current_ticket,"submitText"=>trans("mb.setTimes")], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
-        </div>
+        <?php if($set_times): ?>
+            <div class="dv_extra <?php echo e((isset($return_back) && $return_back=="set_times")?"":"display_none"); ?>"
+                 id="dv_set_times">
+                <?php echo $__env->make('forms.formSetTimes',["ticket"=>$current_ticket,"submitText"=>trans("mb.setTimes")], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
+            </div>
+        <?php endif; ?>
     <?php endif; ?>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make("layouts.bmail", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\asa\resources\views/ticket/show.blade.php ENDPATH**/ ?>

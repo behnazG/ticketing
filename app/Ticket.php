@@ -120,8 +120,7 @@ class Ticket extends Model
             $t = Ticket::where('sender_id', $current_user->id)->where('trash', 0)->whereRaw('id=ticket_id')->get();
             return $t;
         }
-        if($current_user->is_staff == 0)
-        {
+        if ($current_user->is_staff == 0) {
             $t = Ticket::where('sender_id', $current_user->id)->where('receiver_id', $current_user->id)->where('trash', 0)->whereRaw('id=ticket_id')->get();
             return $t;
         }
@@ -230,5 +229,6 @@ class Ticket extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
 
 }

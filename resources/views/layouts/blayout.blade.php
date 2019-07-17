@@ -44,7 +44,6 @@
 </head>
 <body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click"
       data-menu="vertical-menu" data-color="bg-success" data-col="2-columns">
-
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
     <div class="navbar-wrapper">
         <div class="navbar-container content">
@@ -85,15 +84,16 @@
                            id="dropdown-flag" href="#"
                            data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false"><i
-                    class="flag-icon {{$languages[auth::user()->lang-1]["icon"]}}"></i><span class="selected-language"></span>
+                                    class="flag-icon {{$languages[auth::user()->lang-1]["icon"]}}"></i><span
+                                    class="selected-language"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
                             <div class="arrow_box">
                                 @foreach ($languages as $lang)
-                                     <a class="dropdown-item"
-                                        href="{{url("/changeLanguage/".$lang["id"])}}"><i
-                                        class="flag-icon {{$lang["icon"]}}"></i> {{$lang["name"]}}
-                                     </a>
+                                    <a class="dropdown-item"
+                                       href="{{url("/changeLanguage/".$lang["id"])}}"><i
+                                                class="flag-icon {{$lang["icon"]}}"></i> {{$lang["name"]}}
+                                    </a>
                                 @endforeach
                             </div>
                         </div>
@@ -101,7 +101,8 @@
                     <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
                                                                            data-toggle="dropdown"><i
                                     class="ficon ft-bell bell-shake" id="notification-navbar-link"></i><span
-                                    class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow">5</span></a>
+                                    class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"
+                                    id="topmenu_number_notify"></span></a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <div class="arrow_box_right">
                                 <li class="dropdown-menu-header">
@@ -109,23 +110,9 @@
                                                 class="grey darken-2">{{trans("mb.notifications")}}</span>
                                     </h6>
                                 </li>
-                                <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left align-self-center"><i
-                                                        class="ft-share info font-medium-4 mt-2"></i></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading info">New Order Received</h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">Lorem
-                                                    ipsum dolor sit amet!</p>
-                                                <small>
-                                                    <time class="media-meta text-muted"
-                                                          datetime="2015-06-11T18:29:20+08:00">3:30 PM
-                                                    </time>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                <div id="top_notify_list">
+
+                                </div>
                                 <li class="dropdown-menu-footer">
                                     <button onclick="notifyMe();" class="dropdown-item info text-right pr-1"
                                     >{{trans("mb.readAll")}}</button>
@@ -204,8 +191,6 @@
 </nav>
 
 <!-- ////////////////////////////////////////////////////////////////////////////-->
-
-
 <div class="main-menu menu-fixed menu-dark menu-accordion    menu-shadow " data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
@@ -318,17 +303,11 @@
     </div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
-<footer class="footer footer-static footer-light navbar-border navbar-shadow">
+<footer class="footer fixed-bottom footer-light navbar-border navbar-shadow">
     <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span
-                class="float-md-left d-block d-md-inline-block">2018  &copy; Copyright <a
-                    class="text-bold-800 grey darken-2" href="https://themeselection.com/" target="_blank">ThemeSelection</a></span>
-        <ul class="list-inline float-md-right d-block d-md-inline-blockd-none d-lg-block mb-0">
-            <li class="list-inline-item"><a class="my-1" href="https://themeselection.com/" target="_blank"> More
-                    themes</a></li>
-            <li class="list-inline-item"><a class="my-1" href="https://themeselection.com/support" target="_blank">
-                    Support</a></li>
-
-        </ul>
+                class="float-md-left d-block d-md-inline-block">Copyright &copy;<a
+                    class="text-bold-800 grey darken-2" href=""
+                    target="_blank">ASA System Yeganeh. All Rights Reserved</a></span>
     </div>
 </footer>
 <!-- BEGIN VENDOR JS-->

@@ -171,6 +171,12 @@ return [
     "Login" => "ورود",
     "ticketLoginHeader" => "سامانه مکانیزه پشتیبانی",
     "Send Password Reset Link" => "بازیابی رمز عبور",
-    "persian"=>"فارسی"
+    "persian" => "فارسی",
+    ///////////////NOTIFICATION////////////////
+    "notify_expire_date_ticket_subject" => "تاریخ‌اتمام‌ تیکت",
+    "notify_expire_date_ticket_text" => "مهلت پشتیبانی تیکت شما به اتمام رسیده است",
+    "notify_duration_ticket_subject" => "تاریخ‌اتمام‌ تیکت ",
+    "notify_duration_ticket_text" => "مهلت پشتیبانی تیکت با شماره به اتمام رسیده است",
+    "lastUpdate" => "آخرین بروزرسانی‌ها",
 ];
 ?>

@@ -65,6 +65,7 @@ class TicketController extends Controller
         $ticket_id = $this->decode_ticket_id($ticket_id);
         $user = auth::user();
         $ticket = Ticket::where('id', $ticket_id)->get();
+        $authorise = false;
         /////////////////////////////////////////////////////////////////////////
         //  check and this ticket not main use the parent ticket in chain
         if (!$ticket->isEmpty()) {
@@ -78,9 +79,13 @@ class TicketController extends Controller
         //////////////////////////////////
         if ($user->is_staff == 0 && $ticket[0]->sender_id != $user->id) {
             abort(401, "tickets");
+            $authorise = false;
         }
         if (!Ticket::check_authorise_ticket($ticket_id)) {
-            abort(401, "tickets");
+            $authorise = false;
+           // abort(401, "tickets");
+        } else {
+            $authorise = true;
         }
         ///////////////////////////////////////////////////////////////////////////
         $authorise_user_reffral = [];
@@ -88,7 +93,7 @@ class TicketController extends Controller
         $set_times = UserAuthorise::allowed_setTimes_by_user($user->id);
         $ticket_time_log = TicketLog::where('ticket_id', -1)->get();
         if ($user->is_staff == 1) {
-            if ($allowed_refferal) {
+            if ($allowed_refferal && $authorise==true) {
                 $authorise_user_reffral = UserAuthorise::allowed_user_by_ticket($ticket_id);
 
             }
@@ -116,6 +121,7 @@ class TicketController extends Controller
         $data["ticket_time_log"] = $ticket_time_log;
         $data["allowed_refferal"] = $allowed_refferal;
         $data["set_times"] = $set_times;
+        $data["authorise"] = $authorise;
         if (Session::has('return_back')) {
             $data["return_back"] = Session::get('return_back');
         }
@@ -407,6 +413,46 @@ class TicketController extends Controller
     function decode_ticket_id($code)
     {
         return base64_decode(base64_decode(base64_decode(base64_decode(base64_decode($code)))));
+
+    }
+
+    public function advanced_search(Request $request)
+    {
+        $data = $request->validate([
+            "topic_search" => "nullable|numeric",
+            "subject_ticket" => "nullable|string",
+        ]);
+        if (isset($request->topic_search)) {
+            $ticket = Ticket::where('trash', 0)->whereRaw("id=ticket_id");
+            $subject_ticket = isset($request->subject_ticket) ? $request->subject_ticket : "";
+            switch ($request->topic_search) {
+                case 1:
+                    $ticket = $ticket->where('id', $subject_ticket);
+                    break;
+                case 2:
+                    $ticket = $ticket->where('subject', $subject_ticket);
+                    break;
+                case 3:
+                    $user = User::where('name', $subject_ticket)->get();
+                    $user_id_s = [];
+                    foreach ($user as $u) {
+                        array_push($user_id_s, $u->id);
+                    }
+                    $ticket = $ticket->whereIn('sender_id', $user_id_s)->orWhereIn('receiver_id', $user_id_s);
+                    break;
+            }
+        }
+        $tickets = $ticket->groupBy('ticket_id')->get();
+        /////////////////////
+        $data = [];
+        $data["tickets"] = $tickets;
+        $data["user"] = auth::user();
+        $data["type"] = "sender";
+        $data["ticket_status"] = Ticket::STATUS_LIST();
+
+        //dd($tickets);
+        //////////////////////
+        return view('ticket.index', $data);
 
     }
 

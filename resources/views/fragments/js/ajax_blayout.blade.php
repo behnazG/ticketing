@@ -35,17 +35,45 @@
 
                 }
             });
-        }, 3000);
-        // setInterval(function () {
-        //     $.ajax({
-        //         type: 'get',
-        //         url: '/refreshTopMenuNotify',
-        //         success: function (result) {
-        //             alert(result);
-        //         }
-        //     });
-        // }, 100000);
-    });
+        }, 3000000);
+        setInterval(function () {
+            $.ajax({
+                type: 'get',
+                url: '/refreshTopMenuNotify',
+                success: function (result) {
+                    var result = JSON.parse(result);
+                    var div_content = "";
+                    var tickets_duration = result[1]["tickets_duration"];
+                    var counter = 0;
+                    console.log(result);
+                    //////////////////////////////////////////////////////////////////////////
+                    tickets_duration.forEach(function (item, index, arr) {
+                        var subject = "{{trans("mb.notify_expire_date_ticket_subject")}} " + " " + item.id;
+                        var icon = "<i class='fa fa-user'></i>";
+                        var content = "{{trans("mb.notify_expire_date_ticket_text")}}";
+                        var url = "tickets/" + item.id_coder;
+                        div_content = div_content + create_notify_div();
+                        notifyMe(subject, icon, content, url);
+                        counter++;
+                    });
+                    var tickets_expire_date = result[1]["tickets_expire_date"];
+                    tickets_expire_date.forEach(function (item, index, arr) {
+                        var subject = "{{trans("mb.notify_expire_date_ticket_subject")}} " + " " + item.id;
+                        var icon = "<i class='fa fa-user'></i>";
+                        var content = "{{trans("mb.notify_expire_date_ticket_text")}}";
+                        var url = "tickets/" + item.id_coder;
+                        div_content = div_content + create_notify_div(item.subject, item.text);
+                        notifyMe(subject, icon, content, url);
+                        counter++;
+                    });
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    $("#top_notify_list").html(div_content);
+                    $("#topmenu_number_notify").html(counter);
+                }
+            });
+        }, 3000000);
+    })
+    ;
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -58,19 +86,34 @@
             Notification.requestPermission();
     });
 
-    function notifyMe() {
+    function notifyMe(notify_title = "", notify_icon, notify_text, url) {
         if (Notification.permission !== 'granted')
             Notification.requestPermission();
         else {
-            var notification = new Notification('Notification title', {
-                icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
-                body: 'Hey there! Youve been notified!',
+            var notification = new Notification(notify_title, {
+                icon: notify_icon,
+                body: notify_text,
             });
 
             notification.onclick = function () {
-                window.open('http://stackoverflow.com/a/13328397/1269037');
+                window.open(url);
             };
         }
+    }
+
+    function create_notify_div(subject, text, icons) {
+        var str = ' <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">\n' +
+            '                                        <div class="media">\n' +
+            '                                            <div class="media-left align-self-center"><i\n' +
+            '                                                        class="ft-share info font-medium-4 mt-2"></i></div>\n' +
+            '                                            <div class="media-body">\n' +
+            '                                                <h6 class="media-heading info">' + subject + '</h6>\n' +
+            '                                                <p class="notification-text font-small-3 text-muted text-bold-600">' + text + '</p>\n' +
+            '                                            </div>\n' +
+            '                                        </div>\n' +
+            '                                    </a>\n' +
+            '                                </li>';
+        return str;
     }
 </script>
 

@@ -83,11 +83,14 @@ class CheckLanguage
         $r = [];
         if ($err) {
             $status = 0;
-            return "cURL Error #:" . $err;
+//            return "cURL Error #:" . $err;
+            return 'fa';
         } else {
             $status = 1;
             $r = json_decode($response);
         }
+        if (empty($r))
+            return 'fa';
         /////////////////////////////
         if ($status == 1) {
             $language = language::where('country_code', $r->countryCode)->get();
