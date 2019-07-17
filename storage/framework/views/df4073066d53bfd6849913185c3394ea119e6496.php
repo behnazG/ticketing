@@ -160,7 +160,7 @@ $breadcrumbs = [
                                     <div class="row form-group mt-3">
                                         <div class="col-12">
                                             <div class="row skin skin-square">
-                                                <div class="col-12">
+                                                <div class="col-4">
                                                     <fieldset>
                                                         <input type="checkbox" name="allow_referral"
                                                                <?php echo e(old("allow_referral") || (!old("allow_referral") && $old_allow_referral==1)?'checked':''); ?>
@@ -172,7 +172,7 @@ $breadcrumbs = [
                                                         </label>
                                                     </fieldset>
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-4">
                                                     <fieldset>
                                                         <input type="checkbox" name="view_pending_ticket"
                                                                <?php echo e(old("view_pending_ticket") || (!old("view_pending_ticket") && $old_view_pending_ticket==1)?'checked':''); ?>
@@ -184,7 +184,7 @@ $breadcrumbs = [
                                                         </label>
                                                     </fieldset>
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-4">
                                                     <fieldset>
                                                         <input type="checkbox" name="view_in_progress_ticket"
                                                                <?php echo e(old("view_in_progress_ticket") || (!old("view_in_progress_ticket") && $old_view_in_progress_ticket==1)?'checked':''); ?>
@@ -196,7 +196,7 @@ $breadcrumbs = [
                                                         </label>
                                                     </fieldset>
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-4">
                                                     <fieldset>
                                                         <input type="checkbox" name="view_closed"
                                                                <?php echo e(old("view_closed") || (!old("view_closed") && $old_view_closed==1)?'checked':''); ?>
@@ -208,7 +208,7 @@ $breadcrumbs = [
                                                         </label>
                                                     </fieldset>
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-4">
                                                     <fieldset>
                                                         <input type="checkbox" name="set_times"
                                                                <?php echo e(old("set_times") || (!old("set_times") && $old_set_times==1)?'checked':''); ?>
@@ -220,7 +220,7 @@ $breadcrumbs = [
                                                         </label>
                                                     </fieldset>
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-4">
                                                     <fieldset>
                                                         <input type="checkbox" name="get_sms"
                                                                <?php echo e(old("get_sms") || (!old("get_sms") && $old_get_sms==1)?'checked':''); ?>
@@ -232,6 +232,72 @@ $breadcrumbs = [
                                                         </label>
                                                     </fieldset>
                                                 </div>
+
+
+                                                <div class="col-4">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="admin_users"
+                                                               <?php echo e(old("admin_users") || (!old("admin_users") && $old_admin_users==1)?'checked':''); ?>
+
+                                                               class="checkbox_hotel" id="admin_users">
+                                                        <label for="admin_users"
+                                                               id=""><span
+                                                                    class=""><?php echo e(trans('mb.AdminUsers')); ?></span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-4">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="add_authorise"
+                                                               <?php echo e(old("add_authorise") || (!old("add_authorise") && $old_add_authorise==1)?'checked':''); ?>
+
+                                                               class="checkbox_hotel" id="add_authorise">
+                                                        <label for="add_authorise"
+                                                               id=""><span
+                                                                    class=""><?php echo e(trans('mb.addAuthorise')); ?></span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-4">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="admin_hotels"
+                                                               <?php echo e(old("admin_hotels") || (!old("admin_hotels") && $old_admin_hotels==1)?'checked':''); ?>
+
+                                                               class="checkbox_hotel" id="admin_hotels">
+                                                        <label for="admin_hotels"
+                                                               id=""><span
+                                                                    class=""><?php echo e(trans('mb.adminHotels')); ?></span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-4">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="admin_categories"
+                                                               <?php echo e(old("admin_categories") || (!old("admin_categories") && $old_admin_categories==1)?'checked':''); ?>
+
+                                                               class="checkbox_hotel" id="admin_categories">
+                                                        <label for="admin_categories"
+                                                               id=""><span
+                                                                    class=""><?php echo e(trans('mb.adminCategories')); ?></span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-4">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="admin_organizationCharts"
+                                                               <?php echo e(old("admin_organizationCharts") || (!old("admin_organizationCharts") && $old_admin_organizationCharts==1)?'checked':''); ?>
+
+                                                               class="checkbox_hotel" id="admin_organizationCharts">
+                                                        <label for="admin_organizationCharts"
+                                                               id=""><span
+                                                                    class=""><?php echo e(trans('mb.adminOrganizationCharts')); ?></span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+
+
+
+
                                             </div>
                                         </div>
                                     </div>

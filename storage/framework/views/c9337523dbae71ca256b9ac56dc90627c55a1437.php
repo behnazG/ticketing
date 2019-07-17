@@ -12,7 +12,7 @@
             <a href="#" class="alert-link">important</a> alert message.
         </div>
     <?php elseif(Session::get('message')==0): ?>
-        <div class="alert  bg-danger alert-icon-left alert-dismissible mb-2" role="alert">
+        <div class="alert  bg-asa alert-icon-left alert-dismissible mb-2" role="alert">
 							<span class="alert-icon">
 								<i class="ft-thumbs-down"></i>
 							</span>

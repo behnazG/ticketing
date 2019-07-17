@@ -42,6 +42,11 @@
     <!-- END Custom CSS-->
     <!-- END Custom CSS-->
 </head>
+<?php
+$user_id = auth::user()->id;
+$user_authorise = \App\UserAuthorise::getAuthorise();
+
+?>
 <body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click"
       data-menu="vertical-menu" data-color="bg-success" data-col="2-columns">
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
@@ -84,7 +89,7 @@
                            id="dropdown-flag" href="#"
                            data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false"><i
-                                    class="flag-icon {{$languages[auth::user()->lang-1]["icon"]}}"></i><span
+                                    class="flag-icon {{$languages[\Illuminate\Support\Facades\Session::get("locale_id")]["icon"]}}"></i><span
                                     class="selected-language"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
@@ -101,7 +106,7 @@
                     <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
                                                                            data-toggle="dropdown"><i
                                     class="ficon ft-bell bell-shake" id="notification-navbar-link"></i><span
-                                    class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"
+                                    class="badge badge-pill badge-sm badge-asa badge-default badge-up badge-glow"
                                     id="topmenu_number_notify"></span></a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <div class="arrow_box_right">
@@ -124,7 +129,7 @@
                         <li class="dropdown dropdown-notification nav-item">
                             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
                                 <i class="ficon ft-mail"> </i>
-                                <span class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"
+                                <span class="badge badge-pill badge-sm badge-asa badge-default badge-up badge-glow"
                                       id="topmenu_number_email"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -151,7 +156,6 @@
                            href="#" data-toggle="dropdown">
                             <span
                                     class="avatar avatar-online">
-
                                 <img src="{{$user_image}}"
                                      alt="avatar">
                             </span>
@@ -220,52 +224,60 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="ft-bar-chart"></i><span class="menu-title"
-                                                      data-i18n="">{{trans('mb.reports')}}</span></a>
-                <ul class="menu-content">
+            @if(in_array("reports",$user_authorise))
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="ft-bar-chart"></i><span class="menu-title"
+                                                          data-i18n="">{{trans('mb.reports')}}</span></a>
+                    <ul class="menu-content">
 
-                </ul>
-            </li>
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="ft-user"></i><span class="menu-title"
-                                                 data-i18n="">{{trans('mb.users')}}</span></a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item"
-                           href="{{url('users/create')}}">{{trans('mb.create',["name"=>trans('mb.user')])}}</a>
-                    </li>
-                    <li>
-                        <a class="menu-item"
-                           href="{{url('users/hotels')}}">{{trans('mb.users').' '.trans('mb.hotel')}}</a>
-                    </li>
-                    <li>
-                        <a class="menu-item" href="{{url('users/staffs')}}">{{trans('mb.staffs')}}</a>
-                    </li>
-                </ul>
-            </li>
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="ft-settings"></i><span class="menu-title"
-                                                     data-i18n="">{{trans('mb.settings')}}</span></a>
-                <ul class="menu-content">
-                    <li><a class="menu-item"
-                           href="{{url('categories')}}">{{trans('mb.categories')}}</a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="{{url('hotels')}}">{{trans('mb.hotels')}}</a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="{{url('organizationCharts')}}">{{trans('mb.organizationChart')}}</a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="{{url('theme')}}">{{trans('mb.themeSetting')}}</a>
-                    </li>
-                </ul>
-            </li>
-
+                    </ul>
+                </li>
+            @endif
+            @if(in_array("admin_users",$user_authorise))
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="ft-user"></i><span class="menu-title"
+                                                     data-i18n="">{{trans('mb.users')}}</span></a>
+                    <ul class="menu-content">
+                        <li>
+                            <a class="menu-item"
+                               href="{{url('users/create')}}">{{trans('mb.create',["name"=>trans('mb.user')])}}</a>
+                        </li>
+                        <li>
+                            <a class="menu-item"
+                               href="{{url('users/hotels')}}">{{trans('mb.users').' '.trans('mb.hotel')}}</a>
+                        </li>
+                        <li>
+                            <a class="menu-item" href="{{url('users/staffs')}}">{{trans('mb.staffs')}}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            @if(in_array("admin_hotels",$user_authorise) || in_array("admin_categories",$user_authorise) || in_array("admin_organizationCharts",$user_authorise) )
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="ft-settings"></i><span class="menu-title"
+                                                         data-i18n="">{{trans('mb.settings')}}</span></a>
+                    <ul class="menu-content">
+                        @if( in_array("admin_categories",$user_authorise))
+                            <li><a class="menu-item"
+                                   href="{{url('categories')}}">{{trans('mb.categories')}}</a>
+                            </li>
+                        @endif
+                        @if(in_array("admin_hotels",$user_authorise))
+                            <li><a class="menu-item"
+                                   href="{{url('hotels')}}">{{trans('mb.hotels')}}</a>
+                            </li>
+                        @endif
+                        @if(in_array("admin_organizationCharts",$user_authorise))
+                            <li><a class="menu-item"
+                                   href="{{url('organizationCharts')}}">{{trans('mb.organizationChart')}}</a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
         </ul>
     </div>
     <div class="navigation-background"></div>

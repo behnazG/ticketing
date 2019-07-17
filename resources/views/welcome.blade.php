@@ -9,6 +9,7 @@
                 <div class="col-xl-3 col-lg-6 col-12">
                     <div class="card">
                         <div class="card-content">
+                            <a href="{{url('tickets/compose')}}">
                             <div class="card-body">
                                 <div class="media d-flex">
                                     <div class="media-body text-left align-self-bottom mt-3">
@@ -20,6 +21,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
                     </div>
                 </div>

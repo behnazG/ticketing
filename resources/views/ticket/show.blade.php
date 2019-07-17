@@ -160,19 +160,19 @@
                 <div class="row mt-1 text-left">
                     <div class="col-12">
                         @if($allowed_refferal)
-                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_reffral"><i
+                            <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_reffral"><i
                                         class="fas fa-arrow-right"></i> {{trans("mb.reffral")}}
                             </button>
                         @endif
                         @if($set_times)
-                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_set_times"><i
+                            <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_set_times"><i
                                         class="fas fa-calendar"></i> {{trans("mb.setTimes")}}
                             </button>
                         @endif
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
+                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_replay">
                             <i class="fas fa-reply"></i> {{trans("mb.replay")}}
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_change_status"><i
+                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_change_status"><i
                                     class="fas fa-reply"></i> {{trans("mb.changeStatus")}}
                         </button>
                         @php($show_button_start_work=true)
@@ -187,18 +187,18 @@
                         @endforeach
                         @if($current_user->is_staff==1)
                             @if($show_button_start_work == true)
-                                <button type="button" class="btn btn-danger btn-sm btn-glow mr-1"
+                                <button type="button" class="btn btn-asa btn-sm btn-glow mr-1"
                                         id="btn_start_work"><i
                                             class="ft-clock"></i> {{trans("mb.startWork")}}
                                 </button>
                             @else
-                                <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_end_work">
+                                <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_end_work">
                                     <i
                                             class="ft-clock"></i> {{trans("mb.endWork")}}
                                 </button>
                             @endif
                         @endif
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_show_work_time">
+                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_show_work_time">
                             <i class="fa fa-history"></i>
                             {{trans("mb.LogFile")}}
                         </button>

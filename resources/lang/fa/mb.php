@@ -178,5 +178,10 @@ return [
     "notify_duration_ticket_subject" => "تاریخ‌اتمام‌ تیکت ",
     "notify_duration_ticket_text" => "مهلت پشتیبانی تیکت با شماره به اتمام رسیده است",
     "lastUpdate" => "آخرین بروزرسانی‌ها",
+    "AdminUsers"=>"مدیریت‌کاربران",
+    "addAuthorise"=>"سطح‌دسترسی دادن به کاربران",
+    "adminHotels"=>"مدیریت هتل ها",
+    "adminCategories"=>"مدیریت دسته‌بندی‌ها",
+    "adminOrganizationCharts"=>"مدیریت‌‌چارت‌سازمانی",
 ];
 ?>

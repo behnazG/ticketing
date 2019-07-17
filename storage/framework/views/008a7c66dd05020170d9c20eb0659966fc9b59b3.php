@@ -163,22 +163,22 @@
                 <div class="row mt-1 text-left">
                     <div class="col-12">
                         <?php if($allowed_refferal): ?>
-                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_reffral"><i
+                            <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_reffral"><i
                                         class="fas fa-arrow-right"></i> <?php echo e(trans("mb.reffral")); ?>
 
                             </button>
                         <?php endif; ?>
                         <?php if($set_times): ?>
-                            <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_set_times"><i
+                            <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_set_times"><i
                                         class="fas fa-calendar"></i> <?php echo e(trans("mb.setTimes")); ?>
 
                             </button>
                         <?php endif; ?>
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_replay">
+                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_replay">
                             <i class="fas fa-reply"></i> <?php echo e(trans("mb.replay")); ?>
 
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_change_status"><i
+                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_change_status"><i
                                     class="fas fa-reply"></i> <?php echo e(trans("mb.changeStatus")); ?>
 
                         </button>
@@ -194,20 +194,20 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php if($current_user->is_staff==1): ?>
                             <?php if($show_button_start_work == true): ?>
-                                <button type="button" class="btn btn-danger btn-sm btn-glow mr-1"
+                                <button type="button" class="btn btn-asa btn-sm btn-glow mr-1"
                                         id="btn_start_work"><i
                                             class="ft-clock"></i> <?php echo e(trans("mb.startWork")); ?>
 
                                 </button>
                             <?php else: ?>
-                                <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_end_work">
+                                <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_end_work">
                                     <i
                                             class="ft-clock"></i> <?php echo e(trans("mb.endWork")); ?>
 
                                 </button>
                             <?php endif; ?>
                         <?php endif; ?>
-                        <button type="button" class="btn btn-danger btn-sm btn-glow mr-1" id="btn_show_work_time">
+                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_show_work_time">
                             <i class="fa fa-history"></i>
                             <?php echo e(trans("mb.LogFile")); ?>
 

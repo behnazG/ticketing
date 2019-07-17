@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <div class="row ">
                             <div class="form-group col-12">
-                                <a class="btn  btn-danger box-shadow-2  btn-min-width pull-right"
+                                <a class="btn  btn-asa box-shadow-2  btn-min-width pull-right"
                                    href="<?php echo e(url("users/create")); ?>">
                                     <i class="ft-plus-square"></i> <?php echo e(trans("mb.add",["name"=>trans('mb.user')])); ?>
 
@@ -60,7 +60,6 @@
                                     <td></td>
                                 <?php endif; ?>
                                 <th></th>
-                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -74,8 +73,8 @@
                                     <?php if($is_staff=="staffs"): ?>
                                         <td><a href="<?php echo e(url("authorises/".$user->id."/authorise")); ?>"><i class="ft-lock"></i> <?php echo e(trans("mb.authorise")); ?></a></td>
                                     <?php endif; ?>
+
                                     <td><?php echo $__env->make('fragments.edit',['id'=>$user->id,'url'=>'users'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?></td>
-                                    <td><?php echo $__env->make('fragments.delete',['id'=>$user->id], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?></td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>

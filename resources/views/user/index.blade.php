@@ -40,7 +40,7 @@
                     <div class="card-body">
                         <div class="row ">
                             <div class="form-group col-12">
-                                <a class="btn  btn-danger box-shadow-2  btn-min-width pull-right"
+                                <a class="btn  btn-asa box-shadow-2  btn-min-width pull-right"
                                    href="{{url("users/create")}}">
                                     <i class="ft-plus-square"></i> {{trans("mb.add",["name"=>trans('mb.user')])}}
                                 </a>
@@ -61,7 +61,6 @@
                                     <td></td>
                                 @endif
                                 <th></th>
-                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -75,8 +74,8 @@
                                     @if($is_staff=="staffs")
                                         <td><a href="{{url("authorises/".$user->id."/authorise")}}"><i class="ft-lock"></i> {{trans("mb.authorise")}}</a></td>
                                     @endif
+
                                     <td>@include('fragments.edit',['id'=>$user->id,'url'=>'users'])</td>
-                                    <td>@include('fragments.delete',['id'=>$user->id])</td>
                                 </tr>
                             @endforeach
                             </tbody>

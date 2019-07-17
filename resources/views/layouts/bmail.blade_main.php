@@ -182,7 +182,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12 mb-1">
-                                                <button class="btn btn-danger float-right" type="button"><i
+                                                <button class="btn btn-asa float-right" type="button"><i
                                                             class="ft-arrow-right"></i> Submit
                                                 </button>
                                             </div>
@@ -242,7 +242,7 @@
                     <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
                                                                            data-toggle="dropdown"><i
                                     class="ficon ft-bell bell-shake" id="notification-navbar-link"></i><span
-                                    class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow">5</span></a>
+                                    class="badge badge-pill badge-sm badge-asa badge-default badge-up badge-glow">5</span></a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <div class="arrow_box_right">
                                 <li class="dropdown-menu-header">
@@ -282,9 +282,9 @@
                                     </a><a href="javascript:void(0)">
                                         <div class="media">
                                             <div class="media-left align-self-center"><i
-                                                        class="ft-repeat font-medium-4 mt-2 danger"></i></div>
+                                                        class="ft-repeat font-medium-4 mt-2 asa"></i></div>
                                             <div class="media-body">
-                                                <h6 class="media-heading danger">New Purchase</h6>
+                                                <h6 class="media-heading asa">New Purchase</h6>
                                                 <p class="notification-text font-small-3 text-muted text-bold-600">Lorem
                                                     ipsum dolor sit ametest?</p>
                                                 <small>
@@ -358,7 +358,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <h6 class="media-heading text-bold-700">Eliza Elliot<i
-                                                            class="ft-circle font-small-2 danger float-right"></i></h6>
+                                                            class="ft-circle font-small-2 asa float-right"></i></h6>
                                                 <p class="notification-text font-small-3 text-muted text-bold-600">Okay.
                                                     here is some more details...</p>
                                                 <small>
@@ -392,7 +392,7 @@
                                                             alt="avatar"></span></div>
                                             <div class="media-body">
                                                 <h6 class="media-heading text-bold-700">Tonny Deep<i
-                                                            class="ft-circle font-small-2 danger float-right"></i></h6>
+                                                            class="ft-circle font-small-2 asa float-right"></i></h6>
                                                 <p class="notification-text font-small-3 text-muted text-bold-600">We will
                                                     start new project development...</p>
                                                 <small>
@@ -514,7 +514,7 @@
             </li>
             <li class=" nav-item"><a href="#"><i class="ft-layout"></i><span class="menu-title"
                                                                              data-i18n="">Layouts</span><span
-                            class="badge badge badge-pill badge-danger float-right mr-2">5</span></a>
+                            class="badge badge badge-pill badge-asa float-right mr-2">5</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="#">Content Sidebar</a>
                         <ul class="menu-content">
@@ -644,7 +644,7 @@
                         <ul class="menu-content">
                             <li><a class="menu-item" href="color-palette-primary.html">Primary palette</a>
                             </li>
-                            <li><a class="menu-item" href="color-palette-danger.html">Danger palette</a>
+                            <li><a class="menu-item" href="color-palette-asa.html">asa palette</a>
                             </li>
                             <li><a class="menu-item" href="color-palette-success.html">Success palette</a>
                             </li>
@@ -905,7 +905,7 @@
             <div class="sidebar-content email-app-sidebar d-flex">
                 <div class="email-app-menu col-md-5 card d-none d-lg-block rounded-0">
                     <div class="form-group form-group-compose text-center">
-                        <button type="button" class="btn btn-danger btn-min-width btn-glow my-1 btn-block">
+                        <button type="button" class="btn btn-asa btn-min-width btn-glow my-1 btn-block">
                             <i class="ft-mail"></i> Compose
                         </button>
                     </div>
@@ -931,7 +931,7 @@
                         <a href="#" class="list-group-item list-group-item-action border-0">
                             <i class="ft-circle mr-1 success"></i> Private </a>
                         <a href="#" class="list-group-item list-group-item-action border-0">
-                            <i class="ft-circle mr-1 danger"></i> Work
+                            <i class="ft-circle mr-1 asa"></i> Work
                         </a>
                         <a href="#" class="list-group-item list-group-item-action border-0">
                             <i class="mr-1 ft-plus"></i> Add
@@ -1002,7 +1002,7 @@
                                 </span>
                                         </p>
                                         <p>
-                                            <i class="ft-circle danger"></i>
+                                            <i class="ft-circle asa"></i>
                                         </p>
                                         <p>
                                             <i class="ft-paperclip"></i>
@@ -1126,7 +1126,7 @@
                                     <div class="media-left text-center">
                                         <p>
                                 <span class="avatar avatar-md">
-                                    <span class="media-object rounded-circle text-circle bg-danger ">L</span>
+                                    <span class="media-object rounded-circle text-circle bg-asa ">L</span>
                                 </span>
                                         </p>
                                         <p>
@@ -1157,7 +1157,7 @@
                                 </span>
                                         </p>
                                         <p>
-                                            <i class="ft-circle danger"></i>
+                                            <i class="ft-circle asa"></i>
                                         </p>
 
                                     </div>
@@ -1211,7 +1211,7 @@
                                 </span>
                                         </p>
                                         <p>
-                                            <i class="ft-circle danger"></i>
+                                            <i class="ft-circle asa"></i>
                                         </p>
                                         <p>
                                             <i class="ft-paperclip"></i>
@@ -1315,7 +1315,7 @@
                                 </span>
                                         </p>
                                         <p>
-                                            <i class="ft-circle danger"></i>
+                                            <i class="ft-circle asa"></i>
                                         </p>
                                     </div>
                                     <div class="media-body w-100">
@@ -1414,7 +1414,7 @@
                                         <h6 class="list-group-item-heading text-bold-700">Steve Bush</h6>
                                         <p class="list-group-item-text"> May 27, 2018
                                             <span class="float-right">
-								<i class="font-medium-1 ft-star danger lighten-3 font-medium-5 mr-1"></i>
+								<i class="font-medium-1 ft-star asa lighten-3 font-medium-5 mr-1"></i>
 								<i class="la la-ellipsis-v"></i>
 							</span>
                                         </p>
@@ -1554,7 +1554,7 @@
                 <div class="bg-success navbar-color-option" data-bg="bg-success" title="success"></div>
                 <div class="bg-info navbar-color-option" data-bg="bg-info" title="info"></div>
                 <div class="bg-warning navbar-color-option" data-bg="bg-warning" title="warning"></div>
-                <div class="bg-danger navbar-color-option" data-bg="bg-danger" title="danger"></div>
+                <div class="bg-asa navbar-color-option" data-bg="bg-asa" title="asa"></div>
                 <div class="bg-blue navbar-color-option" data-bg="bg-blue" title="blue"></div>
             </div>
         </div>
@@ -1651,7 +1651,7 @@
         <div class="row mb-2">
 
             <div class="col">
-                <a href="https://themeselection.com/" class="btn btn-primary btn-block box-shadow-1" target="_blank">More
+                <a href="https://themeselection.com/" class="btn btn-asa btn-block box-shadow-1" target="_blank">More
                     Themes</a>
             </div>
         </div>

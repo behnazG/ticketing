@@ -26,7 +26,12 @@ class UserAuthoriseController extends Controller
             "view_in_progress_ticket",
             "view_closed",
             "set_times",
-            "get_sms"
+            "get_sms",
+            "admin_users",
+            "add_authorise",
+            "admin_hotels",
+            "admin_categories",
+            "admin_organizationCharts"
         ];
         foreach ($other_setting as $key) {
             $index = "old_" . $key;
@@ -66,6 +71,11 @@ class UserAuthoriseController extends Controller
         $old_view_closed = 0;
         $old_set_times = 0;
         $old_get_sms = 0;
+        $old_admin_users = 0;
+        $old_add_authorise = 0;
+        $old_admin_hotels = 0;
+        $old_admin_categories = 0;
+        $old_admin_organizationCharts = 0;
         /////////////////////////////////////////////////////
         foreach ($user_authorises as $u_a) {
             if ($u_a->field_name == "categories") {
@@ -94,6 +104,21 @@ class UserAuthoriseController extends Controller
             } elseif ($u_a->field_name == "get_sms") {
                 $old_get_sms = 1;
                 $u_a_old_id[$u_a->id] = "get_sms";
+            } elseif ($u_a->field_name == "admin_users") {
+                $old_admin_users = 1;
+                $u_a_old_id[$u_a->id] = "admin_users";
+            } elseif ($u_a->field_name == "add_authorise") {
+                $old_add_authorise = 1;
+                $u_a_old_id[$u_a->id] = "add_authorise";
+            } elseif ($u_a->field_name == "admin_hotels") {
+                $old_admin_hotels = 1;
+                $u_a_old_id[$u_a->id] = "admin_hotels";
+            } elseif ($u_a->field_name == "admin_categories") {
+                $old_admin_categories = 1;
+                $u_a_old_id[$u_a->id] = "admin_categories";
+            } elseif ($u_a->field_name == "admin_organizationCharts") {
+                $old_admin_organizationCharts = 1;
+                $u_a_old_id[$u_a->id] = "admin_organizationCharts";
             }
         }
         /// ////////////////////////////////////////////////////////////
@@ -151,6 +176,36 @@ class UserAuthoriseController extends Controller
                 $data[] = ["field_name" => "get_sms", "field_value" => 1, "user_id" => $user->id];
             else
                 $u_a_id[array_search("get_sms", $u_a_old_id)] = "get_sms";
+        }
+        if (isset($request->admin_users)) {
+            if ($old_admin_users != 1)
+                $data[] = ["field_name" => "admin_users", "field_value" => 1, "user_id" => $user->id];
+            else
+                $u_a_id[array_search("admin_users", $u_a_old_id)] = "admin_users";
+        }
+        if (isset($request->add_authorise)) {
+            if ($old_add_authorise != 1)
+                $data[] = ["field_name" => "add_authorise", "field_value" => 1, "user_id" => $user->id];
+            else
+                $u_a_id[array_search("add_authorise", $u_a_old_id)] = "add_authorise";
+        }
+        if (isset($request->admin_hotels)) {
+            if ($old_admin_hotels != 1)
+                $data[] = ["field_name" => "admin_hotels", "field_value" => 1, "user_id" => $user->id];
+            else
+                $u_a_id[array_search("admin_hotels", $u_a_old_id)] = "admin_hotels";
+        }
+        if (isset($request->admin_categories)) {
+            if ($old_admin_categories != 1)
+                $data[] = ["field_name" => "admin_categories", "field_value" => 1, "user_id" => $user->id];
+            else
+                $u_a_id[array_search("admin_categories", $u_a_old_id)] = "admin_categories";
+        }
+        if (isset($request->admin_organizationCharts)) {
+            if ($old_admin_organizationCharts != 1)
+                $data[] = ["field_name" => "admin_organizationCharts", "field_value" => 1, "user_id" => $user->id];
+            else
+                $u_a_id[array_search("admin_organizationCharts", $u_a_old_id)] = "admin_organizationCharts";
         }
         ////////////////////////////
         try {

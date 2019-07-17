@@ -20,6 +20,10 @@ class CheckLanguage
     public function handle($request, Closure $next)
     {
         if (!Session::exists('locale')) {
+            App::setLocale(Session::get('locale'));
+            return $next($request);
+
+        } else {
             $lan = Language::all();
             $locale = "";
             if (!is_null($lan)) {
@@ -31,11 +35,17 @@ class CheckLanguage
                 }
             }
             App::setLocale($locale);
-            Session::put('locale', $locale);
+            $language = Language::where('short_name', $locale)->get();
+            if ($language->isEmpty()) {
+                Session::put('locale', 'fa');
+                Session::put('locale_id', 1);
+
+            } else {
+                Session::put('locale', $language[0]->short_name);
+                Session::put('locale_id', $language[0]->id);
+            }
             return $next($request);
         }
-        App::setLocale(Session::get('locale'));
-        return $next($request);
     }
 
     private function getUserIpAddr()

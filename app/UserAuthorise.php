@@ -4,6 +4,7 @@ namespace App;
 
 use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class UserAuthorise extends Model
 {
@@ -168,6 +169,24 @@ class UserAuthorise extends Model
             return false;
         else
             return true;
+    }
+
+
+    public static function getAuthorise()
+    {
+        try {
+            $r = [];
+            $current_user = auth::user()->id;
+            $u_a_s = self::where('user_id', $current_user)->get();
+            foreach ($u_a_s as $u_a) {
+                $index = $u_a->field_name;
+                array_push($r, $index);
+            }
+            return $r;
+        } catch (\Exception $e) {
+            return [];
+        }
+
     }
 
 }

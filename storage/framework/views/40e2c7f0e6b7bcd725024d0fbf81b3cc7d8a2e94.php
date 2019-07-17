@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <div class="row ">
                             <div class="form-group col-12">
-                                <a class="btn  btn-danger box-shadow-2  btn-min-width pull-right"
+                                <a class="btn  btn-asa box-shadow-2  btn-min-width pull-right"
                                    href="<?php echo e(url("organizationCharts/create")); ?>">
                                     <i class="ft-plus-square"></i> <?php echo e(trans("mb.add",["name"=>trans('mb.organizationChart')])); ?>
 

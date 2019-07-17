@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\CategoryLanguage;
 use App\LastUpdate;
 use App\Ticket;
 use App\User;
@@ -33,8 +35,11 @@ class HomeController extends Controller
     {
         $current_ticket_id = 0;
         $ticket = Ticket::where('status', 0)->orderBy('id', 'DESC')->get();
-        $tickets = Ticket::find_tickets('i', $ticket[0]->id, 0);
-        $count_ticket = $tickets->count() - 1;
+        $tickets = [];
+        if (!$ticket->isEmpty()) {
+            $tickets = Ticket::find_tickets('i', $ticket[0]->id, 0);
+            $count_ticket = $tickets->count() - 1;
+        }
         start_setting();
         $count_ticket = Ticket::find_tickets()->count();
         $data = [];

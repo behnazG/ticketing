@@ -110,7 +110,7 @@ foreach ($tickt_status as $t_s) {
                     <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
                                                                            data-toggle="dropdown"><i
                                     class="ficon ft-bell bell-shake" id="notification-navbar-link"></i><span
-                                    class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"
+                                    class="badge badge-pill badge-sm badge-asa badge-default badge-up badge-glow"
                                     id="topmenu_number_notify"></span></a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <div class="arrow_box_right">
@@ -133,7 +133,7 @@ foreach ($tickt_status as $t_s) {
                         <li class="dropdown dropdown-notification nav-item">
                             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
                                 <i class="ficon ft-mail"> </i>
-                                <span class="badge badge-pill badge-sm badge-danger badge-default badge-up badge-glow"
+                                <span class="badge badge-pill badge-sm badge-asa badge-default badge-up badge-glow"
                                       id="topmenu_number_email"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -289,7 +289,7 @@ foreach ($tickt_status as $t_s) {
                 <div class="email-app-menu col-12 card d-none d-lg-block rounded-0">
                     <div class="form-group form-group-compose text-center">
                         <a href="{{url("tickets/compose")}}"
-                           class="btn btn-danger btn-min-width btn-glow my-1 btn-block">
+                           class="btn btn-asa btn-min-width btn-glow my-1 btn-block">
                             <i class="ft-mail"></i> {{trans("mb.compose")}}
                         </a>
                     </div>

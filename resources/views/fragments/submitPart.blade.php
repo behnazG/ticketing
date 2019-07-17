@@ -1,5 +1,5 @@
 <div class="form-actions center">
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-asa">
         <i class="ft-check-square"></i> {{$submitText}}
     </button>
     <a href="{{url($giveUpUrl)}}" class="btn btn-secondary">
