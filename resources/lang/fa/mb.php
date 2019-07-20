@@ -183,5 +183,8 @@ return [
     "adminHotels"=>"مدیریت هتل ها",
     "adminCategories"=>"مدیریت دسته‌بندی‌ها",
     "adminOrganizationCharts"=>"مدیریت‌‌چارت‌سازمانی",
+    "from"=>"از",
+    "time"=>"زمان",
+    "trackBy"=>"پیگیری‌توسط",
 ];
 ?>

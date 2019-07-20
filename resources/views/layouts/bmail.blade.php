@@ -47,12 +47,13 @@ $status_ticket = [0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
 foreach ($tickt_status as $t_s) {
     $status_ticket[$t_s->status] = $t_s->counts;
 }
+$user_id = auth::user()->id;
+$user_authorise = \App\UserAuthorise::getAuthorise();
 ?>
 <body id="mybodyss"
       class="vertical-layout vertical-menu content-left-sidebar email-application  menu-collapsed fixed-navbar"
       data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue"
       data-col="content-left-sidebar">
-
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
     <div class="navbar-wrapper">
         <div class="navbar-container content">
@@ -198,10 +199,7 @@ foreach ($tickt_status as $t_s) {
         </div>
     </div>
 </nav>
-
 <!-- ////////////////////////////////////////////////////////////////////////////-->
-
-
 <div class="main-menu menu-fixed menu-dark menu-accordion    menu-shadow " data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
@@ -226,57 +224,67 @@ foreach ($tickt_status as $t_s) {
                     <li><a class="menu-item"
                            href="{{url('tickets/inbox')}}">{{trans('mb.myTicket')}}</a>
                     </li>
-                    <li><a class="menu-item"
-                           href="{{url('tickets/compose')}}">{{trans('mb.compose')}}</a>
-                    </li>
+                    @if(auth::user()->is_staff ==0)
+                        <li><a class="menu-item"
+                               href="{{url('tickets/compose')}}">{{trans('mb.compose')}}</a>
+                        </li>
+                    @endif
                 </ul>
             </li>
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="ft-bar-chart"></i><span class="menu-title"
-                                                      data-i18n="">{{trans('mb.reports')}}</span></a>
-                <ul class="menu-content">
+            @if(!empty($user_authorise) && in_array("reports",$user_authorise)|| auth::user()->organizational_chart_id==1)
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="ft-bar-chart"></i><span class="menu-title"
+                                                          data-i18n="">{{trans('mb.reports')}}</span></a>
+                    <ul class="menu-content">
 
-                </ul>
-            </li>
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="ft-user"></i><span class="menu-title"
-                                                 data-i18n="">{{trans('mb.users')}}</span></a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item"
-                           href="{{url('users/create')}}">{{trans('mb.create',["name"=>trans('mb.user')])}}</a>
-                    </li>
-                    <li>
-                        <a class="menu-item"
-                           href="{{url('users/hotels')}}">{{trans('mb.users').' '.trans('mb.hotel')}}</a>
-                    </li>
-                    <li>
-                        <a class="menu-item" href="{{url('users/staffs')}}">{{trans('mb.staffs')}}</a>
-                    </li>
-                </ul>
-            </li>
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="ft-settings"></i><span class="menu-title"
-                                                     data-i18n="">{{trans('mb.settings')}}</span></a>
-                <ul class="menu-content">
-                    <li><a class="menu-item"
-                           href="{{url('categories')}}">{{trans('mb.categories')}}</a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="{{url('hotels')}}">{{trans('mb.hotels')}}</a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="{{url('organizationCharts')}}">{{trans('mb.organizationChart')}}</a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="{{url('theme')}}">{{trans('mb.themeSetting')}}</a>
-                    </li>
-                </ul>
-            </li>
-
+                    </ul>
+                </li>
+            @endif
+            @if(!empty($user_authorise) && in_array("admin_users",$user_authorise) || auth::user()->organizational_chart_id==1)
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="ft-user"></i><span class="menu-title"
+                                                     data-i18n="">{{trans('mb.users')}}</span></a>
+                    <ul class="menu-content">
+                        <li>
+                            <a class="menu-item"
+                               href="{{url('users/create')}}">{{trans('mb.create',["name"=>trans('mb.user')])}}</a>
+                        </li>
+                        <li>
+                            <a class="menu-item"
+                               href="{{url('users/hotels')}}">{{trans('mb.users').' '.trans('mb.hotel')}}</a>
+                        </li>
+                        <li>
+                            <a class="menu-item" href="{{url('users/staffs')}}">{{trans('mb.staffs')}}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            @if(!empty($user_authorise) && in_array("admin_hotels",$user_authorise) || in_array("admin_categories",$user_authorise) || in_array("admin_organizationCharts",$user_authorise) || auth::user()->organizational_chart_id==1)
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="ft-settings"></i><span class="menu-title"
+                                                         data-i18n="">{{trans('mb.settings')}}</span></a>
+                    <ul class="menu-content">
+                        @if( in_array("admin_categories",$user_authorise)|| auth::user()->organizational_chart_id==1)
+                            <li><a class="menu-item"
+                                   href="{{url('categories')}}">{{trans('mb.categories')}}</a>
+                            </li>
+                        @endif
+                        @if(in_array("admin_hotels",$user_authorise)|| auth::user()->organizational_chart_id==1)
+                            <li><a class="menu-item"
+                                   href="{{url('hotels')}}">{{trans('mb.hotels')}}</a>
+                            </li>
+                        @endif
+                        @if(in_array("admin_organizationCharts",$user_authorise)|| auth::user()->organizational_chart_id==1)
+                            <li><a class="menu-item"
+                                   href="{{url('organizationCharts')}}">{{trans('mb.organizationChart')}}</a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
         </ul>
     </div>
     <div class="navigation-background"></div>
@@ -287,22 +295,25 @@ foreach ($tickt_status as $t_s) {
         <div class="sidebar">
             <div class="sidebar-content email-app-sidebar d-flex">
                 <div class="email-app-menu col-12 card d-none d-lg-block rounded-0">
-                    <div class="form-group form-group-compose text-center">
-                        <a href="{{url("tickets/compose")}}"
-                           class="btn btn-asa btn-min-width btn-glow my-1 btn-block">
-                            <i class="ft-mail"></i> {{trans("mb.compose")}}
-                        </a>
-                    </div>
+                    @if(auth::user()->is_staff ==0)
+                        <div class="form-group form-group-compose text-center">
+                            <a href="{{url("tickets/compose")}}"
+                               class="btn btn-asa btn-min-width btn-glow my-1 btn-block">
+                                <i class="ft-mail"></i> {{trans("mb.compose")}}
+                            </a>
+                        </div>
+                    @endif
                     <div class="list-group list-group-messages">
                         <a href="{{url('/tickets/inbox')}}"
-                           class="list-group-item list-group-item-action border-0 active"> {{trans("mb.myTicket")}}
+                           class="list-group-item list-group-item-action border-0">
+                            <i class="fa fa-mail-bulk mr-1 ml-1"></i> {{trans("mb.myTicket")}}
                         </a>
                         <?php $status_list = \App\Ticket::STATUS_LIST();?>
                         @foreach($status_list as $index=>$status)
                             <a href="{{url('tickets/inbox/'.$index)}}"
                                class="list-group-item list-group-item-action border-0">
                                 <i class="{{$status[2]}} mr-1 ml-1 {{$status[1]}}"></i> {{$status[0]}}
-                                <span class="primary float-right">{{$status_ticket[$index]}}</span>
+                                <span class="float-right">{{$status_ticket[$index]}}</span>
                             </a>
                         @endforeach
                     </div>

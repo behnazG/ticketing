@@ -19,7 +19,7 @@ class CheckLanguage
      */
     public function handle($request, Closure $next)
     {
-        if (!Session::exists('locale')) {
+        if (Session::exists('locale')) {
             App::setLocale(Session::get('locale'));
             return $next($request);
 

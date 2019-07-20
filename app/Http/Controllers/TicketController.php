@@ -83,7 +83,7 @@ class TicketController extends Controller
         }
         if (!Ticket::check_authorise_ticket($ticket_id)) {
             $authorise = false;
-           // abort(401, "tickets");
+            // abort(401, "tickets");
         } else {
             $authorise = true;
         }
@@ -93,7 +93,7 @@ class TicketController extends Controller
         $set_times = UserAuthorise::allowed_setTimes_by_user($user->id);
         $ticket_time_log = TicketLog::where('ticket_id', -1)->get();
         if ($user->is_staff == 1) {
-            if ($allowed_refferal && $authorise==true) {
+            if ($allowed_refferal && $authorise == true) {
                 $authorise_user_reffral = UserAuthorise::allowed_user_by_ticket($ticket_id);
 
             }
@@ -133,10 +133,11 @@ class TicketController extends Controller
     {
         $user = auth::user();
         $data = [];
-        if ($status >= 0 && $status < 6)
+        if ($status >= 0 && $status < 6) {
             $tickets = Ticket::find_tickets("i", 0, $status);
-        else
+        } else {
             $tickets = Ticket::find_tickets("i");
+        }
         /////////////////////
         $data["tickets"] = $tickets;
         $data["user"] = $user;

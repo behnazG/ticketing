@@ -84,7 +84,6 @@ class Ticket extends Model
             $ticket_id = $this->ticket_id;
             $ticket = self::find($ticket_id);
             if (is_null($ticket)) {
-                dd(1);
                 return false;
             } else {
                 if ($ticket->sender_id == $this->sender_id) {
@@ -121,7 +120,7 @@ class Ticket extends Model
             return $t;
         }
         if ($current_user->is_staff == 0) {
-            $t = Ticket::where('sender_id', $current_user->id)->where('receiver_id', $current_user->id)->where('trash', 0)->whereRaw('id=ticket_id')->get();
+            $t = Ticket::where('sender_id', $current_user->id)->orWhere('receiver_id', $current_user->id)->where('trash', 0)->whereRaw('id=ticket_id')->get();
             return $t;
         }
         /////////////////////////////
@@ -130,13 +129,20 @@ class Ticket extends Model
             $allowed_categories = UserAuthorise::allowed_categories_by_user($current_user->id);
             $t = self::whereIn('category_id', $allowed_categories)
                 ->whereIn('sender_id', $allowed_user);
-            if ($status >= 0 && $status < 6) {
-                $t = $t->where('status', $status);
+            //////////////
+            $allow_status_ticket = UserAuthorise::allowed_status_by_user($current_user->id);
+            if ($status != "all" && $status >= 0 && $status < 6) {
+                ///// bayad az filter status user obur konad
+                if (in_array($status, $allow_status_ticket))
+                    $allow_status_ticket = [$status];
+                else
+                    $allow_status_ticket = [-1];
+                $t = $t->whereRaw("status = $status and  receiver_id = $current_user->id");
             } else {
-                $allow_status_ticket = UserAuthorise::allowed_status_by_user($current_user->id);
-                $t = $t->whereIn('status', $allow_status_ticket);
+                $t = $t->whereRaw("status In (" . implode(',', $allow_status_ticket) . " ) OR  receiver_id = $current_user->id");
             }
-            $t = $t->Orwhere('receiver_id', $current_user->id);
+            //$t = $t->whereIn('status', $allow_status_ticket);
+            /////////////////
             if ($ticket_id > 0)
                 $t = $t->where('id', '>', $ticket_id);
 
@@ -224,10 +230,41 @@ class Ticket extends Model
             return false;
         else return $user;
     }
+    public function getReceiverAttribute()
+    {
+        $user = User::find($this->receiver_id);
+        if (is_null($user))
+            return false;
+        else return $user;
+    }
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getHotelAttribute()
+    {
+        $ticket = 0;
+        if ($this->ticket_id == $this->id) {
+            $ticket = $this;
+        } else {
+            $ticket = self::find($this->ticket_id);
+            if (is_null($ticket))
+                return null;
+        }
+        $user_id = $ticket->sender_id;
+        $user = User::find($user_id);
+        if (is_null($user)) {
+            return null;
+        } else {
+            $hotel_id = $user->hotel_id;
+            $hotel = Hotel::find($hotel_id);
+            if (is_null($hotel))
+                return null;
+            else
+                return $hotel;
+        }
     }
 
 

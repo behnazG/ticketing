@@ -47,8 +47,11 @@ class HomeController extends Controller
         /////////////////////////////////////////////////////////////////
         $tickt_status = \App\Ticket::find_tickets('i', 0, 'all', true);
         $status_ticket = [0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
-        foreach ($tickt_status as $t_s) {
-            $status_ticket[$t_s->status] = $t_s->counts;
+        if(!$tickt_status->isEmpty())
+        {
+            foreach ($tickt_status as $t_s) {
+                $status_ticket[$t_s->status] = $t_s->counts;
+            }
         }
         $tickt_status = Ticket::STATUS_LIST();
         $data["ticket_status"] = $tickt_status;

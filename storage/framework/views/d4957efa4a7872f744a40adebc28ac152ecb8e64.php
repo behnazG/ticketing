@@ -5,28 +5,35 @@
                 <div class="table-responsive">
                     <table class="table table-padded table-xl mb-0" id="recent-project-table">
                         <thead>
-                        <tr>
-                            <th class="border-top-0"></th>
-                            <th class="border-top-0"></th>
-                            <th class="border-top-0"></th>
-                            <th class="border-top-0"></th>
-                            <?php if($user->is_staff!=1): ?>
-                                <th class="border-top-0"><?php echo e(trans("mb.hotel")); ?></th>
-                            <?php endif; ?>
-                            <th class="border-top-0"></th>
+                        <tr class="text-center">
+                            <th class="border-top-0"><?php echo e(trans("mb.ticketNumber")); ?></th>
+                            <th class="border-top-0"><?php echo e(trans("mb.category")); ?></th>
+                            <th class="border-top-0"><?php echo e(trans("mb.from")); ?></th>
+                            <th class="border-top-0"><?php echo e(trans("mb.hotel")); ?></th>
+                            <th class="border-top-0"><?php echo e(trans("mb.subject")); ?></th>
+                            <th class="border-top-0"><?php echo e(trans('mb.time')); ?></th>
+                            <th class="border-top-0"><?php echo e(trans("mb.status")); ?></th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php $__currentLoopData = $tickets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i=>$ticket): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <tr>
+                            <tr class="text-center">
+                                <th class="border-top-0"><a
+                                            href="<?php echo e(url("/tickets/".$ticket->generate_ticket_id())); ?>"><?php echo e($ticket->id); ?></a>
+                                </th>
                                 <td><?php echo e($ticket->category->name); ?></td>
-                                <td class="border-top-0 <?php echo e($ticket_status[$ticket->status][1]); ?>"><i class="<?php echo e($ticket_status[$ticket->status][2]); ?>"></i> <?php echo e($ticket_status[$ticket->status][0]); ?></td>
-                                <td class="border-top-0"><?php echo e(($ticket->front_user==false)?trans("mb.unknown"):$ticket->front_user->name); ?></td>
-                                <td class="border-top-0"><a href="<?php echo e(url("/tickets/".$ticket->generate_ticket_id())); ?>"><?php echo e($ticket->subject); ?></a></td>
-                                <?php if($user->is_staff!=1): ?>
-                                    <td class="border-top-0"><?php echo e(trans("mb.hotel")); ?></td>
-                                <?php endif; ?>
-                                <td class="border-top-0"><?php echo e(date_sh($ticket->created_at)); ?></td>
+                                <td class="border-top-0"><?php echo e(($ticket->sender==false)?trans("mb.unknown"):$ticket->sender->name); ?></td>
+                                <td class="border-top-0"><?php echo e(is_null($ticket->hotel)?trans('mb.unknown'):$ticket->hotel->name); ?></td>
+                                <td class="border-top-0"><a
+                                            href="<?php echo e(url("/tickets/".$ticket->generate_ticket_id())); ?>"><?php echo e($ticket->subject); ?></a>
+                                </td>
+                                <td class="border-top-0"><?php echo e(date_sh($ticket->created_at)); ?>
+
+                                    <br/><?php echo e(date_shamsi($ticket->created_at)); ?></td>
+                                <td class="border-top-0 <?php echo e($ticket_status[$ticket->status][1]); ?>"><i
+                                            class="<?php echo e($ticket_status[$ticket->status][2]); ?>"></i> <?php echo e($ticket_status[$ticket->status][0]); ?>
+
+                                </td>
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>

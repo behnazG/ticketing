@@ -6,28 +6,33 @@
                 <div class="table-responsive">
                     <table class="table table-padded table-xl mb-0" id="recent-project-table">
                         <thead>
-                        <tr>
-                            <th class="border-top-0"></th>
-                            <th class="border-top-0"></th>
-                            <th class="border-top-0"></th>
-                            <th class="border-top-0"></th>
-                            @if($user->is_staff!=1)
-                                <th class="border-top-0">{{trans("mb.hotel")}}</th>
-                            @endif
-                            <th class="border-top-0"></th>
+                        <tr class="text-center">
+                            <th class="border-top-0">{{trans("mb.ticketNumber")}}</th>
+                            <th class="border-top-0">{{trans("mb.category")}}</th>
+                            <th class="border-top-0">{{trans("mb.from")}}</th>
+                            <th class="border-top-0">{{trans("mb.hotel")}}</th>
+                            <th class="border-top-0">{{trans("mb.subject")}}</th>
+                            <th class="border-top-0">{{trans('mb.time')}}</th>
+                            <th class="border-top-0">{{trans("mb.status")}}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($tickets as $i=>$ticket)
-                            <tr>
+                            <tr class="text-center">
+                                <th class="border-top-0"><a
+                                            href="{{url("/tickets/".$ticket->generate_ticket_id())}}">{{$ticket->id}}</a>
+                                </th>
                                 <td>{{$ticket->category->name}}</td>
-                                <td class="border-top-0 {{$ticket_status[$ticket->status][1]}}"><i class="{{$ticket_status[$ticket->status][2]}}"></i> {{$ticket_status[$ticket->status][0]}}</td>
-                                <td class="border-top-0">{{($ticket->front_user==false)?trans("mb.unknown"):$ticket->front_user->name}}</td>
-                                <td class="border-top-0"><a href="{{url("/tickets/".$ticket->generate_ticket_id())}}">{{$ticket->subject}}</a></td>
-                                @if($user->is_staff!=1)
-                                    <td class="border-top-0">{{trans("mb.hotel")}}</td>
-                                @endif
-                                <td class="border-top-0">{{date_sh($ticket->created_at)}}</td>
+                                <td class="border-top-0">{{($ticket->sender==false)?trans("mb.unknown"):$ticket->sender->name}}</td>
+                                <td class="border-top-0">{{is_null($ticket->hotel)?trans('mb.unknown'):$ticket->hotel->name}}</td>
+                                <td class="border-top-0"><a
+                                            href="{{url("/tickets/".$ticket->generate_ticket_id())}}">{{$ticket->subject}}</a>
+                                </td>
+                                <td class="border-top-0">{{date_sh($ticket->created_at)}}
+                                    <br/>{{date_shamsi($ticket->created_at)}}</td>
+                                <td class="border-top-0 {{$ticket_status[$ticket->status][1]}}"><i
+                                            class="{{$ticket_status[$ticket->status][2]}}"></i> {{$ticket_status[$ticket->status][0]}}
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

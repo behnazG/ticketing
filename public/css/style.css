@@ -978,3 +978,7 @@ input:focus ~ .bg-asa {
     background: #ffbdbf;
     background: rgba(255, 189, 191, .8)
 }
+.gray-asa
+{
+    color:#9ca09f !important
+}

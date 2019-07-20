@@ -55,7 +55,7 @@ function date_shamsi($date)
     if( Session::get('locale')==2)
         return $date;
     $v = new Verta($date);
-    return $v->format("Y-m-d H:i:s");
+    return $v->format("Y-m-d H:i");
 }
 
 function get_icon_url($icon_name = "user")

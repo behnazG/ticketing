@@ -76,21 +76,27 @@
 <?php $__env->startSection('content'); ?>
     <div class="email-app-title card-body">
         <div class="row">
-            <div class="col-12">
-                <label class="label-control mr-1"> <?php echo e($current_ticket->category->name); ?> </label> /
-                <label class="label-control ml-1"> <?php echo e(date_sh($current_ticket->created_at)); ?> </label>
-                <label class="col-form-label ml-3"><?php echo e(trans("mb.ticketNumber").': '.$current_ticket->ticket_id); ?></label>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-lg-9 col-12 text-left ">
                 <h3 class="list-group-item-heading"><?php echo e($current_ticket->subject); ?></h3>
             </div>
-            <div class="col-lg-3 col-12 text-right">
-                <p class="<?php echo e($status_list[$current_ticket->status][1]); ?>"><i
-                            class="font-medium-1 <?php echo e($status_list[$current_ticket->status][2]); ?> font-medium-5"></i> <?php echo e($status_list[$current_ticket->status][0]); ?>
 
-                </p>
+        </div>
+        <div class="row mt-1">
+            <p class="col-3 gray-asa"><i class="ft-info "></i><?php echo e(trans('mb.category').':'.$current_ticket->category->name); ?> </p> 
+            <p class="col-3 gray-asa"> <i class="ft-calendar"></i> <?php echo e(trans('mb.time').':'.date_sh($current_ticket->created_at)); ?></p>
+            <p class="col-3 gray-asa"> <i class="ft-tag"></i> <?php echo e(trans("mb.ticketNumber").': '.$current_ticket->ticket_id); ?></p>
+             <p class="col-3 <?php echo e($status_list[$current_ticket->status][1]); ?>"><i
+                class="font-medium-1 <?php echo e($status_list[$current_ticket->status][2]); ?>"></i> <?php echo e($status_list[$current_ticket->status][0]); ?>
+
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                    <div class="row">
+                        <p class="col-12 gray-asa"><i class="fas fa-paper-plane"></i> <?php echo e(trans("mb.sender").':  '.$current_ticket->sender->name ." ".trans("mb.user")." ". trans('mb.hotel')." ".$current_ticket->hotel->name); ?></p>
+                        <p class="col-12 gray-asa"><i class="fas fa-headphones-alt"></i> <?php echo e(trans("mb.trackBy").':  '.$current_ticket->receiver->name); ?></p>
+                       
+                    </div>
             </div>
         </div>
     </div>
@@ -101,40 +107,43 @@
                     <?php $__currentLoopData = $chains; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ticket): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <?php
                         $self_sender = ($ticket->sender_id == $current_user->id) ? true : false;
-                        $front_user_image = ($ticket->front_user == false) ? get_icon_url() : $ticket->front_user->get_image_url();
-                        $front_user_name = ($ticket->front_user == false) ? trans("mb.unknown") : $ticket->front_user->name;
-                        $is_staff = $ticket->front_user->is_staff;
+                        $sender_user_image = ($ticket->sender == false) ? get_icon_url() : $ticket->sender->get_image_url();
+                        $sender_user_name = ($ticket->sender == false) ? trans("mb.unknown") : $ticket->sender->name;
+                        $is_staff = $ticket->sender->is_staff;
                         ?>
-                        <div class="chat <?php echo e(($self_sender)?"chat-left":""); ?>">
+                        <div class="chat <?php echo e(($is_staff)?"chat-left":""); ?>">
                             <div class="chat-avatar">
                                 <a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title=""
                                    data-original-title="">
-                                    <img src="<?php echo e($self_sender?$current_user->get_image_url():$front_user_image); ?>"
+                                    <img src="<?php echo e($self_sender?$current_user->get_image_url():$sender_user_image); ?>"
                                          alt="avatar">
                                 </a>
                             </div>
                             <div class="chat-body">
                                 <div class="chat-content text-left">
                                     <p class="row">
-                                        <span class="col-6 float-right"><?php echo e($self_sender?$current_user->name:$front_user_name); ?></span>
+                                        <span class="col-6 float-right"><?php echo e($self_sender?$current_user->name:$sender_user_name); ?></span>
                                         <span class="col-6 float-left text-right"><?php echo e(date_sh($ticket->created_at)); ?></span>
                                     </p>
                                     <p class="mt-1"><?=$ticket->text?></p>
                                     <p class="mt-1">
                                         <?php if($a=$ticket->download_attach_file('file_1')): ?>
-                                            <a target="_blank" class="<?php echo e($self_sender?"":"white"); ?>" href="<?php echo e($a); ?>"><i
+                                            <a target="_blank" class="<?php echo e($is_staff?"":"white"); ?>"
+                                               href="<?php echo e($a); ?>"><i
                                                         class="ft-paperclip font-medium-5 pl-1"></i> <?php echo e(trans("mb.file1")); ?>
 
                                             </a>
                                         <?php endif; ?>
                                         <?php if($a=$ticket->download_attach_file('file_2')): ?>
-                                            <a target="_blank" class="<?php echo e($self_sender?"":"white"); ?>" href="<?php echo e($a); ?>"><i
+                                            <a target="_blank" class="<?php echo e($is_staff?"":"white"); ?>"
+                                               href="<?php echo e($a); ?>"><i
                                                         class="ft-paperclip font-medium-5 pl-1"></i> <?php echo e(trans("mb.file2")); ?>
 
                                             </a>
                                         <?php endif; ?>
                                         <?php if($a=$ticket->download_attach_file('file_3')): ?>
-                                            <a target="_blank" class="<?php echo e($self_sender?"":"white"); ?>" href="<?php echo e($a); ?>"><i
+                                            <a target="_blank" class="<?php echo e($is_staff?"":"white"); ?>"
+                                               href="<?php echo e($a); ?>"><i
                                                         class="ft-paperclip font-medium-5 pl-1"></i> <?php echo e(trans("mb.file3")); ?>
 
                                             </a>
@@ -163,22 +172,22 @@
                 <div class="row mt-1 text-left">
                     <div class="col-12">
                         <?php if($allowed_refferal): ?>
-                            <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_reffral"><i
+                            <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_reffral"><i
                                         class="fas fa-arrow-right"></i> <?php echo e(trans("mb.reffral")); ?>
 
                             </button>
                         <?php endif; ?>
                         <?php if($set_times): ?>
-                            <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_set_times"><i
+                            <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_set_times"><i
                                         class="fas fa-calendar"></i> <?php echo e(trans("mb.setTimes")); ?>
 
                             </button>
                         <?php endif; ?>
-                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_replay">
+                        <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_replay">
                             <i class="fas fa-reply"></i> <?php echo e(trans("mb.replay")); ?>
 
                         </button>
-                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_change_status"><i
+                        <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_change_status"><i
                                     class="fas fa-reply"></i> <?php echo e(trans("mb.changeStatus")); ?>
 
                         </button>
@@ -194,35 +203,34 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php if($current_user->is_staff==1): ?>
                             <?php if($show_button_start_work == true): ?>
-                                <button type="button" class="btn btn-asa btn-sm btn-glow mr-1"
+                                <button type="button" class="btn btn-asa btn btn-glow mr-1"
                                         id="btn_start_work"><i
                                             class="ft-clock"></i> <?php echo e(trans("mb.startWork")); ?>
 
                                 </button>
                             <?php else: ?>
-                                <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_end_work">
+                                <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_end_work">
                                     <i
                                             class="ft-clock"></i> <?php echo e(trans("mb.endWork")); ?>
 
                                 </button>
                             <?php endif; ?>
                         <?php endif; ?>
-                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_show_work_time">
+                        <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_show_work_time">
                             <i class="fa fa-history"></i>
                             <?php echo e(trans("mb.LogFile")); ?>
 
                         </button>
-
+                    </div>
+                    <div class="col-12">
                         <?php if(isset($show_text) && $show_text == true): ?>
-                            <p class="float-right red">
+                            <h6 class="red mt-1 mb-1">
                                 <i class="ficon ft-bell bell-shake"></i>
                                 <?php echo e(trans('mb.ticketInProccessing',['user_name'=>$ticket_time_log[0]->user_full_name,'date'=>date_sh($ticket_time_log[0]->start_time_system)])); ?>
 
-                            </p>
+                            </h6>
                         <?php endif; ?>
-
                     </div>
-
                 </div>
                 
             <?php endif; ?>

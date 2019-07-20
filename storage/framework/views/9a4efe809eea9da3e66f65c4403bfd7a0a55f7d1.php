@@ -47,12 +47,13 @@ $status_ticket = [0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
 foreach ($tickt_status as $t_s) {
     $status_ticket[$t_s->status] = $t_s->counts;
 }
+$user_id = auth::user()->id;
+$user_authorise = \App\UserAuthorise::getAuthorise();
 ?>
 <body id="mybodyss"
       class="vertical-layout vertical-menu content-left-sidebar email-application  menu-collapsed fixed-navbar"
       data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue"
       data-col="content-left-sidebar">
-
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
     <div class="navbar-wrapper">
         <div class="navbar-container content">
@@ -200,10 +201,7 @@ foreach ($tickt_status as $t_s) {
         </div>
     </div>
 </nav>
-
 <!-- ////////////////////////////////////////////////////////////////////////////-->
-
-
 <div class="main-menu menu-fixed menu-dark menu-accordion    menu-shadow " data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
@@ -228,57 +226,67 @@ foreach ($tickt_status as $t_s) {
                     <li><a class="menu-item"
                            href="<?php echo e(url('tickets/inbox')); ?>"><?php echo e(trans('mb.myTicket')); ?></a>
                     </li>
-                    <li><a class="menu-item"
-                           href="<?php echo e(url('tickets/compose')); ?>"><?php echo e(trans('mb.compose')); ?></a>
-                    </li>
+                    <?php if(auth::user()->is_staff ==0): ?>
+                        <li><a class="menu-item"
+                               href="<?php echo e(url('tickets/compose')); ?>"><?php echo e(trans('mb.compose')); ?></a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </li>
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="ft-bar-chart"></i><span class="menu-title"
-                                                      data-i18n=""><?php echo e(trans('mb.reports')); ?></span></a>
-                <ul class="menu-content">
+            <?php if(!empty($user_authorise) && in_array("reports",$user_authorise)|| auth::user()->organizational_chart_id==1): ?>
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="ft-bar-chart"></i><span class="menu-title"
+                                                          data-i18n=""><?php echo e(trans('mb.reports')); ?></span></a>
+                    <ul class="menu-content">
 
-                </ul>
-            </li>
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="ft-user"></i><span class="menu-title"
-                                                 data-i18n=""><?php echo e(trans('mb.users')); ?></span></a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item"
-                           href="<?php echo e(url('users/create')); ?>"><?php echo e(trans('mb.create',["name"=>trans('mb.user')])); ?></a>
-                    </li>
-                    <li>
-                        <a class="menu-item"
-                           href="<?php echo e(url('users/hotels')); ?>"><?php echo e(trans('mb.users').' '.trans('mb.hotel')); ?></a>
-                    </li>
-                    <li>
-                        <a class="menu-item" href="<?php echo e(url('users/staffs')); ?>"><?php echo e(trans('mb.staffs')); ?></a>
-                    </li>
-                </ul>
-            </li>
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="ft-settings"></i><span class="menu-title"
-                                                     data-i18n=""><?php echo e(trans('mb.settings')); ?></span></a>
-                <ul class="menu-content">
-                    <li><a class="menu-item"
-                           href="<?php echo e(url('categories')); ?>"><?php echo e(trans('mb.categories')); ?></a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="<?php echo e(url('hotels')); ?>"><?php echo e(trans('mb.hotels')); ?></a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="<?php echo e(url('organizationCharts')); ?>"><?php echo e(trans('mb.organizationChart')); ?></a>
-                    </li>
-                    <li><a class="menu-item"
-                           href="<?php echo e(url('theme')); ?>"><?php echo e(trans('mb.themeSetting')); ?></a>
-                    </li>
-                </ul>
-            </li>
-
+                    </ul>
+                </li>
+            <?php endif; ?>
+            <?php if(!empty($user_authorise) && in_array("admin_users",$user_authorise) || auth::user()->organizational_chart_id==1): ?>
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="ft-user"></i><span class="menu-title"
+                                                     data-i18n=""><?php echo e(trans('mb.users')); ?></span></a>
+                    <ul class="menu-content">
+                        <li>
+                            <a class="menu-item"
+                               href="<?php echo e(url('users/create')); ?>"><?php echo e(trans('mb.create',["name"=>trans('mb.user')])); ?></a>
+                        </li>
+                        <li>
+                            <a class="menu-item"
+                               href="<?php echo e(url('users/hotels')); ?>"><?php echo e(trans('mb.users').' '.trans('mb.hotel')); ?></a>
+                        </li>
+                        <li>
+                            <a class="menu-item" href="<?php echo e(url('users/staffs')); ?>"><?php echo e(trans('mb.staffs')); ?></a>
+                        </li>
+                    </ul>
+                </li>
+            <?php endif; ?>
+            <?php if(!empty($user_authorise) && in_array("admin_hotels",$user_authorise) || in_array("admin_categories",$user_authorise) || in_array("admin_organizationCharts",$user_authorise) || auth::user()->organizational_chart_id==1): ?>
+                <li class=" nav-item">
+                    <a href="#">
+                        <i class="ft-settings"></i><span class="menu-title"
+                                                         data-i18n=""><?php echo e(trans('mb.settings')); ?></span></a>
+                    <ul class="menu-content">
+                        <?php if( in_array("admin_categories",$user_authorise)|| auth::user()->organizational_chart_id==1): ?>
+                            <li><a class="menu-item"
+                                   href="<?php echo e(url('categories')); ?>"><?php echo e(trans('mb.categories')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if(in_array("admin_hotels",$user_authorise)|| auth::user()->organizational_chart_id==1): ?>
+                            <li><a class="menu-item"
+                                   href="<?php echo e(url('hotels')); ?>"><?php echo e(trans('mb.hotels')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if(in_array("admin_organizationCharts",$user_authorise)|| auth::user()->organizational_chart_id==1): ?>
+                            <li><a class="menu-item"
+                                   href="<?php echo e(url('organizationCharts')); ?>"><?php echo e(trans('mb.organizationChart')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </li>
+            <?php endif; ?>
         </ul>
     </div>
     <div class="navigation-background"></div>
@@ -289,16 +297,19 @@ foreach ($tickt_status as $t_s) {
         <div class="sidebar">
             <div class="sidebar-content email-app-sidebar d-flex">
                 <div class="email-app-menu col-12 card d-none d-lg-block rounded-0">
-                    <div class="form-group form-group-compose text-center">
-                        <a href="<?php echo e(url("tickets/compose")); ?>"
-                           class="btn btn-asa btn-min-width btn-glow my-1 btn-block">
-                            <i class="ft-mail"></i> <?php echo e(trans("mb.compose")); ?>
+                    <?php if(auth::user()->is_staff ==0): ?>
+                        <div class="form-group form-group-compose text-center">
+                            <a href="<?php echo e(url("tickets/compose")); ?>"
+                               class="btn btn-asa btn-min-width btn-glow my-1 btn-block">
+                                <i class="ft-mail"></i> <?php echo e(trans("mb.compose")); ?>
 
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    <?php endif; ?>
                     <div class="list-group list-group-messages">
                         <a href="<?php echo e(url('/tickets/inbox')); ?>"
-                           class="list-group-item list-group-item-action border-0 active"> <?php echo e(trans("mb.myTicket")); ?>
+                           class="list-group-item list-group-item-action border-0">
+                            <i class="fa fa-mail-bulk mr-1 ml-1"></i> <?php echo e(trans("mb.myTicket")); ?>
 
                         </a>
                         <?php $status_list = \App\Ticket::STATUS_LIST();?>
@@ -307,7 +318,7 @@ foreach ($tickt_status as $t_s) {
                                class="list-group-item list-group-item-action border-0">
                                 <i class="<?php echo e($status[2]); ?> mr-1 ml-1 <?php echo e($status[1]); ?>"></i> <?php echo e($status[0]); ?>
 
-                                <span class="primary float-right"><?php echo e($status_ticket[$index]); ?></span>
+                                <span class="float-right"><?php echo e($status_ticket[$index]); ?></span>
                             </a>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>

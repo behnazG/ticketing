@@ -45,7 +45,6 @@
 <?php
 $user_id = auth::user()->id;
 $user_authorise = \App\UserAuthorise::getAuthorise();
-
 ?>
 <body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click"
       data-menu="vertical-menu" data-color="bg-success" data-col="2-columns">
@@ -59,7 +58,7 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                                     class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs"
                                                               href="#"><i class="ft-menu"></i></a></li>
-
+                    <?php if(auth::user()->is_staff==1): ?>
                     <li class="nav-item dropdown navbar-search"><a class="nav-link dropdown-toggle hide"
                                                                    data-toggle="dropdown" href="#"><i
                                     class="ficon ft-search"></i></a>
@@ -81,6 +80,7 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                             </li>
                         </ul>
                     </li>
+                    <?php endif; ?>
                 </ul>
                 <?php ($languages=\App\Language::all()); ?>
                 <ul class="nav navbar-nav float-right">
@@ -89,7 +89,7 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                            id="dropdown-flag" href="#"
                            data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false"><i
-                                    class="flag-icon <?php echo e($languages[\Illuminate\Support\Facades\Session::get("locale_id")]["icon"]); ?>"></i><span
+                                    class="flag-icon <?php echo e((\Illuminate\Support\Facades\Session::exists('locale_id'))?$languages[\Illuminate\Support\Facades\Session::get("locale_id")-1]["icon"]:"fa"); ?>"></i><span
                                     class="selected-language"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
@@ -104,11 +104,13 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                             </div>
                         </div>
                     </li>
-                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
-                                                                           data-toggle="dropdown"><i
+                    <li class="dropdown dropdown-notification nav-item">
+                        <a class="nav-link nav-link-label" href="#"
+                           data-toggle="dropdown"><i
                                     class="ficon ft-bell bell-shake" id="notification-navbar-link"></i><span
                                     class="badge badge-pill badge-sm badge-asa badge-default badge-up badge-glow"
-                                    id="topmenu_number_notify"></span></a>
+                                    id="topmenu_number_notify"></span>
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <div class="arrow_box_right">
                                 <li class="dropdown-menu-header">
@@ -221,12 +223,14 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                     <li><a class="menu-item"
                            href="<?php echo e(url('tickets/inbox')); ?>"><?php echo e(trans('mb.myTicket')); ?></a>
                     </li>
-                    <li><a class="menu-item"
-                           href="<?php echo e(url('tickets/compose')); ?>"><?php echo e(trans('mb.compose')); ?></a>
-                    </li>
+                    <?php if(auth::user()->is_staff ==0): ?>
+                        <li><a class="menu-item"
+                               href="<?php echo e(url('tickets/compose')); ?>"><?php echo e(trans('mb.compose')); ?></a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </li>
-            <?php if(in_array("reports",$user_authorise)): ?>
+            <?php if(!empty($user_authorise) && in_array("reports",$user_authorise)|| auth::user()->organizational_chart_id==1): ?>
                 <li class=" nav-item">
                     <a href="#">
                         <i class="ft-bar-chart"></i><span class="menu-title"
@@ -236,7 +240,7 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                     </ul>
                 </li>
             <?php endif; ?>
-            <?php if(in_array("admin_users",$user_authorise)): ?>
+            <?php if(!empty($user_authorise) && in_array("admin_users",$user_authorise) || auth::user()->organizational_chart_id==1): ?>
                 <li class=" nav-item">
                     <a href="#">
                         <i class="ft-user"></i><span class="menu-title"
@@ -256,23 +260,23 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                     </ul>
                 </li>
             <?php endif; ?>
-            <?php if(in_array("admin_hotels",$user_authorise) || in_array("admin_categories",$user_authorise) || in_array("admin_organizationCharts",$user_authorise) ): ?>
+            <?php if(!empty($user_authorise) && in_array("admin_hotels",$user_authorise) || in_array("admin_categories",$user_authorise) || in_array("admin_organizationCharts",$user_authorise) || auth::user()->organizational_chart_id==1): ?>
                 <li class=" nav-item">
                     <a href="#">
                         <i class="ft-settings"></i><span class="menu-title"
                                                          data-i18n=""><?php echo e(trans('mb.settings')); ?></span></a>
                     <ul class="menu-content">
-                        <?php if( in_array("admin_categories",$user_authorise)): ?>
+                        <?php if( in_array("admin_categories",$user_authorise)|| auth::user()->organizational_chart_id==1): ?>
                             <li><a class="menu-item"
                                    href="<?php echo e(url('categories')); ?>"><?php echo e(trans('mb.categories')); ?></a>
                             </li>
                         <?php endif; ?>
-                        <?php if(in_array("admin_hotels",$user_authorise)): ?>
+                        <?php if(in_array("admin_hotels",$user_authorise)|| auth::user()->organizational_chart_id==1): ?>
                             <li><a class="menu-item"
                                    href="<?php echo e(url('hotels')); ?>"><?php echo e(trans('mb.hotels')); ?></a>
                             </li>
                         <?php endif; ?>
-                        <?php if(in_array("admin_organizationCharts",$user_authorise)): ?>
+                        <?php if(in_array("admin_organizationCharts",$user_authorise)|| auth::user()->organizational_chart_id==1): ?>
                             <li><a class="menu-item"
                                    href="<?php echo e(url('organizationCharts')); ?>"><?php echo e(trans('mb.organizationChart')); ?></a>
                             </li>

@@ -15,12 +15,6 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-
-
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -38,9 +32,7 @@ class UserController extends Controller
 
         }
         return view('user.index', $data);
-
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -64,9 +56,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = User::validate();
+        ////////////////////////////////
+        $is_staff = isset($request->is_staff) ? 1 : 0;
         $data["valid"] = isset($request->valid) ? 1 : 0;
-        $data["hotel_id"] = isset($request->is_staff) ? 0 : $data["hotel_id"];
-        $data["organizational_chart_id"] = isset($request->is_staff) ? $data["organizational_chart_id"] : 0;
+        $data["hotel_id"] = ($is_staff == 1) ? 0 : $data["hotel_id"];
+        $data["organizational_chart_id"] = ($is_staff == 1) ? $data["organizational_chart_id"] : 0;
+        $data["is_staff"] = $is_staff;
         $data["password"] = Hash::make($request->password);
         try {
             unset($data["image_path"]);
@@ -77,7 +72,6 @@ class UserController extends Controller
             else
                 return redirect('users/hotels');
         } catch (\Exception $e) {
-
         }
     }
 

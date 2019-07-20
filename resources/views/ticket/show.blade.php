@@ -77,20 +77,26 @@
 @section('content')
     <div class="email-app-title card-body">
         <div class="row">
-            <div class="col-12">
-                <label class="label-control mr-1"> {{$current_ticket->category->name}} </label> /
-                <label class="label-control ml-1"> {{date_sh($current_ticket->created_at)}} </label>
-                <label class="col-form-label ml-3">{{trans("mb.ticketNumber").': '.$current_ticket->ticket_id}}</label>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-lg-9 col-12 text-left ">
                 <h3 class="list-group-item-heading">{{$current_ticket->subject}}</h3>
             </div>
-            <div class="col-lg-3 col-12 text-right">
-                <p class="{{$status_list[$current_ticket->status][1]}}"><i
-                            class="font-medium-1 {{$status_list[$current_ticket->status][2]}} font-medium-5"></i> {{$status_list[$current_ticket->status][0]}}
-                </p>
+
+        </div>
+        <div class="row mt-1">
+            <p class="col-3 gray-asa"><i class="ft-info "></i>{{ trans('mb.category').':'.$current_ticket->category->name}} </p> 
+            <p class="col-3 gray-asa"> <i class="ft-calendar"></i> {{ trans('mb.time').':'.date_sh($current_ticket->created_at) }}</p>
+            <p class="col-3 gray-asa"> <i class="ft-tag"></i> {{trans("mb.ticketNumber").': '.$current_ticket->ticket_id}}</p>
+             <p class="col-3 {{$status_list[$current_ticket->status][1]}}"><i
+                class="font-medium-1 {{$status_list[$current_ticket->status][2]}}"></i> {{$status_list[$current_ticket->status][0]}}
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                    <div class="row">
+                        <p class="col-12 gray-asa"><i class="fas fa-paper-plane"></i> {{trans("mb.sender").':  '.$current_ticket->sender->name ." ".trans("mb.user")." ". trans('mb.hotel')." ".$current_ticket->hotel->name }}</p>
+                        <p class="col-12 gray-asa"><i class="fas fa-headphones-alt"></i> {{trans("mb.trackBy").':  '.$current_ticket->receiver->name}}</p>
+                       
+                    </div>
             </div>
         </div>
     </div>
@@ -101,38 +107,41 @@
                     @foreach($chains as $ticket)
                         <?php
                         $self_sender = ($ticket->sender_id == $current_user->id) ? true : false;
-                        $front_user_image = ($ticket->front_user == false) ? get_icon_url() : $ticket->front_user->get_image_url();
-                        $front_user_name = ($ticket->front_user == false) ? trans("mb.unknown") : $ticket->front_user->name;
-                        $is_staff = $ticket->front_user->is_staff;
+                        $sender_user_image = ($ticket->sender == false) ? get_icon_url() : $ticket->sender->get_image_url();
+                        $sender_user_name = ($ticket->sender == false) ? trans("mb.unknown") : $ticket->sender->name;
+                        $is_staff = $ticket->sender->is_staff;
                         ?>
-                        <div class="chat {{($self_sender)?"chat-left":""}}">
+                        <div class="chat {{($is_staff)?"chat-left":""}}">
                             <div class="chat-avatar">
                                 <a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title=""
                                    data-original-title="">
-                                    <img src="{{$self_sender?$current_user->get_image_url():$front_user_image}}"
+                                    <img src="{{$self_sender?$current_user->get_image_url():$sender_user_image}}"
                                          alt="avatar">
                                 </a>
                             </div>
                             <div class="chat-body">
                                 <div class="chat-content text-left">
                                     <p class="row">
-                                        <span class="col-6 float-right">{{$self_sender?$current_user->name:$front_user_name}}</span>
+                                        <span class="col-6 float-right">{{$self_sender?$current_user->name:$sender_user_name}}</span>
                                         <span class="col-6 float-left text-right">{{date_sh($ticket->created_at)}}</span>
                                     </p>
                                     <p class="mt-1"><?=$ticket->text?></p>
                                     <p class="mt-1">
                                         @if($a=$ticket->download_attach_file('file_1'))
-                                            <a target="_blank" class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
+                                            <a target="_blank" class="{{$is_staff?"":"white"}}"
+                                               href="{{$a}}"><i
                                                         class="ft-paperclip font-medium-5 pl-1"></i> {{trans("mb.file1")}}
                                             </a>
                                         @endif
                                         @if($a=$ticket->download_attach_file('file_2'))
-                                            <a target="_blank" class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
+                                            <a target="_blank" class="{{$is_staff?"":"white"}}"
+                                               href="{{$a}}"><i
                                                         class="ft-paperclip font-medium-5 pl-1"></i> {{trans("mb.file2")}}
                                             </a>
                                         @endif
                                         @if($a=$ticket->download_attach_file('file_3'))
-                                            <a target="_blank" class="{{$self_sender?"":"white"}}" href="{{$a}}"><i
+                                            <a target="_blank" class="{{$is_staff?"":"white"}}"
+                                               href="{{$a}}"><i
                                                         class="ft-paperclip font-medium-5 pl-1"></i> {{trans("mb.file3")}}
                                             </a>
                                         @endif
@@ -160,19 +169,19 @@
                 <div class="row mt-1 text-left">
                     <div class="col-12">
                         @if($allowed_refferal)
-                            <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_reffral"><i
+                            <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_reffral"><i
                                         class="fas fa-arrow-right"></i> {{trans("mb.reffral")}}
                             </button>
                         @endif
                         @if($set_times)
-                            <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_set_times"><i
+                            <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_set_times"><i
                                         class="fas fa-calendar"></i> {{trans("mb.setTimes")}}
                             </button>
                         @endif
-                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_replay">
+                        <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_replay">
                             <i class="fas fa-reply"></i> {{trans("mb.replay")}}
                         </button>
-                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_change_status"><i
+                        <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_change_status"><i
                                     class="fas fa-reply"></i> {{trans("mb.changeStatus")}}
                         </button>
                         @php($show_button_start_work=true)
@@ -187,31 +196,30 @@
                         @endforeach
                         @if($current_user->is_staff==1)
                             @if($show_button_start_work == true)
-                                <button type="button" class="btn btn-asa btn-sm btn-glow mr-1"
+                                <button type="button" class="btn btn-asa btn btn-glow mr-1"
                                         id="btn_start_work"><i
                                             class="ft-clock"></i> {{trans("mb.startWork")}}
                                 </button>
                             @else
-                                <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_end_work">
+                                <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_end_work">
                                     <i
                                             class="ft-clock"></i> {{trans("mb.endWork")}}
                                 </button>
                             @endif
                         @endif
-                        <button type="button" class="btn btn-asa btn-sm btn-glow mr-1" id="btn_show_work_time">
+                        <button type="button" class="btn btn-asa btn btn-glow mr-1" id="btn_show_work_time">
                             <i class="fa fa-history"></i>
                             {{trans("mb.LogFile")}}
                         </button>
-
+                    </div>
+                    <div class="col-12">
                         @if(isset($show_text) && $show_text == true)
-                            <p class="float-right red">
+                            <h6 class="red mt-1 mb-1">
                                 <i class="ficon ft-bell bell-shake"></i>
                                 {{trans('mb.ticketInProccessing',['user_name'=>$ticket_time_log[0]->user_full_name,'date'=>date_sh($ticket_time_log[0]->start_time_system)])}}
-                            </p>
+                            </h6>
                         @endif
-
                     </div>
-
                 </div>
                 {{--END BUTTON--}}
             @endif

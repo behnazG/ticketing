@@ -45,7 +45,6 @@
 <?php
 $user_id = auth::user()->id;
 $user_authorise = \App\UserAuthorise::getAuthorise();
-
 ?>
 <body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click"
       data-menu="vertical-menu" data-color="bg-success" data-col="2-columns">
@@ -59,7 +58,7 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                                     class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs"
                                                               href="#"><i class="ft-menu"></i></a></li>
-
+                    @if(auth::user()->is_staff==1)
                     <li class="nav-item dropdown navbar-search"><a class="nav-link dropdown-toggle hide"
                                                                    data-toggle="dropdown" href="#"><i
                                     class="ficon ft-search"></i></a>
@@ -81,6 +80,7 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                             </li>
                         </ul>
                     </li>
+                    @endif
                 </ul>
                 @php($languages=\App\Language::all())
                 <ul class="nav navbar-nav float-right">
@@ -89,7 +89,7 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                            id="dropdown-flag" href="#"
                            data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false"><i
-                                    class="flag-icon {{$languages[\Illuminate\Support\Facades\Session::get("locale_id")]["icon"]}}"></i><span
+                                    class="flag-icon {{(\Illuminate\Support\Facades\Session::exists('locale_id'))?$languages[\Illuminate\Support\Facades\Session::get("locale_id")-1]["icon"]:"fa"}}"></i><span
                                     class="selected-language"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
@@ -103,11 +103,13 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                             </div>
                         </div>
                     </li>
-                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
-                                                                           data-toggle="dropdown"><i
+                    <li class="dropdown dropdown-notification nav-item">
+                        <a class="nav-link nav-link-label" href="#"
+                           data-toggle="dropdown"><i
                                     class="ficon ft-bell bell-shake" id="notification-navbar-link"></i><span
                                     class="badge badge-pill badge-sm badge-asa badge-default badge-up badge-glow"
-                                    id="topmenu_number_notify"></span></a>
+                                    id="topmenu_number_notify"></span>
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <div class="arrow_box_right">
                                 <li class="dropdown-menu-header">
@@ -219,12 +221,14 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                     <li><a class="menu-item"
                            href="{{url('tickets/inbox')}}">{{trans('mb.myTicket')}}</a>
                     </li>
-                    <li><a class="menu-item"
-                           href="{{url('tickets/compose')}}">{{trans('mb.compose')}}</a>
-                    </li>
+                    @if(auth::user()->is_staff ==0)
+                        <li><a class="menu-item"
+                               href="{{url('tickets/compose')}}">{{trans('mb.compose')}}</a>
+                        </li>
+                    @endif
                 </ul>
             </li>
-            @if(in_array("reports",$user_authorise))
+            @if(!empty($user_authorise) && in_array("reports",$user_authorise)|| auth::user()->organizational_chart_id==1)
                 <li class=" nav-item">
                     <a href="#">
                         <i class="ft-bar-chart"></i><span class="menu-title"
@@ -234,7 +238,7 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                     </ul>
                 </li>
             @endif
-            @if(in_array("admin_users",$user_authorise))
+            @if(!empty($user_authorise) && in_array("admin_users",$user_authorise) || auth::user()->organizational_chart_id==1)
                 <li class=" nav-item">
                     <a href="#">
                         <i class="ft-user"></i><span class="menu-title"
@@ -254,23 +258,23 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
                     </ul>
                 </li>
             @endif
-            @if(in_array("admin_hotels",$user_authorise) || in_array("admin_categories",$user_authorise) || in_array("admin_organizationCharts",$user_authorise) )
+            @if(!empty($user_authorise) && in_array("admin_hotels",$user_authorise) || in_array("admin_categories",$user_authorise) || in_array("admin_organizationCharts",$user_authorise) || auth::user()->organizational_chart_id==1)
                 <li class=" nav-item">
                     <a href="#">
                         <i class="ft-settings"></i><span class="menu-title"
                                                          data-i18n="">{{trans('mb.settings')}}</span></a>
                     <ul class="menu-content">
-                        @if( in_array("admin_categories",$user_authorise))
+                        @if( in_array("admin_categories",$user_authorise)|| auth::user()->organizational_chart_id==1)
                             <li><a class="menu-item"
                                    href="{{url('categories')}}">{{trans('mb.categories')}}</a>
                             </li>
                         @endif
-                        @if(in_array("admin_hotels",$user_authorise))
+                        @if(in_array("admin_hotels",$user_authorise)|| auth::user()->organizational_chart_id==1)
                             <li><a class="menu-item"
                                    href="{{url('hotels')}}">{{trans('mb.hotels')}}</a>
                             </li>
                         @endif
-                        @if(in_array("admin_organizationCharts",$user_authorise))
+                        @if(in_array("admin_organizationCharts",$user_authorise)|| auth::user()->organizational_chart_id==1)
                             <li><a class="menu-item"
                                    href="{{url('organizationCharts')}}">{{trans('mb.organizationChart')}}</a>
                             </li>

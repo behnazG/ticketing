@@ -6,6 +6,7 @@
         </div>
         <div class="content-body"><!-- Revenue, Hit Rate & Deals -->
             <div class="row">
+                @if(auth::user()->is_staff==0)
                 <div class="col-xl-3 col-lg-6 col-12">
                     <div class="card">
                         <div class="card-content">
@@ -25,6 +26,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="card">
                 <div class="card-header p-1">
@@ -42,7 +44,7 @@
                                                     class="d-block mb-1 mt-1">{{$status[0]}}</span>
                                         </p>
                                     </a>
-                                    <p class="font-medium-5 text-bold-400">{{$ticket_status_user[$index]}}</p>
+                                    <p class="font-medium-5 text-bold-400">{{isset($ticket_status_user[$index])?$ticket_status_user[$index]:0}}</p>
                                 </div>
                             @endforeach
                         </div>

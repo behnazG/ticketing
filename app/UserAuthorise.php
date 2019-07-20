@@ -28,6 +28,8 @@ class UserAuthorise extends Model
             foreach ($c as $cc) {
                 array_push($categories, $cc->field_value);
             }
+        } else {
+            array_push($categories, 0);
         }
         return $categories;
     }
@@ -42,8 +44,13 @@ class UserAuthorise extends Model
             }
         }
         $users = [];
-        $u = User::whereIn('hotel_id', $hotels)->orWhere('is_staff', 1)->get();
-
+        //////////////
+        $u = User::Where('is_staff', 1);
+        if (!empty($hotels)) {
+            $u = $u->orWhereIn('hotel_id', $hotels);
+        }
+        $u = $u->get();
+        ////////////////////////////////
         if (!$u->isEmpty()) {
             foreach ($u as $uu) {
                 array_push($users, $uu->id);
@@ -55,26 +62,30 @@ class UserAuthorise extends Model
     public static function allowed_status_by_user($user_id)
     {
         $a_s_t = [];///athourise status ticket
-        $u_a = self::where('field_name', 'view_pending_ticket')->where('field_value', 1)->where('user_id', $user_id)->get();
+        ///
+        $u_a = self::where('field_value', 1)->whereIn('field_name', array(
+            'view_pending_ticket', 'view_in_progress_ticket', 'view_closed'
+        ))->where('user_id', $user_id)->get();
         if (!$u_a->isEmpty()) {
-            array_push($a_s_t, 0);
-            array_push($a_s_t, 4);
-        }
-        $u_a = self::where('field_name', 'view_in_progress_ticket')->where('field_value', 1)->where('user_id', $user_id)->get();
-        if (!$u_a->isEmpty()) {
-            array_push($a_s_t, 1);
-        }
-        $u_a = self::where('field_name', 'view_closed')->where('field_value', 1)->where('user_id', $user_id)->get();
-        if (!$u_a->isEmpty()) {
-            array_push($a_s_t, 3);
+            foreach ($u_a as $u) {
+                if ($u->field_name == "view_pending_ticket")
+                {
+                    array_push($a_s_t, 0);
+                    array_push($a_s_t, 4);
+                }else if ($u->field_name == "view_in_progress_ticket")
+                {
+                    array_push($a_s_t, 1);
+                }else if ($u->field_name == "view_closed")
+                {
+                    array_push($a_s_t, 3);
+                }
+            }
         }
         //////////////////////
-        ///
         if (empty($a_s_t)) {
             array_push($a_s_t, -1);
         }
         return $a_s_t;
-
     }
 
     public static function allowed_user_by_ticket($ticket_id)
@@ -99,7 +110,8 @@ class UserAuthorise extends Model
             $user_authorise = UserAuthorise::whereRaw("
             `field_name` = 'categories' and `field_value` = $category_id  and 
             (`user_id` IN( select user_id from user_authorises where `field_name` = 'hotels' and `field_value` = $hotel_id) 
-            || `user_id` IN (select id from users where is_staff=1))");
+             OR `user_id` IN (select id from users where is_staff=1))
+            ");
             $user_authorise = $user_authorise->get();
             $u_a = [];
             foreach ($user_authorise as $u) {
@@ -109,7 +121,6 @@ class UserAuthorise extends Model
             $user = User::whereIn('id', $u_a)->orWhere('organizational_chart_id', '1')->get();
             /////////////////////////////////////////////
             return $user;
-
         }
 
     }
