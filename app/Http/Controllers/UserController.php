@@ -33,6 +33,7 @@ class UserController extends Controller
         }
         return view('user.index', $data);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -128,9 +129,9 @@ class UserController extends Controller
             $User->update($data);
             upload_image($User, 'image_path', 'user_images');
             if ($User->is_staff == 1)
-                return redirect('users/staffs');
+                return redirect('users/' . $User->id . '/edit');
             else
-                return redirect('users/hotels');
+                return redirect('users/' . $User->id. '/edit');
         } catch (\Exception $e) {
 
         }

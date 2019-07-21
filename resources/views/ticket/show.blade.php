@@ -1,11 +1,13 @@
 @extends("layouts.bmail")
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/css-rtl/pages/chat-application.css")}}">
+    <link href="{{asset("vendor/jalaliDatePick/jquery.md.bootstrap.datetimepicker.style.css")}}" rel="stylesheet"/>
 @endsection
 @section('js')
     <script src="{{asset("/app-assets/js/scripts/pages/chat-application.js")}}" type="text/javascript"></script>
     <script src="{{asset("vendor/unisharp/laravel-ckeditor/ckeditor.js")}}"></script>
     <script src="{{asset("vendor/unisharp/laravel-ckeditor/adapters/jquery.js")}}"></script>
+    <script src="{{asset("vendor/jalaliDatePick/jquery.md.bootstrap.datetimepicker.js")}}"></script>
     <script>
         $('textarea').ckeditor(
             {
@@ -71,37 +73,55 @@
                 $('.dv_extra').css('display', 'none');
                 $('#dv_set_times').css('display', 'block');
             });
+
+            $('#expire_date_fa').MdPersianDateTimePicker({
+                targetTextSelector: '#expire_date_fa',
+                targetDateSelector: '#expire_date',
+            });
         });
     </script>
 @endsection
 @section('content')
     <div class="email-app-title card-body">
         <div class="row">
+            <div class="col-12"> @include("fragments.alert") </div>
+
             <div class="col-lg-9 col-12 text-left ">
                 <h3 class="list-group-item-heading">{{$current_ticket->subject}}</h3>
             </div>
 
-        </div>
-        <div class="row mt-1">
-            <p class="col-3 gray-asa"><i class="ft-info "></i>{{ trans('mb.category').':'.$current_ticket->category->name}} </p> 
-            <p class="col-3 gray-asa"> <i class="ft-calendar"></i> {{ trans('mb.time').':'.date_sh($current_ticket->created_at) }}</p>
-            <p class="col-3 gray-asa"> <i class="ft-tag"></i> {{trans("mb.ticketNumber").': '.$current_ticket->ticket_id}}</p>
-             <p class="col-3 {{$status_list[$current_ticket->status][1]}}"><i
-                class="font-medium-1 {{$status_list[$current_ticket->status][2]}}"></i> {{$status_list[$current_ticket->status][0]}}
+            <p class="col-3 text-right">
+                        <span class="{{$status_list[$current_ticket->status][1]}}"><i
+                                    class="font-medium-1 {{$status_list[$current_ticket->status][2]}}"></i> {{$status_list[$current_ticket->status][0]}}</span>
             </p>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                    <div class="row">
-                        <p class="col-12 gray-asa"><i class="fas fa-paper-plane"></i> {{trans("mb.sender").':  '.$current_ticket->sender->name ." ".trans("mb.user")." ". trans('mb.hotel')." ".$current_ticket->hotel->name }}</p>
-                        <p class="col-12 gray-asa"><i class="fas fa-headphones-alt"></i> {{trans("mb.trackBy").':  '.$current_ticket->receiver->name}}</p>
-                       
-                    </div>
-            </div>
         </div>
     </div>
     <div class="media-list">
         <div class="card-body chat-application">
+            <div class="row mt-3">
+                <p class="col-3 gray-asa"><i
+                            class="ft-info "></i>{{ trans('mb.category').':'.$current_ticket->category->name}} </p>
+                <p class="col-3 gray-asa"><i
+                            class="ft-calendar"></i> {{ trans('mb.time').':'.date_sh($current_ticket->created_at) }}</p>
+                <p class="col-3 gray-asa"><i
+                            class="ft-calendar"></i> {{ trans('mb.expireDateTicket').':'.date_sh($current_ticket->expire_date) }}
+                </p>
+                <p class="col-3 gray-asa"><i
+                            class="ft-tag"></i> {{trans("mb.ticketNumber").': '.$current_ticket->ticket_id}}</p>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <p class="col-12 gray-asa">
+                            <i class="fas fa-paper-plane"></i> {{trans("mb.sender").':  '.$current_ticket->sender->name ." ".trans("mb.user")." ". trans('mb.hotel')." ".$current_ticket->hotel->name }}
+                        </p>
+                        <p class="col-12 gray-asa">
+                            <i class="fas fa-headphones-alt"></i> {{trans("mb.trackBy").':  '.$current_ticket->receiver->name}}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
             <div class="chats ps-container ps-theme-dark ps-active-y">
                 <div class="chats ps-container ps-theme-dark">
                     @foreach($chains as $ticket)

@@ -35,18 +35,17 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-2 label-control"><?php echo e(trans("mb.expireDateTicket")); ?></label>
-                        <input name="expire_date_hour" id="expire_date_hour" type="number" class="form-control col-2 ml-1"
-                               placeholder="<?php echo e(trans("mb.hour")); ?>" min="0"
-                               value="<?php echo e($ticket->expire_date_hour ?? old("expire_date_hour")); ?>">
-                        <span class="m-1">ساعت</span>
-                        <input name="expire_date_day" id="expire_date_day" type="number" class="form-control col-2"
-                               placeholder="<?php echo e(trans("mb.day")); ?>" min="0"
-                               value="<?php echo e($ticket->expire_date_day ?? old("expire_date_day")); ?>">
-                        <span class="m-1">روز</span>
-
-                        <p class="col-3 label-control m-1"><?php echo e(date_shamsi($ticket->expire_date)); ?></p>
+                    <div class="row form-group">
+                        <label class="col-2 label-control" for="expire_date_fa"><?php echo e(trans('mb.expireDateTicket')); ?></label>
+                        <div class="col-6">
+                            <input type="text" id="expire_date_fa" class="form-control"
+                                   placeholder="<?php echo e(trans('mb.expireDate')); ?>"
+                                   name="expire_date_fa"
+                                   value="<?php echo e($ticket->expire_date_fa??old('expire_date_fa')); ?>">
+                            <input type="hidden" name="expire_date" id="expire_date"
+                                   value="<?php echo e($ticket->expire_date ?? old("expire_date")); ?>">
+                        </div>
+                        <p class="col-3 label-control m-1"><?php echo e((is_null($ticket->expire_date))?trans("mb.unknown"):date_shamsi($ticket->expire_date,"Y-m-d")); ?></p>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 label-control"><?php echo e(trans("mb.timeTable")); ?></label>

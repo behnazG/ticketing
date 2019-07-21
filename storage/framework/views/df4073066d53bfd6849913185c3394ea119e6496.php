@@ -210,6 +210,18 @@ $breadcrumbs = [
                                                 </div>
                                                 <div class="col-4">
                                                     <fieldset>
+                                                        <input type="checkbox" name="view_training"
+                                                               <?php echo e(old("view_training") || (!old("view_training") && $old_view_training==1)?'checked':''); ?>
+
+                                                               class="checkbox_hotel" id="view_training">
+                                                        <label for="view_training"
+                                                               id=""><span
+                                                                    class=""><?php echo e(trans('mb.viewTrainingTicket')); ?></span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-4">
+                                                    <fieldset>
                                                         <input type="checkbox" name="set_times"
                                                                <?php echo e(old("set_times") || (!old("set_times") && $old_set_times==1)?'checked':''); ?>
 
@@ -294,9 +306,18 @@ $breadcrumbs = [
                                                         </label>
                                                     </fieldset>
                                                 </div>
+                                                <div class="col-4">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="allow_end_ticket_work"
+                                                               <?php echo e(old("allow_end_ticket_work") || (!old("allow_end_ticket_work") && $old_allow_end_ticket_work==1)?'checked':''); ?>
 
-
-
+                                                               class="checkbox_hotel" id="allow_end_ticket_work">
+                                                        <label for="allow_end_ticket_work"
+                                                               id=""><span
+                                                                    class=""><?php echo e(trans('mb.canEndWorkTime')); ?></span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
 
                                             </div>
                                         </div>
@@ -310,7 +331,6 @@ $breadcrumbs = [
             </div>
         </div>
     </div>
-
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.blayout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\asa\resources\views/user/authorise.blade.php ENDPATH**/ ?>

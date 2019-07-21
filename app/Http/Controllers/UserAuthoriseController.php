@@ -25,13 +25,15 @@ class UserAuthoriseController extends Controller
             "view_pending_ticket",
             "view_in_progress_ticket",
             "view_closed",
+            "view_training",
             "set_times",
             "get_sms",
             "admin_users",
             "add_authorise",
             "admin_hotels",
             "admin_categories",
-            "admin_organizationCharts"
+            "admin_organizationCharts",
+            "allow_end_ticket_work"
         ];
         foreach ($other_setting as $key) {
             $index = "old_" . $key;
@@ -69,6 +71,7 @@ class UserAuthoriseController extends Controller
         $old_view_pending_ticket = 0;
         $old_view_in_progress_ticket = 0;
         $old_view_closed = 0;
+        $old_view_training=0;
         $old_set_times = 0;
         $old_get_sms = 0;
         $old_admin_users = 0;
@@ -76,6 +79,7 @@ class UserAuthoriseController extends Controller
         $old_admin_hotels = 0;
         $old_admin_categories = 0;
         $old_admin_organizationCharts = 0;
+        $old_allow_end_ticket_work=0;
         /////////////////////////////////////////////////////
         foreach ($user_authorises as $u_a) {
             if ($u_a->field_name == "categories") {
@@ -98,6 +102,9 @@ class UserAuthoriseController extends Controller
             } elseif ($u_a->field_name == "view_closed") {
                 $old_view_closed = 1;
                 $u_a_old_id[$u_a->id] = "view_closed";
+            } elseif ($u_a->field_name == "view_training") {
+                $old_view_training = 1;
+                $u_a_old_id[$u_a->id] = "view_training";
             } elseif ($u_a->field_name == "set_times") {
                 $old_set_times = 1;
                 $u_a_old_id[$u_a->id] = "set_times";
@@ -119,6 +126,9 @@ class UserAuthoriseController extends Controller
             } elseif ($u_a->field_name == "admin_organizationCharts") {
                 $old_admin_organizationCharts = 1;
                 $u_a_old_id[$u_a->id] = "admin_organizationCharts";
+            }elseif ($u_a->field_name == "allow_end_ticket_work") {
+                $old_allow_end_ticket_work = 1;
+                $u_a_old_id[$u_a->id] = "allow_end_ticket_work";
             }
         }
         /// ////////////////////////////////////////////////////////////
@@ -165,6 +175,12 @@ class UserAuthoriseController extends Controller
             else
                 $u_a_id[array_search("view_closed", $u_a_old_id)] = "view_closed";
         }
+        if (isset($request->view_training)) {
+            if ($old_view_training != 1)
+                $data[] = ["field_name" => "view_training", "field_value" => 1, "user_id" => $user->id];
+            else
+                $u_a_id[array_search("view_training", $u_a_old_id)] = "view_training";
+        }
         if (isset($request->set_times)) {
             if ($old_set_times != 1)
                 $data[] = ["field_name" => "set_times", "field_value" => 1, "user_id" => $user->id];
@@ -206,6 +222,12 @@ class UserAuthoriseController extends Controller
                 $data[] = ["field_name" => "admin_organizationCharts", "field_value" => 1, "user_id" => $user->id];
             else
                 $u_a_id[array_search("admin_organizationCharts", $u_a_old_id)] = "admin_organizationCharts";
+        }
+        if (isset($request->allow_end_ticket_work)) {
+            if ($old_allow_end_ticket_work != 1)
+                $data[] = ["field_name" => "allow_end_ticket_work", "field_value" => 1, "user_id" => $user->id];
+            else
+                $u_a_id[array_search("allow_end_ticket_work", $u_a_old_id)] = "allow_end_ticket_work";
         }
         ////////////////////////////
         try {

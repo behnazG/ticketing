@@ -44,18 +44,18 @@ function download_attach_files()
 ///////////////////////////////////////////////////////////
 function date_sh($date)
 {
-    if( Session::get('locale')==2)
+    if (Session::get('locale') == 2)
         return $date;
     $v = new Verta($date);
     return $v->formatDifference();
 }
 
-function date_shamsi($date)
+function date_shamsi($date, $format = "Y-m-d H:i:s")
 {
-    if( Session::get('locale')==2)
+    if (Session::get('locale') == 2)
         return $date;
     $v = new Verta($date);
-    return $v->format("Y-m-d H:i");
+    return $v->format($format);
 }
 
 function get_icon_url($icon_name = "user")

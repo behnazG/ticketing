@@ -248,10 +248,11 @@ class TicketController extends Controller
         try {
 
             if ($ticket_log->isEmpty()) {
+                Session::flash('message', trans("mb.canNotEndWorkTime", ["ticket_id" => $ticket_id]));
+                Session::flash('alert-class', "alert-danger");
             } else {
                 foreach ($ticket_log as $tl) {
                     $tl->update($data);
-
                 }
             }
         } catch (\Exception $e) {
@@ -284,41 +285,56 @@ class TicketController extends Controller
             "receiver_id" => "required|numeric",
             "ticket_id" => "required|numeric",
             "comment" => "required|string",
-            "expire_date_hour" => "required|numeric",
-            "expire_date_day" => "required|numeric",
+            "expire_date_fa" => "required|string",
+            "expire_date" => "required|string",
             "duration_hour" => "required|numeric",
             "duration_day" => "required|numeric",
         ]);
         $data["type"] = 1;
         ////////////////
-        $expire_date = date('Y-m-d H:i:s', strtotime(' + ' . $request->expire_date_day . ' days + ' . $request->expire_date_hour . ' hours'));
-        $duration_day = date('Y-m-d H:i:s', strtotime(' + ' . $request->duration_day . ' days + ' . $request->duration_hour . ' hours'));
+        $expire_date = $request->expire_date . ' 00:00:00';
         /////////////////////////////////////////
         $data1 = [];
         $data1["expire_date_current"] = $expire_date;
-        $data1["duration_current"] = $duration_day;
+        $data1["duration_day_current"] = $request->duration_day;
+        $data1["duration_hour_current"] = $request->duration_hour;
         ///////////////////////////////////////////////////////////////////////
         try {
             $ticket = Ticket::find($request->ticket_id);
-            $ticket->update($data1);
-            /////////////////////////////////////////////////////////////
-            $data["expire_date"] = $expire_date;
-            $data["duration"] = $duration_day;
-            unset($data["expire_date_hour"]);
-            unset($data["expire_date_day"]);
-            unset($data["duration_hour"]);
-            unset($data["duration_day"]);
-            ///  /////////////////////////////////////
-            TicketLog::closeAllTimeWork($ticket->id);
-            TicketLog::create($data);
-            if (!is_null($ticket)) {
-                $ticket->update(["receiver_id" => $request->receiver_id]);
+            if (is_null($ticket)) {
+                Session::flash('message', trans("mb.canNotReffralTicket", ["ticket_id" => $request->ticket_id]));
+                Session::flash('alert-class', "alert-danger");
+            } else {
+                if ($ticket->receiver_id == $request->receiver_id) {
+                    Session::flash('message', trans("mb.receiverIsSame", ["name" => ($ticket->receiver == false) ? trans("unknown") : $ticket->receiver->name]));
+                    Session::flash('alert-class', "alert-danger");
+                    return Redirect::back();
+                } else {
+                    $ticket->update($data1);
+                    /////////////////////////////////////////////////////////////
+                    $data["expire_date"] = $expire_date;
+                    $data["duration_day"] = $request->duration_day;
+                    $data["duration_hour"] = $request->duration_hour;
+                    $data["ticket_status"] = $ticket->status;
+                    unset($data["expire_date_fa"]);
+                    ///  /////////////////////////////////////
+                    TicketLog::closeAllTimeWork($ticket->id);
+                    TicketLog::create($data);
+                    if (!is_null($ticket)) {
+                        $ticket->update(["receiver_id" => $request->receiver_id]);
+                    } //////////////////////////////////////////////////////////////
+                    Session::flash('message', trans("mb.successRefrallTicket", ["ticket_id" => $request->ticket_id]));
+                    Session::flash('alert-class', "alert-success");
+                    ///////////////////////////////////////////////////////////////
+                    return redirect('tickets/inbox');
+                }
+
             }
-            ///////////////////////////////////////////////////////////////
-            return redirect('tickets/inbox');
+
             ////////////////////////////////////////////////////////////////////////
         } catch (\Exception $e) {
-
+            Session::flash('message', trans("mb.canNotReffralTicket", ["ticket_id" => $request->ticket_id]));
+            Session::flash('alert-class', "alert-danger");
         }
     }
 
@@ -370,33 +386,38 @@ class TicketController extends Controller
         $current_user = auth::user();
         $data = $request->validate(
             [
-                "expire_date_hour" => "required|numeric",
-                "expire_date_day" => "required|numeric",
+                "expire_date_fa" => "required|string",
+                "expire_date" => "required|string",
                 "duration_hour" => "required|numeric",
                 "duration_day" => "required|numeric",
             ]
         );
+        unset($data["expire_date_fa"]);
+        ////////////////////////////////////////////////////////
         try {
-            ////////////////////////////////////////////////////////
-            $ticket_log = TicketLog::where('ticket_id', $ticket->id)->where('type', 1)->get();
-            if (!$ticket_log->isEmpty()) {
-                Redirect::back()->withErrors([0 => trans('mb.ErrorSetTimes')]);
+            $expire_date = $request->expire_date . ' 00:00:00';
+            $data["expire_date"] = $expire_date;
+            $data["expire_date_current"] = $expire_date;
+            $data["duration_day_current"] = $request->duration_day;
+            $data["duration_hour_current"] = $request->duration_hour;
+            ///////////////////////////////////////////////////
+            if ($ticket->expire_date == str_replace('/', '-', $expire_date) && $ticket->duration_hour == $request->duration_hour && $ticket->duration_day == $request->duration_day) {
+                Session::flash('message', trans("mb.setTimesIsSame"));
+                Session::flash('alert-class', "alert-danger");
+                return Redirect::back();
             }
             ////////////////////////////////////////////////
-            $expire_date = date('Y-m-d H:i:s', strtotime(' + ' . $request->expire_date_day . ' days + ' . $request->expire_date_hour . ' hours'));
-            $duration_day = date('Y-m-d H:i:s', strtotime(' + ' . $request->duration_day . ' days + ' . $request->duration_hour . ' hours'));
-            $data["expire_date"] = $expire_date;
-            $data["duration"] = $duration_day;
-            $data["expire_date_current"] = $expire_date;
-            $data["duration_current"] = $duration_day;
-            unset($data["expire_date_hour"]);
-            unset($data["expire_date_day"]);
-            unset($data["duration_hour"]);
-            unset($data["duration_day"]);
+            $ticket_log = TicketLog::where('ticket_id', $ticket->id)->where('type', 1)->get();
+            if (!$ticket_log->isEmpty()) {
+                Session::flash('message', trans("mb.ErrorSetTimes"));
+                Session::flash('alert-class', "alert-danger");
+                return Redirect::back()->withErrors([0 => trans('mb.ErrorSetTimes')]);
+            }
             ////////////////////////////////////////////////
             $ticket->update($data);
             unset($data["expire_date_current"]);
-            unset($data["duration_current"]);
+            unset($data["duration_day_current"]);
+            unset($data["duration_hour_current"]);
             //////////////////////////////////
             $data["user_id"] = auth::user()->id;
             $data["ticket_status"] = $ticket->status;
@@ -407,6 +428,7 @@ class TicketController extends Controller
         } catch (\Exception $e) {
             abort(404, "tickets");
         }
+        /////////////////////////////////////////////
         return redirect('tickets/' . $ticket->generate_ticket_id());
     }
 

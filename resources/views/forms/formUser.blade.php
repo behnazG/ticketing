@@ -213,7 +213,7 @@ else {
                                 </div>
 
                             </div>
-                            @include('fragments.submitPart',['submitText'=>$submitText,'giveUpUrl'=>'/users'])
+                            @include('fragments.submitPart',['submitText'=>$submitText,'giveUpUrl'=>false])
                         </form>
                     </div>
                 </div>

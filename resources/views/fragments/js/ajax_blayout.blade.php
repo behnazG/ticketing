@@ -43,19 +43,8 @@
                 success: function (result) {
                     var result = JSON.parse(result);
                     var div_content = "";
-                    var tickets_duration = result[1]["tickets_duration"];
                     var counter = 0;
-                    console.log(result);
                     //////////////////////////////////////////////////////////////////////////
-                    tickets_duration.forEach(function (item, index, arr) {
-                        var subject = "{{trans("mb.notify_expire_date_ticket_subject")}} " + " " + item.id;
-                        var icon = "<i class='fa fa-user'></i>";
-                        var content = "{{trans("mb.notify_expire_date_ticket_text")}}";
-                        var url = "tickets/" + item.id_coder;
-                        div_content = div_content + create_notify_div();
-                        notifyMe(subject, icon, content, url);
-                        counter++;
-                    });
                     var tickets_expire_date = result[1]["tickets_expire_date"];
                     tickets_expire_date.forEach(function (item, index, arr) {
                         var subject = "{{trans("mb.notify_expire_date_ticket_subject")}} " + " " + item.id;
@@ -66,6 +55,8 @@
                         notifyMe(subject, icon, content, url);
                         counter++;
                     });
+                    ///////////////////////////////////////////////////////////////////////////////////////////
+
                     /////////////////////////////////////////////////////////////////////////////////////////
                     $("#top_notify_list").html(div_content);
                     $("#topmenu_number_notify").html(counter);

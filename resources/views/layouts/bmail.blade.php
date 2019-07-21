@@ -332,45 +332,49 @@ $user_authorise = \App\UserAuthorise::getAuthorise();
             <div class="content-body">
                 <div class="card email-app-details d-none d-lg-block rounded-0">
                     <div class="card-content">
-                        <div class="email-app-options card-body">
-                            <form method="post" action="{{url('/tickets/advancedSearch')}}" id="search_all_ticket">
-                                <div class="row">
-                                    <div class="col-10 col-lg-8   text-center offset-lg-2">
-                                        <fieldset class="form-group position-relative has-icon-left m-0 pb-1">
-                                            <div class="input-group">
-                                                @csrf
-                                                <input type="text" class="form-control round" name="subject_ticket"
-                                                       id="subject_ticket">
-                                                <input type="hidden" name="topic_search" id="topic_search">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-light dropdown-toggle round"
-                                                            type="button"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">{{trans("mb.searchIn")}}
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item search_in_tickets"
-                                                           data-topic="1">{{trans('mb.ticketNumber')}}</a>
-                                                        <a class="dropdown-item search_in_tickets"
-                                                           data-topic="2">{{trans('mb.ticketSubject')}}</a>
-                                                        <a class="dropdown-item search_in_tickets"
-                                                           data-topic="3">{{trans('mb.sender')}}</a>
+
+                            <div class="email-app-options card-body">
+                                @if(auth::user()->is_staff==1)
+                                <form method="post" action="{{url('/tickets/advancedSearch')}}" id="search_all_ticket">
+                                    <div class="row">
+                                        <div class="col-10 col-lg-8   text-center offset-lg-2">
+                                            <fieldset class="form-group position-relative has-icon-left m-0 pb-1">
+                                                <div class="input-group">
+                                                    @csrf
+                                                    <input type="text" class="form-control round" name="subject_ticket"
+                                                           id="subject_ticket">
+                                                    <input type="hidden" name="topic_search" id="topic_search">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-light dropdown-toggle round"
+                                                                type="button"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">{{trans("mb.searchIn")}}
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item search_in_tickets"
+                                                               data-topic="1">{{trans('mb.ticketNumber')}}</a>
+                                                            <a class="dropdown-item search_in_tickets"
+                                                               data-topic="2">{{trans('mb.ticketSubject')}}</a>
+                                                            <a class="dropdown-item search_in_tickets"
+                                                               data-topic="3">{{trans('mb.sender')}}</a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </fieldset>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-xl-3 d-lg-none d-xl-block text-right">
+                                            <button type="button" class="btn btn-sm btn-icon btn-pure">
+                                                <i class="la la-angle-left font-medium-5"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-icon btn-pure">
+                                                <i class="la la-angle-right font-medium-5"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="col-xl-3 d-lg-none d-xl-block text-right">
-                                        <button type="button" class="btn btn-sm btn-icon btn-pure">
-                                            <i class="la la-angle-left font-medium-5"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-icon btn-pure">
-                                            <i class="la la-angle-right font-medium-5"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                                @endif
+                            </div>
+
                         @yield('content')
                     </div>
                 </div>

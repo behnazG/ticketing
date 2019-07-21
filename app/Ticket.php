@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -137,7 +138,8 @@ class Ticket extends Model
                     $allow_status_ticket = [$status];
                 else
                     $allow_status_ticket = [-1];
-                $t = $t->whereRaw("status = $status and  receiver_id = $current_user->id");
+//                $t = $t->whereRaw("status = $status and  receiver_id = $current_user->id");
+                $t = $t->whereRaw("status = $status");
             } else {
                 $t = $t->whereRaw("status In (" . implode(',', $allow_status_ticket) . " ) OR  receiver_id = $current_user->id");
             }
@@ -230,6 +232,7 @@ class Ticket extends Model
             return false;
         else return $user;
     }
+
     public function getReceiverAttribute()
     {
         $user = User::find($this->receiver_id);
@@ -264,6 +267,17 @@ class Ticket extends Model
                 return null;
             else
                 return $hotel;
+        }
+    }
+
+
+    public function getExpireDateFaAttribute()
+    {
+        if (is_null($this->expire_date)) {
+            return "";
+        } else {
+            $v = new Verta($this->expire_date);
+            return $v->format("Y-m-d");
         }
     }
 

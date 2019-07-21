@@ -47,8 +47,7 @@ class HomeController extends Controller
         /////////////////////////////////////////////////////////////////
         $tickt_status = \App\Ticket::find_tickets('i', 0, 'all', true);
         $status_ticket = [0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
-        if(!$tickt_status->isEmpty())
-        {
+        if (!$tickt_status->isEmpty()) {
             foreach ($tickt_status as $t_s) {
                 $status_ticket[$t_s->status] = $t_s->counts;
             }
@@ -141,17 +140,6 @@ class HomeController extends Controller
         }
         $notifies["tickets_expire_date"] = $tt;
         //duration
-        $tickets = Ticket::where('receiver_id', $current_user->id)
-            ->whereRaw('tickets.duration_current < Now() or tickets.duration < Now()')
-            ->where('status', '<', 3)
-            ->get();
-        $tt = [];
-        foreach ($tickets as $t) {
-            $a = $t;
-            $a["id_coder"] = $t->generate_ticket_id();
-            array_push($tt, $a);
-        }
-        $notifies["tickets_duration"] = $tt;
         //////////////////////////////////////
         return $notifies;
     }
@@ -159,8 +147,26 @@ class HomeController extends Controller
     private function check_customer_notify()
     {
         $notifies = [];
+        $current_user = auth::user();
         ///////////////////////////////////////
-
+        if ($current_user->is_staff == 0) {
+            if ($current_user->expire_date < date('Y-m-d H:i:s')) {
+                $notifies["user_expireexpire_date"] = $current_user->expire_date;
+            } else {
+                $notifies["user_expireexpire_date"] = 0;
+            }
+            ///////////////////////
+            //find  ticket not close
+            $tickets = Ticket::where('sender_id', $current_user->id)->where('status', 2)->get();
+            $tt = [];
+            foreach ($tickets as $t) {
+                $a = $t;
+                $a["id_coder"] = $t->generate_ticket_id();
+                array_push($tt, $a);
+            }
+            $notifies["tickets_done"] = $tt;
+            //////////////////////////////
+        }
         /// ///////////////////////////////////
         return $notifies;
     }

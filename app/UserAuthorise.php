@@ -64,20 +64,20 @@ class UserAuthorise extends Model
         $a_s_t = [];///athourise status ticket
         ///
         $u_a = self::where('field_value', 1)->whereIn('field_name', array(
-            'view_pending_ticket', 'view_in_progress_ticket', 'view_closed'
+            'view_pending_ticket', 'view_in_progress_ticket', 'view_closed','view_training'
         ))->where('user_id', $user_id)->get();
         if (!$u_a->isEmpty()) {
             foreach ($u_a as $u) {
-                if ($u->field_name == "view_pending_ticket")
-                {
+                if ($u->field_name == "view_pending_ticket") {
                     array_push($a_s_t, 0);
                     array_push($a_s_t, 4);
-                }else if ($u->field_name == "view_in_progress_ticket")
-                {
+                } else if ($u->field_name == "view_in_progress_ticket") {
                     array_push($a_s_t, 1);
-                }else if ($u->field_name == "view_closed")
-                {
+                } else if ($u->field_name == "view_closed") {
+                    array_push($a_s_t, 2);
                     array_push($a_s_t, 3);
+                }else if ($u->field_name == "view_training") {
+                    array_push($a_s_t, 5);
                 }
             }
         }
@@ -145,9 +145,27 @@ class UserAuthorise extends Model
                     ['field_value', '=', 1],
                 ]);
             }
+            if ($ticket_status == 2) {
+                $user_authorise = $user_authorise->where([
+                    ['field_name', '=', 'view_closed'],
+                    ['field_value', '=', 1],
+                ]);
+            }
             if ($ticket_status == 3) {
                 $user_authorise = $user_authorise->where([
                     ['field_name', '=', 'view_closed'],
+                    ['field_value', '=', 1],
+                ]);
+            }
+            if ($ticket_status == 4) {
+                $user_authorise = $user_authorise->where([
+                    ['field_name', '=', 'view_pending_ticket'],
+                    ['field_value', '=', 1],
+                ]);
+            }
+            if ($ticket_status == 5) {
+                $user_authorise = $user_authorise->where([
+                    ['field_name', '=', 'view_training'],
                     ['field_value', '=', 1],
                 ]);
             }

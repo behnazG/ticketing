@@ -197,6 +197,17 @@ $breadcrumbs = [
                                                 </div>
                                                 <div class="col-4">
                                                     <fieldset>
+                                                        <input type="checkbox" name="view_training"
+                                                               {{old("view_training") || (!old("view_training") && $old_view_training==1)?'checked':'' }}
+                                                               class="checkbox_hotel" id="view_training">
+                                                        <label for="view_training"
+                                                               id=""><span
+                                                                    class="">{{trans('mb.viewTrainingTicket')}}</span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-4">
+                                                    <fieldset>
                                                         <input type="checkbox" name="set_times"
                                                                {{old("set_times") || (!old("set_times") && $old_set_times==1)?'checked':'' }}
                                                                class="checkbox_hotel" id="set_times">
@@ -274,9 +285,17 @@ $breadcrumbs = [
                                                         </label>
                                                     </fieldset>
                                                 </div>
-
-
-
+                                                <div class="col-4">
+                                                    <fieldset>
+                                                        <input type="checkbox" name="allow_end_ticket_work"
+                                                               {{old("allow_end_ticket_work") || (!old("allow_end_ticket_work") && $old_allow_end_ticket_work==1)?'checked':'' }}
+                                                               class="checkbox_hotel" id="allow_end_ticket_work">
+                                                        <label for="allow_end_ticket_work"
+                                                               id=""><span
+                                                                    class="">{{trans('mb.canEndWorkTime')}}</span>
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
 
                                             </div>
                                         </div>
@@ -290,5 +309,4 @@ $breadcrumbs = [
             </div>
         </div>
     </div>
-
 @endsection

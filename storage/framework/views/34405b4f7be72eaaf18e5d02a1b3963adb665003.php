@@ -216,7 +216,7 @@ else {
                                 </div>
 
                             </div>
-                            <?php echo $__env->make('fragments.submitPart',['submitText'=>$submitText,'giveUpUrl'=>'/users'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                            <?php echo $__env->make('fragments.submitPart',['submitText'=>$submitText,'giveUpUrl'=>false], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         </form>
                     </div>
                 </div>
