@@ -1,0 +1,56 @@
+header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
+    display: none;
+}
+article {
+    column-width: 17em;
+    column-gap: 3em;
+}
+img, svg {
+    display: none;
+}
+
+img.print, svg.print {
+    display: block;
+    max-width: 100%;
+}
+img.dark {
+    filter: invert(100%) hue-rotate(180deg) brightness(120%) contrast(150%);
+}
+
+a[href^="http"]::after {
+    content: " (" attr(href) ")";
+}
+
+main::after {
+    content: "Copyright site.com";
+    display: block;
+    text-align: center;
+}
+h1 {
+    page-break-before: always;
+    break-before: always;
+}
+table {
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+/* target all pages */
+@page {
+    margin: 2cm;
+}
+
+/* target the first page only */
+@page :first {
+    margin-top: 6cm;
+}
+
+/* target left (even-numbered) pages only */
+@page :left {
+    margin-right: 4cm;
+}
+
+/* target right (odd-numbered) pages only */
+@page :right {
+    margin-left: 4cm;
+}

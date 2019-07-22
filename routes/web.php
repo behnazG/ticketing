@@ -12,6 +12,7 @@
 */
 
 Auth::routes();
+///////////////////////////////////////////////////////////////////////////////////
 Route::get('/', 'HomeController@index')->middleware('auth');
 Route::get('/refreshTopMenuTicket', 'HomeController@refresh_top_menu_ticket');
 Route::get('/refreshTopMenuNotify', 'HomeController@refresh_top_menu_notify');
@@ -34,18 +35,25 @@ Route::get('/tickets/startWorkTime/{ticket_id}', 'TicketController@start_work_ti
 Route::get('/tickets/endWorkTime/{ticket_id}', 'TicketController@end_work_time');
 Route::put('/tickets/setTimes/{ticket}', 'TicketController@set_times')->middleware('auth');
 Route::get('/changeLanguage/{lang}', 'HomeController@set_locale')->middleware('auth');
+/////////////////////////////////////////////////////////////
+Route::get('/print/{ticket_id}/tickets', 'TicketController@print_tickets')->middleware('auth');
 ////////////////////////////////////////////////////////////
 Route::resource('/categories', 'CategoryController')->middleware('auth');
 Route::resource('/organizationCharts', 'OrganizationChartController')->middleware('auth');
 Route::resource('/hotels', 'HotelController')->middleware('auth');
 ////////////////////////////////////////////////////////
-Route::post('users', 'UserController@store')->middleware('auth');
-Route::get('users/create', 'UserController@create')->middleware('auth');
-Route::put('users/{user}', 'UserController@update')->middleware('auth');
-Route::delete('users/{user}', 'UserController@destroy')->middleware('auth');
-Route::get('users/{user}/edit', 'UserController@edit')->middleware('auth');
-Route::get('users/{is_staff}', 'UserController@index')->middleware('auth');
-Route::get('users/{user}', 'UserController@show')->middleware('auth');
+Route::post('users', 'UserController@store')->middleware('auth')->middleware('custome_auth');
+Route::get('users/create', 'UserController@create')->middleware('auth')->middleware('custome_auth');
+Route::put('users/{user}', 'UserController@update')->middleware('auth')->middleware('custome_auth');
+Route::delete('users/{user}', 'UserController@destroy')->middleware('auth')->middleware('custome_auth');
+Route::get('users/{user}/edit', 'UserController@edit')->middleware('auth')->middleware('custome_auth');
+Route::get('users/{is_staff}', 'UserController@index')->middleware('auth')->middleware('custome_auth');
+Route::get('users/{user}', 'UserController@show')->middleware('auth')->middleware('custome_auth');
 ///////////////////////////////////////////////
 Route::get('authorises/{user}/authorise', 'UserAuthoriseController@authorise')->middleware('auth');
 Route::put('authorises/{user}', 'UserAuthoriseController@store')->middleware('auth');
+////////////////////////////////
+Route::get('/mail', function () {
+    return view('mail');
+});
+//////////////////////////////////////////////

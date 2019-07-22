@@ -479,5 +479,23 @@ class TicketController extends Controller
 
     }
 
+    public function print_tickets($ticket_id)
+    {
+        $data = [];
+        //////////////
+        $ticket_id = $this->decode_ticket_id($ticket_id);
+        $ticket = Ticket::findorfail($ticket_id);
+        if ($ticket->id != $ticket->ticket_id) {
+            $ticket = Ticket::findorfail($ticket->ticket_id);
+        }
+        $data["ticket"] = $ticket;
+        //////////////////////////////////////
+        $chains = Ticket::where('ticket_id', $ticket->id)->get();
+        $data["chains"] = $chains;
+        //////////////////////////////////
+        return view('ticket.print', $data);
+
+    }
+
 
 }
