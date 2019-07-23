@@ -226,11 +226,14 @@
                                 </button>
                             @endif
                         @endif
-                        <button type="button" class="btn btn-asa btn btn-glow " id="btn_show_work_time">
-                            <i class="fa fa-history"></i>
-                            {{trans("mb.LogFile")}}
-                        </button>
-                        <a href="{{url("print/".$current_ticket->generate_ticket_id()."/tickets")}}" class="btn btn-asa btn btn-glow  white" target="_blank"><i class="ft-printer"></i></a>
+                        @if($current_user->is_staff==1)
+                            <button type="button" class="btn btn-asa btn btn-glow " id="btn_show_work_time">
+                                <i class="fa fa-history"></i>
+                                {{trans("mb.LogFile")}}
+                            </button>
+                        @endif
+                        <a href="{{url("print/".$current_ticket->generate_ticket_id()."/tickets")}}"
+                           class="btn btn-asa btn btn-glow  white" target="_blank"><i class="ft-printer"></i></a>
 
                     </div>
                     <div class="col-12">

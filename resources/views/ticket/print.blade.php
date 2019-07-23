@@ -1,4 +1,4 @@
-@extends('layouts.print')
+@extends('layouts.print1')
 @section('content')
     <h4>{{$ticket->subject}}</h4>
     <h5>{{trans('mb.ticketStatus').': '.\App\Ticket::STATUS_LIST($ticket->status)[0]}}</h5>
