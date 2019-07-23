@@ -1,4 +1,4 @@
-@extends("layouts.bmail")
+﻿@extends("layouts.bmail")
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset("app-assets/css-rtl/pages/chat-application.css")}}">
     <link href="{{asset("vendor/jalaliDatePick/jquery.md.bootstrap.datetimepicker.style.css")}}" rel="stylesheet"/>
@@ -183,6 +183,18 @@
                     <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 95px;"></div>
                 </div>
             </div>
+
+            {{--///////////////////////////////////////--}}
+            @if($current_user->is_staff == 1)
+                @foreach($ticket_time_log as $t_l)
+                    @if($t_l->type == 1)
+                        @include('fragments.alertMessage',['alert_class'=>'info','message'=>trans('mb.reffralFrom').': '.$t_l->user_full_name.'<br />'.$t_l->comment])
+                    @endif
+                @endforeach
+            @endif
+            <div class="row mt-1">
+            </div>
+            {{--/////////////////////////--}}
             @if($authorise==true)
                 {{--BUTTON--}}
                 <div class="row mt-1 text-left">

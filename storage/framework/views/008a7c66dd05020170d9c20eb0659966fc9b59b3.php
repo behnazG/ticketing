@@ -1,3 +1,4 @@
+﻿
 <?php $__env->startSection('css'); ?>
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset("app-assets/css-rtl/pages/chat-application.css")); ?>">
     <link href="<?php echo e(asset("vendor/jalaliDatePick/jquery.md.bootstrap.datetimepicker.style.css")); ?>" rel="stylesheet"/>
@@ -188,6 +189,18 @@
                     <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 95px;"></div>
                 </div>
             </div>
+
+            
+            <?php if($current_user->is_staff == 1): ?>
+                <?php $__currentLoopData = $ticket_time_log; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t_l): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($t_l->type == 1): ?>
+                        <?php echo $__env->make('fragments.alertMessage',['alert_class'=>'info','message'=>trans('mb.reffralFrom').': '.$t_l->user_full_name.'<br />'.$t_l->comment], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                    <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
+            <div class="row mt-1">
+            </div>
+            
             <?php if($authorise==true): ?>
                 
                 <div class="row mt-1 text-left">
